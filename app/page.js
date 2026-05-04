@@ -157,7 +157,7 @@ function MainPage() {
     </div>
 
     {/* Centered Menu */}
-    <ul className="flex flex-col flex-1 justify-center items-center gap-6 text-lg font-bold text-center -mt-100">
+    <ul className="flex flex-col flex-1 justify-center items-center gap-6 text-lg font-bold text-center -mt-50">
       <li className="cursor-pointer">Home</li>
       <li className="cursor-pointer">About</li>
       <li className="cursor-pointer">Services</li>
