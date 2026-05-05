@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
+import Image from "next/image";
+
 import { usePathname } from "next/navigation";
 
 
@@ -48,6 +50,7 @@ const isActive = pathname === "/";
   }, [darkMode]);
 
   return (
+    <>
     <div
       className="min-h-screen bg-cover bg-center transition-all duration-500"
       style={{
@@ -376,7 +379,97 @@ transition-all duration-300"
             />
           </motion.div>
         </section>
-      </div>
+</div>
     </div>
+    {/*About Me*/}
+<section
+  className="w-full px-4 md:px-16 py-16 md:py-24
+             bg-cover bg-top bg-no-repeat"
+  style={{
+    backgroundImage: darkMode
+      ? "url('/images/about-bg.png')"
+      : "url('/images/about-bg1.png')"
+  }}
+>
+      <div className="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
+        
+        {/* LEFT IMAGE CARD */}
+        <div className="relative flex justify-center">
+          <div className="rounded-2xl p-4 bg-white/10 backdrop-blur-md shadow-xl">
+            <div className="rounded-xl overflow-hidden">
+              <Image
+                src="/profile.jpg" // your image
+                alt="Profile"
+                width={400}
+                height={500}
+                className="object-cover w-full h-auto"
+              />
+            </div>
+          </div>
+
+          {/* Decorative ring */}
+          <div className="absolute -bottom-6 -left-6 w-24 h-24 border-4 border-teal-400 rounded-full opacity-40"></div>
+        </div>
+
+        {/* RIGHT CONTENT */}
+        <div className="text-center md:text-left">
+          
+          <p className="text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-2">
+            About Me
+          </p>
+
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-snug">
+            I AM AVAILABLE FOR UI <br /> UX DESIGN PROJECT
+          </h1>
+
+          <p className="mt-4 text-gray-600 dark:text-gray-300 text-sm md:text-base max-w-md">
+            The standard chunk of Lorem Ipsum used since the 1500s is reproduced
+            below for those interested. Sections 1.10.32 and 1.10.33 from de
+            Finibus Bonorum et Malorum.
+          </p>
+
+          {/* STATS */}
+          <div className="flex flex-wrap justify-center md:justify-start gap-6 mt-6">
+            
+            <div>
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+                280+
+              </h2>
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                Google Review
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+                15+
+              </h2>
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                Years Experience
+              </p>
+            </div>
+
+            <div>
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+                49+
+              </h2>
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                Awards Winning
+              </p>
+            </div>
+
+          </div>
+
+          {/* BUTTON */}
+          <button className="mt-6 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-full transition">
+            GET IN TOUCH
+          </button>
+
+        </div>
+      </div>
+    </section>
+    
+ 
+     </>
   );
 }

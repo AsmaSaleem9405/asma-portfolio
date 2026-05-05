@@ -21,6 +21,7 @@
     "paths": {
       "@/*": ["./*"]
     }
+    
   },
   "include": [
     "next-env.d.ts",
@@ -32,3 +33,4 @@
 , "app/page.js"  ],
   "exclude": ["node_modules"]
 }
+
