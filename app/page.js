@@ -334,7 +334,7 @@ transition-all duration-300">
           }`}
         >
           <a
-            href="images/Asma Saleem - Business Analyst.pdf"
+            href="documents/Asma Saleem - Business Analyst.pdf"
             download
             className="block px-4 py-2 hover:bg-purple-700"
           >
@@ -342,7 +342,7 @@ transition-all duration-300">
           </a>
 
           <a
-            href="images/Asma Saleem - Frontend Developer.pdf"
+            href="documents/Asma Saleem - Frontend Developer.pdf"
             download
             className="block px-4 py-2 hover:bg-purple-700"
           >
