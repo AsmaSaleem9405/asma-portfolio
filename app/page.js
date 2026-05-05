@@ -3,9 +3,10 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 
 export default function Page() {
-  
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
@@ -30,10 +31,12 @@ function SplashScreen() {
 
 /* MAIN PAGE */
 function MainPage() {
-  
   const [darkMode, setDarkMode] = useState(true);
   const [open, setOpen] = useState(false);
-    const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  
+const pathname = usePathname();
+const isActive = pathname === "/";
 
 
   useEffect(() => {
@@ -57,320 +60,322 @@ function MainPage() {
       <div
         className={`min-h-screen ${darkMode ? "bg-black/40 text-white" : "text-black"}`}
       >
-       { /*navbar */}
-         <>
-      <nav
-        className="flex items-center justify-between px-6 md:px-16 py-4 
+        {/*navbar */}
+        <>
+          <nav
+            className="flex items-center justify-between px-6 md:px-16 py-4 
         bg-blue/40 backdrop-blur-md shadow-sm"
-      >
-        {/* Left: Logo */}
-       <Link href="/">
-  <>
-    <img
-      src="/images/logo1.png"
-      alt="Logo Light"
-      className="h-12 w-auto block dark:hidden"
-    />
-    <img
-      src="/images/logo1.png"
-      alt="Logo Dark"
-      className="h-12 w-auto hidden dark:block"
-    />
-  </>
-</Link>
-
-        {/* Middle */}
-        <div className="flex-1"></div>
-
-        {/* Right side */}
-        <div className="flex items-center gap-6 font-bold">
-          {/* Toggle */}
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="text-xl"
           >
-            {darkMode ? "☀️" : "🌙"}
-          </button>
+            {/* Left: Logo */}
+            <Link href="/">
+              <>
+                <img
+                  src="/images/logo1.png"
+                  alt="Logo Light"
+                  className="h-12 w-auto block dark:hidden"
+                />
+                <img
+                  src="/images/logo1.png"
+                  alt="Logo Dark"
+                  className="h-12 w-auto hidden dark:block"
+                />
+              </>
+            </Link>
 
-          {/* Mobile Menu Button */}
-          <button
-  className="md:hidden text-2xl"
-  onClick={() => setMenuOpen(!menuOpen)}
+            {/* Middle */}
+            <div className="flex-1"></div>
+
+            {/* Right side */}
+            <div className="flex items-center gap-6 font-bold">
+              {/* Toggle */}
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className="text-xl"
+              >
+                {darkMode ? "☀️" : "🌙"}
+              </button>
+
+              {/* Mobile Menu Button */}
+              <button
+                className="md:hidden text-2xl"
+                onClick={() => setMenuOpen(!menuOpen)}
+              >
+                {menuOpen ? "✖" : "☰"}
+              </button>
+
+              {/* Nav Links (Desktop only) */}
+              <ul className="hidden md:flex gap-8 text-sm">
+               <li
+  className={`cursor-pointer transition-colors ${
+    isActive ? "text-purple-800" : "text-gray-700 hover:text-purple-800"
+  }`}
 >
-  {menuOpen ? "✖" : "☰"}
-</button>
+  Home
+</li>
+                <li className="hover:text-purple-800 dark:hover:text-purple-800 transition-colors cursor-pointer">
+                  About
+                </li>
+                <li className="hover:text-purple-800 dark:hover:text-purple-800 transition-colors cursor-pointer">
+                  Services
+                </li>
+                <li className="hover:text-purple-800 dark:hover:text-purple-800 transition-colors cursor-pointer">
+                  Projects
+                </li>
+                <li className="hover:text-purple-800 dark:hover:text-purple-800 transition-colors cursor-pointer">
+                  Experience
+                </li>
+              </ul>
 
-          {/* Nav Links (Desktop only) */}
-          <ul className="hidden md:flex gap-8 text-sm">
-  <li className="hover:text-purple-800 dark:hover:text-purple-800 transition-colors cursor-pointer">
-    Home
-  </li>
-  <li className="hover:text-purple-800 dark:hover:text-purple-800 transition-colors cursor-pointer">
-    About
-  </li>
-  <li className="hover:text-purple-800 dark:hover:text-purple-800 transition-colors cursor-pointer">
-    Services
-  </li>
-  <li className="hover:text-purple-800 dark:hover:text-purple-800 transition-colors cursor-pointer">
-    Projects
-  </li>
-  <li className="hover:text-purple-800 dark:hover:text-purple-800 transition-colors cursor-pointer">
-    Experience
-  </li>
-</ul>
+              {/* Button */}
+              <button className="hidden md:block bg-purple-600 px-4 py-2 rounded-full text-sm hover:bg-purple-700 text-white shadow-[0_0_15px_rgba(168,85,247,0.7)] animate-pulse hover:shadow-[0_0_25px_rgba(168,85,247,1)] transition-all duration-300">
+                Contact Us
+              </button>
+            </div>
+          </nav>
 
-          {/* Button */}
-          <button className="hidden md:block bg-purple-600 px-4 py-2 rounded-full text-sm hover:bg-purple-700 text-white shadow-[0_0_15px_rgba(168,85,247,0.7)] animate-pulse hover:shadow-[0_0_25px_rgba(168,85,247,1)] transition-all duration-300">
-            Contact Us
-          </button>
-        </div>
-      </nav>
+          {/* Mobile Menu */}
+          {menuOpen && (
+            <div
+              className={`md:hidden fixed inset-0 z-50 flex flex-col ${
+                darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
+              }`}
+            >
+              {/* Top bar */}
+              <div className="flex items-center justify-between px-6 py-4">
+                <Link href="/">
+                  <img src="/images/logo1.png" className="h-10" alt="Logo" />
+                </Link>
 
-      {/* Mobile Menu */}
-     {menuOpen && (
-  <div
-    className={`md:hidden fixed inset-0 z-50 flex flex-col ${
-      darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
-    }`}
-  >
-    {/* Top bar */}
-    <div className="flex items-center justify-between px-6 py-4">
-      <Link href="/">
-  <img src="/images/logo1.png" className="h-10" alt="Logo" />
-</Link>
+                <div className="flex items-center gap-4 z-20">
+                  <button
+                    onClick={() => setDarkMode(!darkMode)}
+                    className="text-xl cursor-pointer"
+                  >
+                    {darkMode ? "☀️" : "🌙"}
+                  </button>
 
-      <div className="flex items-center gap-4 z-20">
-        <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="text-xl cursor-pointer"
-        >
-          {darkMode ? "☀️" : "🌙"}
-        </button>
+                  <button
+                    className="text-2xl cursor-pointer"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    ✖
+                  </button>
+                </div>
+              </div>
 
-        <button
-          className="text-2xl cursor-pointer"
-          onClick={() => setMenuOpen(false)}
-        >
-          ✖
-        </button>
-      </div>
-    </div>
+              {/* Centered Menu */}
+              <ul className="flex flex-col flex-1 justify-center items-center gap-6 text-lg font-bold text-center -mt-50">
+                <li className="cursor-pointer">Home</li>
+                <li className="cursor-pointer">About</li>
+                <li className="cursor-pointer">Services</li>
+                <li className="cursor-pointer">Projects</li>
+                <li className="cursor-pointer">Experience</li>
 
-    {/* Centered Menu */}
-    <ul className="flex flex-col flex-1 justify-center items-center gap-6 text-lg font-bold text-center -mt-50">
-      <li className="cursor-pointer">Home</li>
-      <li className="cursor-pointer">About</li>
-      <li className="cursor-pointer">Services</li>
-      <li className="cursor-pointer">Projects</li>
-      <li className="cursor-pointer">Experience</li>
-
-      <li className="w-full flex justify-center mt-4">
-       <button className="bg-purple-600 px-6 py-3 rounded-full text-white w-[50%]
+                <li className="w-full flex justify-center mt-4">
+                  <button
+                    className="bg-purple-600 px-6 py-3 rounded-full text-white w-[50%]
 shadow-[0_0_15px_rgba(168,85,247,0.7)]
 animate-pulse
 hover:shadow-[0_0_30px_rgba(168,85,247,1)]
-transition-all duration-300">
-  Contact Us
-</button>
-      </li>
-    </ul>
-  </div>
-)}
-    </>
+transition-all duration-300"
+                  >
+                    Contact Us
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
+        </>
         {/* HERO */}
-       
 
-<section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-10 md:py-20">
-  
-  {/* LEFT SIDE */}
-  <motion.div
-    initial={{ opacity: 0, x: -40 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-    viewport={{ once: false }}
-    className="max-w-xl space-y-5"
-  >
-    <h6 className="text-lg text-purple-600 font-bold">
-      I am Asma Saleem
-    </h6>
-
-    <h1 className="text-3xl md:text-5xl font-bold leading-tight">
-      <span
-        className={`bg-linear-to-r ${
-          darkMode
-            ? "from-white to-purple-400"
-            : "from-gray-900 to-purple-800"
-        } bg-clip-text text-transparent`}
-      >
-        <TypeAnimation
-          sequence={["Front-end Developer", 3000, ""]}
-          speed={50}
-          repeat={Infinity}
-        />
-      </span>
-
-      <span className={darkMode ? "text-white" : "text-gray-900"}>
-        +
-      </span>
-
-      <br />
-
-      <span
-        className={`bg-linear-to-r ${
-          darkMode
-            ? "from-white to-purple-400"
-            : "from-gray-900 to-purple-800"
-        } bg-clip-text text-transparent`}
-      >
-        <TypeAnimation
-          sequence={["Business Analyst", 1000, ""]}
-          speed={50}
-          repeat={Infinity}
-        />
-      </span>
-    </h1>
-
-    <p
-      className={`text-sm md:text-base leading-relaxed whitespace-break-spaces text-justify ${
-        darkMode ? "text-white" : "text-black"
-      }`}
-    >
-      I’m a Junior Frontend Developer and Business Analyst who enjoys
-      turning ideas into practical, user-friendly solutions. With
-      experience in modern web technologies and requirement analysis, I
-      bridge the gap between business needs and technical execution. I
-      focus on building clean, responsive interfaces while ensuring
-      clarity in requirements and processes.
-    </p>
-
-    {/* BUTTON + ICON ROW */}
-    <div className="flex items-center gap-6 flex-wrap">
-
-      {/* GET IN TOUCH */}
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="relative overflow-hidden border border-purple-500 px-4 md:px-5 py-2 rounded-full flex items-center gap-2 group"
-      >
-        <span
-          className={`relative z-10 flex items-center gap-2 ${
-            darkMode ? "text-white" : "text-black"
-          }`}
-        >
-          Get In Touch
-          <img
-            src="/images/right-arrow.png"
-            alt="arrow"
-            className={`w-5 h-5 md:w-6 md:h-6 animate-pulse ${
-              darkMode ? "invert-0" : "invert"
-            }`}
-          />
-        </span>
-
-        <span className="absolute inset-0 bg-purple-700 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
-      </motion.button>
-
-      {/* SOCIAL ICONS */}
-      <div className="flex gap-3 items-center">
-        <a
-          href="https://www.linkedin.com/in/asma-saleem-0bbaa0319/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src="/images/linkedin.png"
-            className="w-7 h-7 md:w-9 md:h-9 hover:scale-110 transition rounded-full ring-1 ring-purple-500 dark:ring-gray-400"
-          />
-        </a>
-
-        <a
-          href="https://wa.me/923101657409"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src="/images/whatsapp.png"
-            className="w-7 h-7 md:w-9 md:h-9 hover:scale-110 transition rounded-full ring-1 ring-purple-500 dark:ring-gray-400"
-          />
-        </a>
-      </div>
-    </div>
-
-    {/* DOWNLOAD CV */}
-    <div className="relative inline-block mt-0">
-      <button
-        onClick={() => setOpen(!open)}
-        className="relative overflow-hidden border border-purple-500 px-4 md:px-5 py-2 rounded-full flex items-center gap-2 group"
-      >
-        <span className="absolute inset-0 bg-purple-700 w-0 group-hover:w-full transition-all duration-300 ease-in-out"></span>
-
-        <span className="relative z-10 group-hover:text-white transition-colors duration-300">
-          Download CV
-        </span>
-
-        <svg
-          className={`relative z-10 w-4 h-4 transition-transform duration-300 ${
-            open ? "rotate-180" : ""
-          } group-hover:text-white`}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      </button>
-
-      {open && (
-        <div
-          className={`absolute mt-2 w-44 md:w-56 border rounded-lg shadow-lg overflow-hidden z-50 ${
-            darkMode
-              ? "bg-black border-white text-white"
-              : "bg-white border-black text-black"
-          }`}
-        >
-          <a
-            href="documents/Asma Saleem - Business Analyst.pdf"
-            download
-            className="block px-4 py-2 hover:bg-purple-700"
+        <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-10 md:py-20">
+          {/* LEFT SIDE */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: false }}
+            className="max-w-xl space-y-5"
           >
-            Business Analyst
-          </a>
+            <h6 className="text-lg text-purple-600 font-bold">
+              I am Asma Saleem
+            </h6>
 
-          <a
-            href="documents/Asma Saleem - Frontend Developer.pdf"
-            download
-            className="block px-4 py-2 hover:bg-purple-700"
+            <h1 className="text-3xl md:text-5xl font-bold leading-tight">
+              <span
+                className={`bg-linear-to-r ${
+                  darkMode
+                    ? "from-white to-purple-400"
+                    : "from-gray-900 to-purple-800"
+                } bg-clip-text text-transparent`}
+              >
+                <TypeAnimation
+                  sequence={["Front-end Developer", 3000, ""]}
+                  speed={50}
+                  repeat={Infinity}
+                />
+              </span>
+
+              <span className={darkMode ? "text-white" : "text-gray-900"}>
+                +
+              </span>
+
+              <br />
+
+              <span
+                className={`bg-linear-to-r ${
+                  darkMode
+                    ? "from-white to-purple-400"
+                    : "from-gray-900 to-purple-800"
+                } bg-clip-text text-transparent`}
+              >
+                <TypeAnimation
+                  sequence={["Business Analyst", 1000, ""]}
+                  speed={50}
+                  repeat={Infinity}
+                />
+              </span>
+            </h1>
+
+            <p
+              className={`text-sm md:text-base leading-relaxed whitespace-break-spaces text-justify ${
+                darkMode ? "text-white" : "text-black"
+              }`}
+            >
+              I’m a Junior Frontend Developer and Business Analyst who enjoys
+              turning ideas into practical, user-friendly solutions. With
+              experience in modern web technologies and requirement analysis, I
+              bridge the gap between business needs and technical execution. I
+              focus on building clean, responsive interfaces while ensuring
+              clarity in requirements and processes.
+            </p>
+
+            {/* BUTTON + ICON ROW */}
+            <div className="flex items-center gap-6 flex-wrap">
+              {/* GET IN TOUCH */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative overflow-hidden border border-purple-500 px-4 md:px-5 py-2 rounded-full flex items-center gap-2 group"
+              >
+                <span
+                  className={`relative z-10 flex items-center gap-2 ${
+                    darkMode ? "text-white" : "text-black"
+                  }`}
+                >
+                  Get In Touch
+                  <img
+                    src="/images/right-arrow.png"
+                    alt="arrow"
+                    className={`w-5 h-5 md:w-6 md:h-6 animate-pulse ${
+                      darkMode ? "invert-0" : "invert"
+                    }`}
+                  />
+                </span>
+
+                <span className="absolute inset-0 bg-purple-700 -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
+              </motion.button>
+
+              {/* SOCIAL ICONS */}
+              <div className="flex gap-3 items-center">
+                <a
+                  href="https://www.linkedin.com/in/asma-saleem-0bbaa0319/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="/images/linkedin.png"
+                    className="w-7 h-7 md:w-9 md:h-9 hover:scale-110 transition rounded-full ring-1 ring-purple-500 dark:ring-gray-400"
+                  />
+                </a>
+
+                <a
+                  href="https://wa.me/923101657409"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src="/images/whatsapp.png"
+                    className="w-7 h-7 md:w-9 md:h-9 hover:scale-110 transition rounded-full ring-1 ring-purple-500 dark:ring-gray-400"
+                  />
+                </a>
+              </div>
+            </div>
+
+            {/* DOWNLOAD CV */}
+            <div className="relative inline-block mt-0">
+              <button
+                onClick={() => setOpen(!open)}
+                className="relative overflow-hidden border border-purple-500 px-4 md:px-5 py-2 rounded-full flex items-center gap-2 group"
+              >
+                <span className="absolute inset-0 bg-purple-700 w-0 group-hover:w-full transition-all duration-300 ease-in-out"></span>
+
+                <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                  Download CV
+                </span>
+
+                <svg
+                  className={`relative z-10 w-4 h-4 transition-transform duration-300 ${
+                    open ? "rotate-180" : ""
+                  } group-hover:text-white`}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+
+              {open && (
+                <div
+                  className={`absolute mt-2 w-44 md:w-56 border rounded-lg shadow-lg overflow-hidden z-50 ${
+                    darkMode
+                      ? "bg-black border-white text-white"
+                      : "bg-white border-black text-black"
+                  }`}
+                >
+                  <a
+                    href="documents/Asma Saleem - Business Analyst.pdf"
+                    download
+                    className="block px-4 py-2 hover:bg-purple-700"
+                  >
+                    Business Analyst
+                  </a>
+
+                  <a
+                    href="documents/Asma Saleem - Frontend Developer.pdf"
+                    download
+                    className="block px-4 py-2 hover:bg-purple-700"
+                  >
+                    Frontend Developer
+                  </a>
+                </div>
+              )}
+            </div>
+          </motion.div>
+
+          {/* RIGHT SIDE IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+            viewport={{ once: false }}
+            className="relative mt-10 md:mt-0 flex justify-center md:mr-20"
           >
-            Frontend Developer
-          </a>
-        </div>
-      )}
-    </div>
-  </motion.div>
+            <div className="absolute -inset-1 rounded-2xl bg-linear-to-r from-blue-500 via-blue-900 to-purple-900 blur-lg opacity-70"></div>
 
-  {/* RIGHT SIDE IMAGE */}
-  <motion.div
-    initial={{ opacity: 0, scale: 0.9 }}
-    whileInView={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-    viewport={{ once: false }}
-    className="relative mt-10 md:mt-0 flex justify-center md:mr-20"
-  >
-    <div className="absolute -inset-1 rounded-2xl bg-linear-to-r from-blue-500 via-blue-900 to-purple-900 blur-lg opacity-70"></div>
-
-    <img
-      src="images/profile.png"
-      alt="profile"
-      className="relative w-56 md:w-72 lg:w-80 rounded-2xl shadow-lg"
-    />
-  </motion.div>
-
-</section>
+            <img
+              src="images/profile.png"
+              alt="profile"
+              className="relative w-56 md:w-72 lg:w-80 rounded-2xl shadow-lg"
+            />
+          </motion.div>
+        </section>
       </div>
     </div>
   );
