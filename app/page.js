@@ -94,7 +94,7 @@ useEffect(() => {
           {/*navbar */}
          <>
   <nav
-    className="flex items-center justify-between
+    className="flex items-center  justify-between
     px-4 sm:px-6 md:px-16
     py-3 md:py-2
     bg-blue/40 backdrop-blur-md shadow-sm
@@ -131,25 +131,25 @@ useEffect(() => {
       </button>
 
       {/* Desktop Nav */}
-    <ul className="hidden md:flex gap-8 text-sm">
-  <li
-    onClick={() => scrollToSection("home")}
-    className={`cursor-pointer transition-colors ${
-      activeSection === "home"
-        ? "text-purple-800"
-        : "hover:text-purple-800 dark:hover:text-purple-800"
-    }`}
-  >
-    Home
-  </li>
+    <ul className="hidden md:flex text-sm gap-8 ">
+ <li
+  onClick={() => scrollToSection("home")}
+  className={`cursor-pointer transition-all duration-300 ${
+    activeSection === "home"
+      ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
+      : "hover:text-purple-800 dark:hover:text-purple-800"
+  }`}
+>
+  Home
+</li>
 
   <li
     onClick={() => scrollToSection("about")}
     className={`cursor-pointer transition-colors ${
       activeSection === "about"
-        ? "text-purple-800"
-        : "hover:text-purple-800 dark:hover:text-purple-800"
-    }`}
+         ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
+      : "hover:text-purple-800 dark:hover:text-purple-800"
+  }`}
   >
     About
   </li>
@@ -157,10 +157,10 @@ useEffect(() => {
   <li
     onClick={() => scrollToSection("services")}
     className={`cursor-pointer transition-colors ${
-      activeSection === "services"
-        ? "text-purple-800"
-        : "hover:text-purple-800 dark:hover:text-purple-800"
-    }`}
+       activeSection === "Services"
+       ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
+      : "hover:text-purple-800 dark:hover:text-purple-800"
+  }`}
   >
     Services
   </li>
@@ -169,9 +169,9 @@ useEffect(() => {
     onClick={() => scrollToSection("projects")}
     className={`cursor-pointer transition-colors ${
       activeSection === "projects"
-        ? "text-purple-800"
-        : "hover:text-purple-800 dark:hover:text-purple-800"
-    }`}
+         ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
+      : "hover:text-purple-800 dark:hover:text-purple-800"
+  }`}
   >
     Projects
   </li>
@@ -180,9 +180,9 @@ useEffect(() => {
     onClick={() => scrollToSection("experience")}
     className={`cursor-pointer transition-colors ${
       activeSection === "experience"
-        ? "text-purple-800"
-        : "hover:text-purple-800 dark:hover:text-purple-800"
-    }`}
+          ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
+      : "hover:text-purple-800 dark:hover:text-purple-800"
+  }`}
   >
     Experience
   </li>
@@ -446,24 +446,23 @@ useEffect(() => {
         <div className="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
           {/* LEFT IMAGE CARD */}
           <div className="relative flex justify-center">
-            <div className="relative p-0.75 rounded-xl overflow-hidden animate-border">
-              {/* Animated border layer */}
-              <div className="absolute inset-0 rounded-xl bg-[conic-gradient(from_0deg,#00f,#0ff,#f0f,#00f)] animate-spin-slow" />
+  <div className="relative p-0.5 rounded-xl 
+    bg-linear-to-r from-purple-500 via-cyan-400 to-purple-900 
+    bg-size-[200%_200%] animate-[gradientMove_4s_ease_infinite]
+    shadow-[0_0_25px_rgba(0,255,255,0.6)]">
 
-              {/* Image wrapper (keeps image clean, no glow) */}
-              <div className="relative rounded-xl overflow-hidden bg-black">
-                <Image
-                  src="/images/profile.png"
-                  alt="Profile"
-                  width={400}
-                  height={500}
-                  className="object-cover w-full h-auto"
-                />
-              </div>
-            </div>
+    <div className="rounded-xl overflow-hidden  bg-black">
+      <Image
+        src="/images/profile.png"
+        alt="Profile"
+        width={400}
+        height={500}
+        className="object-cover w-full h-auto"
+      />
+    </div>
 
-            {/* Decorative ring */}
-          </div>
+  </div>
+</div>
 
           {/* RIGHT CONTENT */}
           <div className="text-center md:text-left">

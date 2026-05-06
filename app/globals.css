@@ -20,6 +20,8 @@
   animation: fadeMove 3s ease-in-out forwards;
 }
 
+
+
 /* Animation keyframes */
 @keyframes fadeMove {
   0% {
@@ -86,6 +88,8 @@
 .animate-spin-slow {
   animation: spin-slow 4s linear infinite;
 }
+
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
