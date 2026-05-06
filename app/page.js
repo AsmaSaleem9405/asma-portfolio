@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
 
 import { usePathname } from "next/navigation";
 
@@ -35,6 +37,7 @@ function MainPage() {
   const [darkMode, setDarkMode] = useState(true);
   const [open, setOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+const router = useRouter();
 
   const pathname = usePathname();
   const isActive = pathname === "/";
@@ -511,9 +514,12 @@ useEffect(() => {
             </p>
 
             {/* BUTTON */}
-            <button className="mt-6 px-6 py-2 bg-purple-600 text-white text-sm rounded-full animate-pulse shadow-lg shadow-blue-500/50">
-              HIRE ME
-            </button>
+           <button
+  onClick={() => router.push("/hire")}
+  className="mt-6 px-6 py-2 bg-purple-600 text-white text-sm rounded-full animate-pulse shadow-lg shadow-blue-500/50"
+>
+  HIRE ME
+</button>
           </div>
         </div>
       </section>
