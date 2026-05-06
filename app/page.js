@@ -38,6 +38,36 @@ function MainPage() {
 
   const pathname = usePathname();
   const isActive = pathname === "/";
+  {/* clickable navbar*/}
+  const scrollToSection = (id) => {
+  const section = document.getElementById(id);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+
+  {/*  navbar activation */}
+  const [activeSection, setActiveSection] = useState("home");
+
+useEffect(() => {
+  const sections = document.querySelectorAll("section");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    },
+    { threshold: 0.6 }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+
+  return () => observer.disconnect();
+}, []);
 
   useEffect(() => {
     if (darkMode) {
@@ -62,140 +92,158 @@ function MainPage() {
           className={`min-h-screen ${darkMode ? "bg-black/40 text-white" : "text-black"}`}
         >
           {/*navbar */}
-          <>
-            <nav
-              className="flex items-center justify-between
+         <>
+  <nav
+    className="flex items-center justify-between
     px-4 sm:px-6 md:px-16
     py-3 md:py-2
     bg-blue/40 backdrop-blur-md shadow-sm
     fixed top-0 left-0 w-full z-50"
-            >
-              {/* Left: Logo */}
-              <Link href="/">
-                <>
-                  <img
-                    src="/images/logo1.png"
-                    alt="Logo Light"
-                    className="h-12 w-auto block dark:hidden"
-                  />
-                  <img
-                    src="/images/logo1.png"
-                    alt="Logo Dark"
-                    className="h-12 w-auto hidden dark:block"
-                  />
-                </>
-              </Link>
+  >
+    {/* Left: Logo */}
+    <Link href="/">
+      <>
+        <img
+          src="/images/logo1.png"
+          alt="Logo Light"
+          className="h-12 w-auto block dark:hidden"
+        />
+        <img
+          src="/images/logo1.png"
+          alt="Logo Dark"
+          className="h-12 w-auto hidden dark:block"
+        />
+      </>
+    </Link>
 
-              {/* Middle */}
-              <div className="flex-1"></div>
+    <div className="flex-1"></div>
 
-              {/* Right side */}
-              <div className="flex items-center gap-6 font-bold">
-                {/* Toggle */}
-                <button
-                  onClick={() => setDarkMode(!darkMode)}
-                  className="text-xl"
-                >
-                  {darkMode ? "☀️" : "🌙"}
-                </button>
+    {/* Right side */}
+    <div className="flex items-center gap-6 font-bold">
+      {/* Toggle */}
+      <button onClick={() => setDarkMode(!darkMode)} className="text-xl">
+        {darkMode ? "☀️" : "🌙"}
+      </button>
 
-                {/* Mobile Menu Button */}
-                <button
-                  className="md:hidden text-2xl"
-                  onClick={() => setMenuOpen(!menuOpen)}
-                >
-                  {menuOpen ? "✖" : "☰"}
-                </button>
+      {/* Mobile Menu Button */}
+      <button className="md:hidden text-2xl" onClick={() => setMenuOpen(!menuOpen)}>
+        {menuOpen ? "✖" : "☰"}
+      </button>
 
-                {/* Nav Links (Desktop only) */}
-                <ul className="hidden md:flex gap-8 text-sm">
-                  <li
-                    className={`cursor-pointer transition-colors ${
-                      isActive
-                        ? "text-purple-800"
-                        : "text-gray-700 hover:text-purple-800"
-                    }`}
-                  >
-                    Home
-                  </li>
-                  <li className="hover:text-purple-800 dark:hover:text-purple-800 transition-colors cursor-pointer">
-                    About
-                  </li>
-                  <li className="hover:text-purple-800 dark:hover:text-purple-800 transition-colors cursor-pointer">
-                    Services
-                  </li>
-                  <li className="hover:text-purple-800 dark:hover:text-purple-800 transition-colors cursor-pointer">
-                    Projects
-                  </li>
-                  <li className="hover:text-purple-800 dark:hover:text-purple-800 transition-colors cursor-pointer">
-                    Experience
-                  </li>
-                </ul>
+      {/* Desktop Nav */}
+    <ul className="hidden md:flex gap-8 text-sm">
+  <li
+    onClick={() => scrollToSection("home")}
+    className={`cursor-pointer transition-colors ${
+      activeSection === "home"
+        ? "text-purple-800"
+        : "hover:text-purple-800 dark:hover:text-purple-800"
+    }`}
+  >
+    Home
+  </li>
 
-                {/* Button */}
-                <button className="hidden md:block bg-purple-600 px-4 py-2 rounded-full text-sm hover:bg-purple-700 text-white shadow-[0_0_15px_rgba(168,85,247,0.7)] animate-pulse hover:shadow-[0_0_25px_rgba(168,85,247,1)] transition-all duration-300">
-                  Contact Us
-                </button>
-              </div>
-            </nav>
+  <li
+    onClick={() => scrollToSection("about")}
+    className={`cursor-pointer transition-colors ${
+      activeSection === "about"
+        ? "text-purple-800"
+        : "hover:text-purple-800 dark:hover:text-purple-800"
+    }`}
+  >
+    About
+  </li>
 
-            {/* Mobile Menu */}
-            {menuOpen && (
-              <div
-                className={`md:hidden fixed inset-0 z-50 flex flex-col ${
-                  darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
-                }`}
-              >
-                {/* Top bar */}
-                <div className="flex items-center justify-between px-6 py-4">
-                  <Link href="/">
-                    <img src="/images/logo1.png" className="h-10" alt="Logo" />
-                  </Link>
+  <li
+    onClick={() => scrollToSection("services")}
+    className={`cursor-pointer transition-colors ${
+      activeSection === "services"
+        ? "text-purple-800"
+        : "hover:text-purple-800 dark:hover:text-purple-800"
+    }`}
+  >
+    Services
+  </li>
 
-                  <div className="flex items-center gap-4 z-20">
-                    <button
-                      onClick={() => setDarkMode(!darkMode)}
-                      className="text-xl cursor-pointer"
-                    >
-                      {darkMode ? "☀️" : "🌙"}
-                    </button>
+  <li
+    onClick={() => scrollToSection("projects")}
+    className={`cursor-pointer transition-colors ${
+      activeSection === "projects"
+        ? "text-purple-800"
+        : "hover:text-purple-800 dark:hover:text-purple-800"
+    }`}
+  >
+    Projects
+  </li>
 
-                    <button
-                      className="text-2xl cursor-pointer"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      ✖
-                    </button>
-                  </div>
-                </div>
+  <li
+    onClick={() => scrollToSection("experience")}
+    className={`cursor-pointer transition-colors ${
+      activeSection === "experience"
+        ? "text-purple-800"
+        : "hover:text-purple-800 dark:hover:text-purple-800"
+    }`}
+  >
+    Experience
+  </li>
+</ul>
 
-                {/* Centered Menu */}
-                <ul className="flex flex-col flex-1 justify-center items-center gap-6 text-lg font-bold text-center -mt-50">
-                  <li className="cursor-pointer">Home</li>
-                  <li className="cursor-pointer">About</li>
-                  <li className="cursor-pointer">Services</li>
-                  <li className="cursor-pointer">Projects</li>
-                  <li className="cursor-pointer">Experience</li>
+      {/* Button */}
+      <button className="hidden md:block bg-purple-600 px-4 py-2 rounded-full text-sm hover:bg-purple-700 text-white shadow-[0_0_15px_rgba(168,85,247,0.7)] animate-pulse hover:shadow-[0_0_25px_rgba(168,85,247,1)] transition-all duration-300">
+        Contact Us
+      </button>
+    </div>
+  </nav>
 
-                  <li className="w-full flex justify-center mt-4">
-                    <button
-                      className="bg-purple-600 px-6 py-3 rounded-full text-white w-[50%]
-shadow-[0_0_15px_rgba(168,85,247,0.7)]
-animate-pulse
-hover:shadow-[0_0_30px_rgba(168,85,247,1)]
-transition-all duration-300"
-                    >
-                      Contact Us
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            )}
-          </>
+  {/* Mobile Menu */}
+  {menuOpen && (
+    <div
+      className={`md:hidden fixed inset-0 z-50 flex flex-col ${
+        darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
+      }`}
+    >
+      <div className="flex items-center justify-between px-6 py-4">
+        <Link href="/">
+          <img src="/images/logo1.png" className="h-10" alt="Logo" />
+        </Link>
+
+        <div className="flex items-center gap-4 z-20">
+          <button onClick={() => setDarkMode(!darkMode)} className="text-xl cursor-pointer">
+            {darkMode ? "☀️" : "🌙"}
+          </button>
+
+          <button className="text-2xl cursor-pointer" onClick={() => setMenuOpen(false)}>
+            ✖
+          </button>
+        </div>
+      </div>
+
+      <ul className="flex flex-col flex-1 justify-center items-center gap-6 text-lg font-bold text-center -mt-50">
+ <li onClick={() => { scrollToSection("home"); setMenuOpen(false); }}>Home</li>
+<li onClick={() => { scrollToSection("about"); setMenuOpen(false); }}>About</li>
+<li onClick={() => { scrollToSection("services"); setMenuOpen(false); }}>Services</li>
+<li onClick={() => { scrollToSection("projects"); setMenuOpen(false); }}>Projects</li>
+<li onClick={() => { scrollToSection("experience"); setMenuOpen(false); }}>Experience</li>
+
+  <li className="w-full flex justify-center mt-4">
+    <button className="bg-purple-600 px-6 py-3 rounded-full text-white w-[50%]
+      shadow-[0_0_15px_rgba(168,85,247,0.7)]
+      animate-pulse
+      hover:shadow-[0_0_30px_rgba(168,85,247,1)]
+      transition-all duration-300">
+      Contact Us
+    </button>
+  </li>
+</ul>
+    </div>
+  )}
+</>
           {/* HERO */}
 
-          <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-10 md:py-20">
-            {/* LEFT SIDE */}
+<section
+  id="home"
+  className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-10 md:py-20"
+>            {/* LEFT SIDE */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -386,7 +434,8 @@ transition-all duration-300"
       </div>
       {/*About Me*/}
       <section
-        className="w-full px-4 md:px-16 py-16 md:py-24
+  id="about"
+  className="w-full px-4 md:px-16 py-16 md:py-24
              bg-cover bg-top bg-no-repeat"
         style={{
           backgroundImage: darkMode
