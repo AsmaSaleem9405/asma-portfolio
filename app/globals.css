@@ -20,7 +20,48 @@
   animation: fadeMove 3s ease-in-out forwards;
 }
 
+/* FADE + SLIDE IN  hire animation*/
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* FLOATING BACKGROUND BLOBS */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(25px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-floatSlow {
+  animation: floatSlow 10s ease-in-out infinite;
+}
 
 /* Animation keyframes */
 @keyframes fadeMove {
