@@ -73,7 +73,19 @@
   animation: typing 3s steps(22) forwards, blink 0.7s step-end infinite;
 }
 
+/* animated about me button*/
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;
+}
 :root {
   --background: #ffffff;
   --foreground: #171717;

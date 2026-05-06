@@ -66,9 +66,10 @@ const isActive = pathname === "/";
         {/*navbar */}
         <>
           <nav
-            className="flex items-center justify-between px-6 md:px-16 py-4 
-        bg-blue/40 backdrop-blur-md shadow-sm"
-          >
+  className="flex items-center justify-between px-6 md:px-16 py-2 
+  bg-blue/40 backdrop-blur-md shadow-sm
+  fixed top-0 left-0 w-full z-50"
+>
             {/* Left: Logo */}
             <Link href="/">
               <>
@@ -394,77 +395,59 @@ transition-all duration-300"
       <div className="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
         
         {/* LEFT IMAGE CARD */}
-        <div className="relative flex justify-center">
-          <div className="rounded-2xl p-4 bg-white/10 backdrop-blur-md shadow-xl">
-            <div className="rounded-xl overflow-hidden">
-              <Image
-                src="/profile.jpg" // your image
-                alt="Profile"
-                width={400}
-                height={500}
-                className="object-cover w-full h-auto"
-              />
-            </div>
-          </div>
+       <div className="relative flex justify-center">
+  <div className="relative p-0.75 rounded-xl overflow-hidden animate-border">
+    
+    {/* Animated border layer */}
+    <div className="absolute inset-0 rounded-xl bg-[conic-gradient(from_0deg,#00f,#0ff,#f0f,#00f)] animate-spin-slow" />
+
+    {/* Image wrapper (keeps image clean, no glow) */}
+    <div className="relative rounded-xl overflow-hidden bg-black">
+      <Image
+        src="/images/profile.png"
+        alt="Profile"
+        width={400}
+        height={500}
+        className="object-cover w-full h-auto"
+      />
+    </div>
+  </div>
+
 
           {/* Decorative ring */}
-          <div className="absolute -bottom-6 -left-6 w-24 h-24 border-4 border-teal-400 rounded-full opacity-40"></div>
         </div>
 
         {/* RIGHT CONTENT */}
         <div className="text-center md:text-left">
+  {/* Top Label */}
+  <span className="text-xs font-semibold tracking-widest text-white-300 uppercase bg-purple-900/30 px-3 py-1 rounded">
+    About Me
+  </span>
+
+<h1 className={`text-3xl md:text-3xl pt-6 font-bold leading-snug ${
+  darkMode ? "text-white" : "text-black"
+}`}>
+  I AM AVAILABLE FOR <span className="text-purple-500">FRONTEND</span><br />
+  DEVELOPMENT & <span className="text-purple-500">BUSINESS ANALYST</span> PROJECTS
+</h1>
+
+<p className={`mt-4 text-sm md:text-base max-w-md text-justify ${
+  darkMode ? "text-gray-300" : "text-black"
+}`}>
+  I am a passionate Frontend Developer and Junior Business Analyst with hands-on experience in building responsive and user-friendly web applications using HTML, CSS, Javascript, Next.js, and Tailwind CSS. I focus on creating clean UI, improving user experience, and delivering high-quality digital solutions while following modern frontend best practices.
+</p>
+
+<p className={`mt-3 text-sm md:text-base max-w-md text-justify ${
+  darkMode ? "text-gray-300" : "text-black"
+}`}>
+  Along with frontend development, I have strong skills in requirement gathering, documentation (BRD, SRS, FRD), and diagramming including UML diagrams, workflows, and process mapping. I also have an understanding of business development and stakeholder collaboration, allowing me to bridge the gap between business needs and technical implementation to build efficient, scalable, and user-focused products.
+</p>
           
-          <p className="text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-2">
-            About Me
-          </p>
-
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white leading-snug">
-            I AM AVAILABLE FOR UI <br /> UX DESIGN PROJECT
-          </h1>
-
-          <p className="mt-4 text-gray-600 dark:text-gray-300 text-sm md:text-base max-w-md">
-            The standard chunk of Lorem Ipsum used since the 1500s is reproduced
-            below for those interested. Sections 1.10.32 and 1.10.33 from de
-            Finibus Bonorum et Malorum.
-          </p>
-
-          {/* STATS */}
-          <div className="flex flex-wrap justify-center md:justify-start gap-6 mt-6">
-            
-            <div>
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                280+
-              </h2>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
-                Google Review
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                15+
-              </h2>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
-                Years Experience
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-                49+
-              </h2>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
-                Awards Winning
-              </p>
-            </div>
-
-          </div>
 
           {/* BUTTON */}
-          <button className="mt-6 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-full transition">
-            GET IN TOUCH
-          </button>
-
+         <button className="mt-6 px-6 py-2 bg-purple-600 text-white text-sm rounded-full animate-pulse shadow-lg shadow-blue-500/50">
+  HIRE ME
+</button>
         </div>
       </div>
     </section>
