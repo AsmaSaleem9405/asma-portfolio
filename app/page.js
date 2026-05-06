@@ -104,7 +104,7 @@ useEffect(() => {
     fixed top-0 left-0 w-full z-50"
   >
     {/* Left: Logo */}
-    <Link href="/">
+    <Link href="#home">
       <>
         <img
           src="/images/logo1.png"
@@ -206,7 +206,7 @@ useEffect(() => {
       }`}
     >
       <div className="flex items-center justify-between px-6 py-4">
-        <Link href="/">
+        <Link href="#home">
           <img src="/images/logo1.png" className="h-10" alt="Logo" />
         </Link>
 
@@ -436,93 +436,117 @@ useEffect(() => {
         </div>
       </div>
       {/*About Me*/}
-      <section
-  id="about"
-  className="w-full px-4 md:px-16 py-16 md:py-24
-             bg-cover bg-top bg-no-repeat"
-        style={{
-          backgroundImage: darkMode
-            ? "url('/images/about-bg.png')"
-            : "url('/images/about-bg1.png')",
-        }}
+    
+    <section
+      id="about"
+      className="w-full px-4 md:px-16 py-16 md:py-24
+                 bg-cover bg-top bg-no-repeat"
+      style={{
+        backgroundImage: darkMode
+          ? "url('/images/about-bg.png')"
+          : "url('/images/about-bg1.png')",
+      }}
+    >
+      <motion.div
+        className="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center"
+        initial={{ opacity: 0, y: 60 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: false, amount: 0.2 }}
       >
-        <div className="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
-          {/* LEFT IMAGE CARD */}
-          <div className="relative flex justify-center">
-  <div className="relative p-0.5 rounded-xl 
-    bg-linear-to-r from-purple-500 via-cyan-400 to-purple-900 
-    bg-size-[200%_200%] animate-[gradientMove_4s_ease_infinite]
-    shadow-[0_0_25px_rgba(0,255,255,0.6)]">
-
-    <div className="rounded-xl overflow-hidden  bg-black">
-      <Image
-        src="/images/profile.png"
-        alt="Profile"
-        width={400}
-        height={500}
-        className="object-cover w-full h-auto"
-      />
-    </div>
-
-  </div>
-</div>
-
-          {/* RIGHT CONTENT */}
-          <div className="text-center md:text-left">
-            {/* Top Label */}
-            <span className="text-xs font-semibold tracking-widest text-white-300 uppercase bg-purple-900/30 px-3 py-1 rounded">
-              About Me
-            </span>
-
-            <h1
-              className={`text-3xl md:text-3xl pt-6 font-bold leading-snug ${
-                darkMode ? "text-white" : "text-black"
-              }`}
-            >
-              I AM AVAILABLE FOR{" "}
-              <span className="text-purple-500">FRONTEND</span>
-              <br />
-              DEVELOPMENT &{" "}
-              <span className="text-purple-500">BUSINESS ANALYST</span> PROJECTS
-            </h1>
-
-            <p
-              className={`mt-4 text-sm md:text-base max-w-md text-justify ${
-                darkMode ? "text-gray-300" : "text-black"
-              }`}
-            >
-              I am a passionate Frontend Developer and Junior Business Analyst
-              with hands-on experience in building responsive and user-friendly
-              web applications using HTML, CSS, Javascript, Next.js, and
-              Tailwind CSS. I focus on creating clean UI, improving user
-              experience, and delivering high-quality digital solutions while
-              following modern frontend best practices.
-            </p>
-
-            <p
-              className={`mt-3 text-sm md:text-base max-w-md text-justify ${
-                darkMode ? "text-gray-300" : "text-black"
-              }`}
-            >
-              Along with frontend development, I have strong skills in
-              requirement gathering, documentation (BRD, SRS, FRD), and
-              diagramming including UML diagrams, workflows, and process
-              mapping. I also have an understanding of business development and
-              stakeholder collaboration, allowing me to bridge the gap between
-              business needs and technical implementation to build efficient,
-              scalable, and user-focused products.
-            </p>
-
-            {/* BUTTON */}
-           <button
-  onClick={() => router.push("/hire")}
-  className="mt-6 px-6 py-2 bg-purple-600 text-white text-sm rounded-full animate-pulse shadow-lg shadow-blue-500/50"
->
-  HIRE ME
-</button>
+        {/* LEFT IMAGE CARD */}
+        <motion.div
+          className="relative flex justify-center"
+          initial={{ opacity: 0, x: -80 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          viewport={{ once: false }}
+        >
+          <div
+            className="relative p-0.5 rounded-xl 
+            bg-linear-to-r from-purple-500 via-cyan-400 to-purple-900 
+            bg-size-[200%_200%] animate-[gradientMove_4s_ease_infinite]
+            shadow-[0_0_25px_rgba(0,255,255,0.6)]"
+          >
+            <div className="rounded-xl overflow-hidden bg-black">
+              <Image
+                src="/images/profile.png"
+                alt="Profile"
+                width={400}
+                height={500}
+                className="object-cover w-full h-auto"
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+
+        {/* RIGHT CONTENT */}
+        <motion.div
+          className="text-center md:text-left"
+          initial={{ opacity: 0, x: 80 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{
+            duration: 0.9,
+            ease: [0.25, 0.1, 0.25, 1],
+            delay: 0.2,
+          }}
+          viewport={{ once: false }}
+        >
+          {/* Top Label */}
+          <span className="text-xs font-semibold tracking-widest text-white-300 uppercase bg-purple-900/30 px-3 py-1 rounded">
+            About Me
+          </span>
+
+          <h1
+            className={`text-3xl md:text-3xl pt-6 font-bold leading-snug ${
+              darkMode ? "text-white" : "text-black"
+            }`}
+          >
+            I AM AVAILABLE FOR{" "}
+            <span className="text-purple-500">FRONTEND</span>
+            <br />
+            DEVELOPMENT &{" "}
+            <span className="text-purple-500">BUSINESS ANALYST</span> PROJECTS
+          </h1>
+
+          <p
+            className={`mt-4 text-sm md:text-base max-w-md text-justify ${
+              darkMode ? "text-gray-300" : "text-black"
+            }`}
+          >
+            I am a passionate Frontend Developer and Junior Business Analyst
+            with hands-on experience in building responsive and user-friendly
+            web applications using HTML, CSS, Javascript, Next.js, and
+            Tailwind CSS. I focus on creating clean UI, improving user
+            experience, and delivering high-quality digital solutions while
+            following modern frontend best practices.
+          </p>
+
+          <p
+            className={`mt-3 text-sm md:text-base max-w-md text-justify ${
+              darkMode ? "text-gray-300" : "text-black"
+            }`}
+          >
+            Along with frontend development, I have strong skills in
+            requirement gathering, documentation (BRD, SRS, FRD), and
+            diagramming including UML diagrams, workflows, and process
+            mapping. I also have an understanding of business development and
+            stakeholder collaboration, allowing me to bridge the gap between
+            business needs and technical implementation to build efficient,
+            scalable, and user-focused products.
+          </p>
+
+          {/* BUTTON */}
+          <button
+            onClick={() => router.push("/hire")}
+            className="mt-6 px-6 py-2 bg-purple-600 text-white text-sm rounded-full animate-pulse shadow-lg shadow-blue-500/50"
+          >
+            HIRE ME
+          </button>
+        </motion.div>
+      </motion.div>
+    </section>
     </>
   );
 }
+  
