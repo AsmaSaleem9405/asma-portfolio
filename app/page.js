@@ -681,76 +681,87 @@ useEffect(() => {
     </div>
 
     {/* FRONTEND SKILLS MARQUEE */}
-    <h2 className={`text-3xl font-bold mb-6 ${
-      darkMode ? "text-white" : "text-black"
-    }`}>
-      Frontend Developer Skills
-    </h2>
+  {/* FRONTEND SKILLS */}
+<h2
+  className={`text-3xl font-bold mb-6 relative inline-block ${
+    darkMode ? "text-white" : "text-black"
+  }`}
+>
+  Frontend Developer Skills
 
-    <div className="overflow-hidden mb-16">
-      <div className="marquee gap-6">
-        {[...frontendSkills, ...frontendSkills].map((skill, i) => (
-          <div
-            key={i}
-            className={`min-w-[160px] rounded-2xl p-5 text-center ${
-              darkMode
-                ? "bg-[#12052b] border border-purple-900"
-                : "bg-gray-100 border border-gray-300"
-            }`}
-          >
-            <img
-              src={skill.logo}
-              alt={skill.title}
-              className="w-12 h-12 mx-auto mb-3"
-            />
+  {/* Underline Design */}
+  <span className="absolute left-0 -bottom-2 w-24 h-1 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
+</h2>
 
-            <h3 className="text-sm font-semibold">
-              {skill.title}
-            </h3>
+<div className="overflow-visible mb-16 py-8">
+  <div className="marquee gap-6 items-center">
+    {[...frontendSkills, ...frontendSkills].map((skill, i) => (
+      <div
+        key={i}
+        className={`w-[180px] h-[220px] flex-shrink-0 rounded-2xl p-5 text-center flex flex-col items-center justify-center relative z-10 transition-all duration-300 ease-in-out hover:scale-110 hover:z-50 cursor-pointer ${
+          darkMode
+            ? "bg-[#12052b] border border-purple-900 hover:border-purple-500 hover:shadow-[0_0_35px_rgba(168,85,247,0.7)]"
+            : "bg-gray-100 border border-gray-300 hover:border-purple-400 hover:shadow-2xl"
+        }`}
+      >
+        <img
+          src={skill.logo}
+          alt={skill.title}
+          className="w-14 h-14 mx-auto mb-4 object-contain"
+        />
 
-            <p className="text-xs text-gray-400">
-              {skill.level}
-            </p>
-          </div>
-        ))}
+        <h3 className="text-sm font-semibold mb-2 min-h-[40px] flex items-center justify-center">
+          {skill.title}
+        </h3>
+
+        <p className="text-xs text-gray-400">
+          {skill.level}
+        </p>
       </div>
-    </div>
+    ))}
+  </div>
+</div>
 
-    {/* BUSINESS SKILLS MARQUEE */}
-    <h2 className={`text-3xl font-bold mb-6 ${
-      darkMode ? "text-white" : "text-black"
-    }`}>
-      Business Analyst Skills
-    </h2>
+{/* BUSINESS ANALYST SKILLS */}
+<h2
+  className={`text-3xl font-bold mb-6 relative inline-block ${
+    darkMode ? "text-white" : "text-black"
+  }`}
+>
+  Business Analyst Skills
 
-    <div className="overflow-hidden mb-20">
-      <div className="marquee gap-6">
-        {[...businessSkills, ...businessSkills].map((skill, i) => (
-          <div
-            key={i}
-            className={`min-w-[160px] rounded-2xl p-5 text-center ${
-              darkMode
-                ? "bg-[#12052b] border border-cyan-900"
-                : "bg-gray-100 border border-gray-300"
-            }`}
-          >
-            <img
-              src={skill.logo}
-              alt={skill.title}
-              className="w-12 h-12 mx-auto mb-3"
-            />
+  {/* Underline Design */}
+  <span className="absolute left-0 -bottom-2 w-24 h-1 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500"></span>
+</h2>
 
-            <h3 className="text-sm font-semibold">
-              {skill.title}
-            </h3>
+<div className="overflow-visible mb-20 py-8">
+  <div className="marquee gap-6 items-center">
+    {[...businessSkills, ...businessSkills].map((skill, i) => (
+      <div
+        key={i}
+        className={`w-[180px] h-[220px] flex-shrink-0 rounded-2xl p-5 text-center flex flex-col items-center justify-center relative z-10 transition-all duration-300 ease-in-out hover:scale-110 hover:z-50 cursor-pointer ${
+          darkMode
+            ? "bg-[#12052b] border border-cyan-900 hover:border-cyan-500 hover:shadow-[0_0_35px_rgba(34,211,238,0.7)]"
+            : "bg-gray-100 border border-gray-300 hover:border-cyan-400 hover:shadow-2xl"
+        }`}
+      >
+        <img
+          src={skill.logo}
+          alt={skill.title}
+          className="w-14 h-14 mx-auto mb-4 object-contain"
+        />
 
-            <p className="text-xs text-gray-400">
-              {skill.level}
-            </p>
-          </div>
-        ))}
+        <h3 className="text-sm font-semibold mb-2 min-h-[40px] flex items-center justify-center">
+          {skill.title}
+        </h3>
+
+        <p className="text-xs text-gray-400">
+          {skill.level}
+        </p>
       </div>
-    </div>
+    ))}
+  </div>
+</div>
 
    
 
