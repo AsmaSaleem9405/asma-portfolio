@@ -64,65 +64,65 @@ const frontendSkills = [
   {
     title: "Next.js",
     level: "Advanced",
-    logo: "/skills/nextjs.png",
+    logo: "/images/nextjs.png",
   },
   {
     title: "Tailwind CSS",
     level: "Intermediate",
-    logo: "/skills/react.png",
+    logo: "/images/tailwind.png",
   },
   {
     title: "Javascript",
     level: "Advanced",
-    logo: "/skills/tailwind.png",
+    logo: "/images/javascript.png",
   },
   {
-  title: "HTML",
-  level: "Advanced",
-  icon: "/skills/js.png",
-},
-{
-  title: "CSS",
-  level: "Advanced",
-  icon: "/skills/html.png",
-},
-{
-  title: "Responsive Design",
-  level: "Advanced",
-  icon: "/skills/css.png",
-},
-{
-  title: "Git & GitHub",
-  level: "Intermediate",
-  icon: "/skills/git.png",
-},
+    title: "HTML",
+    level: "Advanced",
+    logo: "/images/html.png",
+  },
+  {
+    title: "CSS",
+    level: "Advanced",
+    logo: "/images/css.png",
+  },
+  {
+    title: "Responsive Design",
+    level: "Advanced",
+    logo: "/images/responsive design.png",
+  },
+  {
+    title: "Git & GitHub",
+    level: "Intermediate",
+    logo: "/images/github.png",
+  },
 ];
 const businessSkills = [
   {
     title: "Requirement Gathering",
     level: "Advanced",
-    logo: "/skills/requirement.png",
+    logo: "/images/requirements.png",
   },
   {
     title: "BRD / SRS / FRD",
     level: "Advanced",
-    logo: "/skills/document.png",
+    logo: "/images/documentation.png",
   },
   {
-  title: "UML Diagrams",
-  level: "Intermediate",
-  icon: "/skills/process.png",
-},
-{
-  title: "Workflow Design",
-  level: "Intermediate",
-  icon: "/skills/agile.png",
-},
-{
-  title: "Stakeholder Collaboration",
-  level: "Intermediate",
-  icon: "/skills/figma.png",
-},
+    title: "UML Diagrams",
+    level: "Intermediate",
+    logo: "/images/uml.png",
+  },
+  {
+    title: "Workflow Design",
+    level: "Intermediate",
+    logo: "/images/workflow.png",
+  },
+  {
+    title: "Stakeholder Collaboration",
+    level: "Intermediate",
+    logo: "/images/collaboration.png",
+  },
 ];
 
 
