@@ -543,10 +543,13 @@ useEffect(() => {
           >
             HIRE ME
           </button>
+          
         </motion.div>
+       
       </motion.div>
+       
     </section>
-    </>
+   </>
   );
 }
   

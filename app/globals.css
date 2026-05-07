@@ -19,7 +19,12 @@
   width: 120px;
   animation: fadeMove 3s ease-in-out forwards;
 }
-
+/* overflow hidden */
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
 /* FADE + SLIDE IN  hire animation*/
 @keyframes fadeInUp {
   from {
