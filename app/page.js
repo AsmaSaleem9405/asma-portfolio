@@ -628,69 +628,57 @@ useEffect(() => {
 
 
    {/* skilss*/}
-   <section
-  id="skills"
-  className={`relative min-h-screen px-6 py-16 overflow-hidden ${
-    darkMode ? "bg-[#07011a]" : "bg-white"
-  }`}
->
-
-  {/* Background */}
-  <div
-    className="absolute inset-0 bg-cover bg-center opacity-10"
-    style={{
-      backgroundImage: `url(${
-        darkMode
-          ? "/images/dark-skills-bg.png"
-          : "/images/light-skills-bg.png"
-      })`,
-    }}
-  />
-
-  {/* Overlay */}
-  <div
-    className={`absolute inset-0 ${
-      darkMode ? "bg-black/60" : "bg-white/70"
-    }`}
-  />
+  <section
+      id="about"
+      className="w-full px-4 md:px-16 py-16 md:py-24
+                 bg-cover bg-top bg-no-repeat"
+      style={{
+        backgroundImage: darkMode
+          ? "url('/images/skills-bg.png')"
+          : "url('/images/skills-bg1.png')",
+      }}
+    >
 
   {/* Content */}
   <div className="relative max-w-7xl mx-auto z-10">
 
     {/* HEADER */}
     <div className="text-center mb-16">
-      <p className={`uppercase tracking-[4px] text-sm font-semibold mb-4 ${
-        darkMode ? "text-pink-400" : "text-pink-600"
-      }`}>
+      <p
+        className={`uppercase tracking-[4px] text-sm font-semibold mb-4 ${
+          darkMode ? "text-pink-400" : "text-pink-600"
+        }`}
+      >
         My Expertise
       </p>
 
-      <h1 className={`text-4xl md:text-6xl font-extrabold mb-6 ${
-        darkMode ? "text-white" : "text-black"
-      }`}>
+      <h1
+        className={`text-4xl md:text-6xl font-extrabold mb-6 ${
+          darkMode ? "text-white" : "text-black"
+        }`}
+      >
         My Skills
       </h1>
 
-      <p className={`max-w-2xl mx-auto text-sm md:text-base leading-7 ${
-        darkMode ? "text-gray-300" : "text-gray-700"
-      }`}>
+      <p
+        className={`max-w-2xl mx-auto text-sm md:text-base leading-7 ${
+          darkMode ? "text-gray-300" : "text-gray-700"
+        }`}
+      >
         Passionate Frontend Developer and Junior Business Analyst with
         strong experience in responsive web development, requirement
         gathering, process modeling, and modern UI solutions.
       </p>
     </div>
 
-    {/* FRONTEND SKILLS MARQUEE */}
-  {/* FRONTEND SKILLS */}
+    {/* FRONTEND SKILLS */}
 <h2
-  className={`text-3xl font-bold mb-6 relative inline-block ${
+  className={`text-3xl font-bold mb-6 flex items-center gap-3 ${
     darkMode ? "text-white" : "text-black"
   }`}
 >
+  <span className="w-2 h-8 rounded-full bg-gradient-to-b from-purple-500 to-pink-500"></span>
   Frontend Developer Skills
-
-  {/* Underline Design */}
-  <span className="absolute left-0 -bottom-2 w-24 h-1 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
 </h2>
 
 <div className="overflow-visible mb-16 py-8">
@@ -698,10 +686,10 @@ useEffect(() => {
     {[...frontendSkills, ...frontendSkills].map((skill, i) => (
       <div
         key={i}
-        className={`w-[180px] h-[220px] flex-shrink-0 rounded-2xl p-5 text-center flex flex-col items-center justify-center relative z-10 transition-all duration-300 ease-in-out hover:scale-110 hover:z-50 cursor-pointer ${
+        className={`w-45 h-55 shrink-0 rounded-2xl p-5 text-center flex flex-col items-center justify-center relative z-10 transition-all duration-300 ease-in-out hover:scale-110 hover:z-50 cursor-pointer ${
           darkMode
-            ? "bg-[#12052b] border border-purple-900 hover:border-purple-500 hover:shadow-[0_0_35px_rgba(168,85,247,0.7)]"
-            : "bg-gray-100 border border-gray-300 hover:border-purple-400 hover:shadow-2xl"
+            ? "bg-[#12052b] text-white border border-purple-900 hover:border-purple-500 hover:shadow-[0_0_35px_rgba(168,85,247,0.7)]"
+            : "bg-white/80 backdrop-blur-md text-black border border-purple-200 hover:bg-purple-50 hover:border-purple-400 hover:shadow-[0_10px_30px_rgba(168,85,247,0.25)]"
         }`}
       >
         <img
@@ -710,11 +698,19 @@ useEffect(() => {
           className="w-14 h-14 mx-auto mb-4 object-contain"
         />
 
-        <h3 className="text-sm font-semibold mb-2 min-h-[40px] flex items-center justify-center">
+        <h3
+          className={`text-sm font-semibold mb-2 min-h-10 flex items-center justify-center ${
+            darkMode ? "text-white" : "text-black"
+          }`}
+        >
           {skill.title}
         </h3>
 
-        <p className="text-xs text-gray-400">
+        <p
+          className={`text-xs ${
+            darkMode ? "text-gray-400" : "text-gray-600"
+          }`}
+        >
           {skill.level}
         </p>
       </div>
@@ -724,14 +720,12 @@ useEffect(() => {
 
 {/* BUSINESS ANALYST SKILLS */}
 <h2
-  className={`text-3xl font-bold mb-6 relative inline-block ${
+  className={`text-3xl font-bold mb-6 flex items-center gap-3 ${
     darkMode ? "text-white" : "text-black"
   }`}
 >
+  <span className="w-2 h-8 rounded-full bg-gradient-to-b from-cyan-500 to-blue-500"></span>
   Business Analyst Skills
-
-  {/* Underline Design */}
-  <span className="absolute left-0 -bottom-2 w-24 h-1 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500"></span>
 </h2>
 
 <div className="overflow-visible mb-20 py-8">
@@ -739,10 +733,10 @@ useEffect(() => {
     {[...businessSkills, ...businessSkills].map((skill, i) => (
       <div
         key={i}
-        className={`w-[180px] h-[220px] flex-shrink-0 rounded-2xl p-5 text-center flex flex-col items-center justify-center relative z-10 transition-all duration-300 ease-in-out hover:scale-110 hover:z-50 cursor-pointer ${
+        className={`w-45 h-55 shrink-0 rounded-2xl p-5 text-center flex flex-col items-center justify-center relative z-10 transition-all duration-300 ease-in-out hover:scale-110 hover:z-50 cursor-pointer ${
           darkMode
-            ? "bg-[#12052b] border border-cyan-900 hover:border-cyan-500 hover:shadow-[0_0_35px_rgba(34,211,238,0.7)]"
-            : "bg-gray-100 border border-gray-300 hover:border-cyan-400 hover:shadow-2xl"
+            ? "bg-[#12052b] text-white border border-cyan-900 hover:border-cyan-500 hover:shadow-[0_0_35px_rgba(34,211,238,0.7)]"
+            : "bg-white/80 backdrop-blur-md text-black border border-cyan-200 hover:bg-cyan-50 hover:border-cyan-400 hover:shadow-[0_10px_30px_rgba(34,211,238,0.25)]"
         }`}
       >
         <img
@@ -751,20 +745,26 @@ useEffect(() => {
           className="w-14 h-14 mx-auto mb-4 object-contain"
         />
 
-        <h3 className="text-sm font-semibold mb-2 min-h-[40px] flex items-center justify-center">
+        <h3
+          className={`text-sm font-semibold mb-2 min-h-10 flex items-center justify-center ${
+            darkMode ? "text-white" : "text-black"
+          }`}
+        >
           {skill.title}
         </h3>
 
-        <p className="text-xs text-gray-400">
+        <p
+          className={`text-xs ${
+            darkMode ? "text-gray-400" : "text-gray-600"
+          }`}
+        >
           {skill.level}
         </p>
       </div>
     ))}
   </div>
-</div>
 
-   
-
+    </div>
 
   </div>
 </section>
