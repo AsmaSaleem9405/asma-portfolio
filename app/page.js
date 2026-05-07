@@ -5,6 +5,16 @@ import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import {
+  Briefcase,
+  Code2,
+  FileText,
+  GitBranch,
+  LayoutDashboard,
+  LineChart,
+  MonitorSmartphone,
+  Users,
+} from "lucide-react";
 
 
 import { usePathname } from "next/navigation";
@@ -48,6 +58,72 @@ const router = useRouter();
     section.scrollIntoView({ behavior: "smooth" });
   }
 };
+
+{/*skilss page*/}
+const frontendSkills = [
+  {
+    title: "Next.js",
+    level: "Advanced",
+    logo: "/skills/nextjs.png",
+  },
+  {
+    title: "Tailwind CSS",
+    level: "Intermediate",
+    logo: "/skills/react.png",
+  },
+  {
+    title: "Javascript",
+    level: "Advanced",
+    logo: "/skills/tailwind.png",
+  },
+  {
+  title: "HTML",
+  level: "Advanced",
+  icon: "/skills/js.png",
+},
+{
+  title: "CSS",
+  level: "Advanced",
+  icon: "/skills/html.png",
+},
+{
+  title: "Responsive Design",
+  level: "Advanced",
+  icon: "/skills/css.png",
+},
+{
+  title: "Git & GitHub",
+  level: "Intermediate",
+  icon: "/skills/git.png",
+},
+];
+const businessSkills = [
+  {
+    title: "Requirement Gathering",
+    level: "Advanced",
+    logo: "/skills/requirement.png",
+  },
+  {
+    title: "BRD / SRS / FRD",
+    level: "Advanced",
+    logo: "/skills/document.png",
+  },
+  {
+  title: "UML Diagrams",
+  level: "Intermediate",
+  icon: "/skills/process.png",
+},
+{
+  title: "Workflow Design",
+  level: "Intermediate",
+  icon: "/skills/agile.png",
+},
+{
+  title: "Stakeholder Collaboration",
+  level: "Intermediate",
+  icon: "/skills/figma.png",
+},
+];
 
 
   {/*  navbar activation */}
@@ -549,6 +625,138 @@ useEffect(() => {
       </motion.div>
        
     </section>
+
+
+   {/* skilss*/}
+   <section
+  id="skills"
+  className={`relative min-h-screen px-6 py-16 overflow-hidden ${
+    darkMode ? "bg-[#07011a]" : "bg-white"
+  }`}
+>
+
+  {/* Background */}
+  <div
+    className="absolute inset-0 bg-cover bg-center opacity-10"
+    style={{
+      backgroundImage: `url(${
+        darkMode
+          ? "/images/dark-skills-bg.png"
+          : "/images/light-skills-bg.png"
+      })`,
+    }}
+  />
+
+  {/* Overlay */}
+  <div
+    className={`absolute inset-0 ${
+      darkMode ? "bg-black/60" : "bg-white/70"
+    }`}
+  />
+
+  {/* Content */}
+  <div className="relative max-w-7xl mx-auto z-10">
+
+    {/* HEADER */}
+    <div className="text-center mb-16">
+      <p className={`uppercase tracking-[4px] text-sm font-semibold mb-4 ${
+        darkMode ? "text-pink-400" : "text-pink-600"
+      }`}>
+        My Expertise
+      </p>
+
+      <h1 className={`text-4xl md:text-6xl font-extrabold mb-6 ${
+        darkMode ? "text-white" : "text-black"
+      }`}>
+        My Skills
+      </h1>
+
+      <p className={`max-w-2xl mx-auto text-sm md:text-base leading-7 ${
+        darkMode ? "text-gray-300" : "text-gray-700"
+      }`}>
+        Passionate Frontend Developer and Junior Business Analyst with
+        strong experience in responsive web development, requirement
+        gathering, process modeling, and modern UI solutions.
+      </p>
+    </div>
+
+    {/* FRONTEND SKILLS MARQUEE */}
+    <h2 className={`text-3xl font-bold mb-6 ${
+      darkMode ? "text-white" : "text-black"
+    }`}>
+      Frontend Developer Skills
+    </h2>
+
+    <div className="overflow-hidden mb-16">
+      <div className="marquee gap-6">
+        {[...frontendSkills, ...frontendSkills].map((skill, i) => (
+          <div
+            key={i}
+            className={`min-w-[160px] rounded-2xl p-5 text-center ${
+              darkMode
+                ? "bg-[#12052b] border border-purple-900"
+                : "bg-gray-100 border border-gray-300"
+            }`}
+          >
+            <img
+              src={skill.logo}
+              alt={skill.title}
+              className="w-12 h-12 mx-auto mb-3"
+            />
+
+            <h3 className="text-sm font-semibold">
+              {skill.title}
+            </h3>
+
+            <p className="text-xs text-gray-400">
+              {skill.level}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* BUSINESS SKILLS MARQUEE */}
+    <h2 className={`text-3xl font-bold mb-6 ${
+      darkMode ? "text-white" : "text-black"
+    }`}>
+      Business Analyst Skills
+    </h2>
+
+    <div className="overflow-hidden mb-20">
+      <div className="marquee gap-6">
+        {[...businessSkills, ...businessSkills].map((skill, i) => (
+          <div
+            key={i}
+            className={`min-w-[160px] rounded-2xl p-5 text-center ${
+              darkMode
+                ? "bg-[#12052b] border border-cyan-900"
+                : "bg-gray-100 border border-gray-300"
+            }`}
+          >
+            <img
+              src={skill.logo}
+              alt={skill.title}
+              className="w-12 h-12 mx-auto mb-3"
+            />
+
+            <h3 className="text-sm font-semibold">
+              {skill.title}
+            </h3>
+
+            <p className="text-xs text-gray-400">
+              {skill.level}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+   
+
+
+  </div>
+</section>
    </>
   );
 }

@@ -41,6 +41,24 @@ body {
   animation: fadeInUp 0.8s ease-out;
 }
 
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: scroll-left 20s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
 /* FLOATING BACKGROUND BLOBS */
 @keyframes float {
   0%, 100% {
