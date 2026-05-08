@@ -59,69 +59,82 @@ const router = useRouter();
   }
 };
 
-{/*skilss page*/}
 const frontendSkills = [
   {
     title: "Next.js",
     level: "Advanced",
-    logo: "/images/nextjs.png",
+    darkLogo: "/images/nextjs.png",
+    lightLogo: "/images/nextjs1.png",
   },
   {
     title: "Tailwind CSS",
     level: "Intermediate",
-    logo: "/images/tailwind.png",
+    darkLogo: "/images/tailwind.png",
+    lightLogo: "/images/tailwind1.png",
   },
   {
     title: "Javascript",
     level: "Advanced",
-    logo: "/images/javascript.png",
+    darkLogo: "/images/javascript.png",
+    lightLogo: "/images/javascript1.png",
   },
   {
     title: "HTML",
     level: "Advanced",
-    logo: "/images/html.png",
+    darkLogo: "/images/html.png",
+    lightLogo: "/images/html1.png",
   },
   {
     title: "CSS",
     level: "Advanced",
-    logo: "/images/css.png",
+    darkLogo: "/images/css.png",
+    lightLogo: "/images/css1.png",
   },
   {
     title: "Responsive Design",
     level: "Advanced",
-    logo: "/images/responsive design.png",
+    darkLogo: "/images/responsive design.png",
+    lightLogo: "/images/responsive1.png",
   },
   {
     title: "Git & GitHub",
     level: "Intermediate",
-    logo: "/images/github.png",
+    darkLogo: "/images/github.png",
+    lightLogo: "/images/github1.png",
   },
 ];
+
 const businessSkills = [
   {
     title: "Requirement Gathering",
     level: "Advanced",
-    logo: "/images/requirements.png",
+    darkLogo: "/images/requirements.png",
+    lightLogo: "/images/requirement1.png",
   },
   {
     title: "BRD / SRS / FRD",
     level: "Advanced",
-    logo: "/images/documentation.png",
+    darkLogo: "/images/documentation.png",
+    lightLogo: "/images/documents1.png",
   },
   {
     title: "UML Diagrams",
     level: "Intermediate",
-    logo: "/images/uml.png",
+    darkLogo: "/images/uml.png",
+    lightLogo: "/images/uml1.png",
   },
   {
     title: "Workflow Design",
     level: "Intermediate",
-    logo: "/images/workflow.png",
+    darkLogo: "/images/workflow.png",
+    lightLogo: "/images/workflow1.png",
   },
   {
-    title: "Stakeholder Collaboration",
+    title: "Stakeholder collaboration",
     level: "Intermediate",
-    logo: "/images/collaboration.png",
+    lightLogo: "/images/communication1.png",
+    darkLogo: "/images/collaboration.png",
+    
   },
 ];
 
@@ -140,22 +153,16 @@ useEffect(() => {
         }
       });
     },
-    { threshold: 0.6 }
+    {
+      threshold: 0.3,
+      rootMargin: "-80px 0px -80px 0px",
+    }
   );
 
   sections.forEach((section) => observer.observe(section));
 
   return () => observer.disconnect();
 }, []);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
-
   return (
     <>
       <div
@@ -232,18 +239,16 @@ useEffect(() => {
   >
     About
   </li>
-
-  <li
-    onClick={() => scrollToSection("services")}
+ <li
+    onClick={() => scrollToSection("skills")}
     className={`cursor-pointer transition-colors ${
-       activeSection === "Services"
-       ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
+      activeSection === "skills"
+         ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
       : "hover:text-purple-800 dark:hover:text-purple-800"
   }`}
   >
-    Services
+    Skills
   </li>
-
   <li
     onClick={() => scrollToSection("projects")}
     className={`cursor-pointer transition-colors ${
@@ -300,7 +305,7 @@ useEffect(() => {
       <ul className="flex flex-col flex-1 justify-center items-center gap-6 text-lg font-bold text-center -mt-50">
  <li onClick={() => { scrollToSection("home"); setMenuOpen(false); }}>Home</li>
 <li onClick={() => { scrollToSection("about"); setMenuOpen(false); }}>About</li>
-<li onClick={() => { scrollToSection("services"); setMenuOpen(false); }}>Services</li>
+<li onClick={() => { scrollToSection("skills"); setMenuOpen(false); }}>Skills</li>
 <li onClick={() => { scrollToSection("projects"); setMenuOpen(false); }}>Projects</li>
 <li onClick={() => { scrollToSection("experience"); setMenuOpen(false); }}>Experience</li>
 
@@ -629,7 +634,7 @@ useEffect(() => {
 
    {/* skilss*/}
   <section
-      id="about"
+      id="skills"
       className="w-full px-4 md:px-16 py-16 md:py-24
                  bg-cover bg-top bg-no-repeat"
       style={{
@@ -645,7 +650,7 @@ useEffect(() => {
     {/* HEADER */}
     <div className="text-center mb-16">
       <p
-        className={`uppercase tracking-[4px] text-sm font-semibold mb-4 ${
+        className={`uppercase tracking-[4px] text-lg font-semibold mb-4 ${
           darkMode ? "text-pink-400" : "text-pink-600"
         }`}
       >
@@ -672,97 +677,99 @@ useEffect(() => {
     </div>
 
     {/* FRONTEND SKILLS */}
-<h2
-  className={`text-3xl font-bold mb-6 flex items-center gap-3 ${
-    darkMode ? "text-white" : "text-black"
-  }`}
->
-  <span className="w-2 h-8 rounded-full bg-gradient-to-b from-purple-500 to-pink-500"></span>
-  Frontend Developer Skills
-</h2>
-
-<div className="overflow-visible mb-16 py-8">
-  <div className="marquee gap-6 items-center">
-    {[...frontendSkills, ...frontendSkills].map((skill, i) => (
-      <div
-        key={i}
-        className={`w-45 h-55 shrink-0 rounded-2xl p-5 text-center flex flex-col items-center justify-center relative z-10 transition-all duration-300 ease-in-out hover:scale-110 hover:z-50 cursor-pointer ${
-          darkMode
-            ? "bg-[#12052b] text-white border border-purple-900 hover:border-purple-500 hover:shadow-[0_0_35px_rgba(168,85,247,0.7)]"
-            : "bg-white/80 backdrop-blur-md text-black border border-purple-200 hover:bg-purple-50 hover:border-purple-400 hover:shadow-[0_10px_30px_rgba(168,85,247,0.25)]"
+{/* FRONTEND SKILLS */}
+      <h2
+        className={`text-3xl font-bold mb-6 flex items-center gap-3 ${
+          darkMode ? "text-white" : "text-black"
         }`}
       >
-        <img
-          src={skill.logo}
-          alt={skill.title}
-          className="w-14 h-14 mx-auto mb-4 object-contain"
-        />
+        <span className="w-2 h-8 rounded-full bg-gradient-to-b from-purple-500 to-pink-500"></span>
+        Frontend Developer Skills
+      </h2>
 
-        <h3
-          className={`text-sm font-semibold mb-2 min-h-10 flex items-center justify-center ${
-            darkMode ? "text-white" : "text-black"
-          }`}
-        >
-          {skill.title}
-        </h3>
+      <div className="overflow-visible mb-16 py-8">
+        <div className="marquee flex gap-6 items-center">
+          {[...frontendSkills, ...frontendSkills].map((skill, i) => (
+            <div
+              key={i}
+              className={`w-45 h-55 shrink-0 rounded-2xl p-5 text-center flex flex-col items-center justify-center relative z-10 transition-all duration-300 ease-in-out hover:scale-110 hover:z-50 cursor-pointer ${
+                darkMode
+                  ? "bg-[#12052b] text-white border border-purple-900 hover:border-purple-500 hover:shadow-[0_0_35px_rgba(168,85,247,0.7)]"
+                  : "bg-purple-300 backdrop-blur-md text-black border border-purple-200 hover:bg-purple-50 hover:border-purple-400 hover:shadow-[0_10px_30px_rgba(168,85,247,0.25)]"
+              }`}
+            >
+              <img
+                src={darkMode ? skill.darkLogo : skill.lightLogo}
+                alt={skill.title}
+                className="w-14 h-14 mx-auto mb-4 object-contain"
+              />
 
-        <p
-          className={`text-xs ${
-            darkMode ? "text-gray-400" : "text-gray-600"
-          }`}
-        >
-          {skill.level}
-        </p>
+              <h3
+                className={`text-sm font-semibold mb-2 min-h-10 flex items-center justify-center ${
+                  darkMode ? "text-white" : "text-black"
+                }`}
+              >
+                {skill.title}
+              </h3>
+
+              <p
+                className={`text-xs ${
+                  darkMode ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
+                {skill.level}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
-    ))}
-  </div>
-</div>
 
-{/* BUSINESS ANALYST SKILLS */}
-<h2
-  className={`text-3xl font-bold mb-6 flex items-center gap-3 ${
-    darkMode ? "text-white" : "text-black"
-  }`}
->
-  <span className="w-2 h-8 rounded-full bg-gradient-to-b from-cyan-500 to-blue-500"></span>
-  Business Analyst Skills
-</h2>
-
-<div className="overflow-visible mb-20 py-8">
-  <div className="marquee gap-6 items-center">
-    {[...businessSkills, ...businessSkills].map((skill, i) => (
-      <div
-        key={i}
-        className={`w-45 h-55 shrink-0 rounded-2xl p-5 text-center flex flex-col items-center justify-center relative z-10 transition-all duration-300 ease-in-out hover:scale-110 hover:z-50 cursor-pointer ${
-          darkMode
-            ? "bg-[#12052b] text-white border border-cyan-900 hover:border-cyan-500 hover:shadow-[0_0_35px_rgba(34,211,238,0.7)]"
-            : "bg-white/80 backdrop-blur-md text-black border border-cyan-200 hover:bg-cyan-50 hover:border-cyan-400 hover:shadow-[0_10px_30px_rgba(34,211,238,0.25)]"
+      {/* BUSINESS ANALYST SKILLS */}
+      <h2
+        className={`text-3xl font-bold mb-6 flex items-center gap-3 ${
+          darkMode ? "text-white" : "text-black"
         }`}
       >
-        <img
-          src={skill.logo}
-          alt={skill.title}
-          className="w-14 h-14 mx-auto mb-4 object-contain"
-        />
+        <span className="w-2 h-8 rounded-full bg-gradient-to-b from-cyan-500 to-blue-500"></span>
+        Business Analyst Skills
+      </h2>
 
-        <h3
-          className={`text-sm font-semibold mb-2 min-h-10 flex items-center justify-center ${
-            darkMode ? "text-white" : "text-black"
-          }`}
-        >
-          {skill.title}
-        </h3>
+      <div className="overflow-visible mb-20 py-8">
+        <div className="marquee flex gap-6 items-center">
+          {[...businessSkills, ...businessSkills].map((skill, i) => (
+            <div
+              key={i}
+              className={`w-45 h-55 shrink-0 rounded-2xl p-5 text-center flex flex-col items-center justify-center relative z-10 transition-all duration-300 ease-in-out hover:scale-110 hover:z-50 cursor-pointer ${
+                darkMode
+                  ? "bg-[#12052b] text-white border border-cyan-900 hover:border-cyan-500 hover:shadow-[0_0_35px_rgba(34,211,238,0.7)]"
+                  : "bg-purple-300 backdrop-blur-md text-black border border-purple-200 hover:bg-purple-50 hover:border-purple-400 hover:shadow-[0_10px_30px_rgba(168,85,247,0.25)]"
+              }`}
+            >
+              <img
+                src={darkMode ? skill.darkLogo : skill.lightLogo}
+                alt={skill.title}
+                className="w-14 h-14 mx-auto mb-4 object-contain"
+              />
 
-        <p
-          className={`text-xs ${
-            darkMode ? "text-gray-400" : "text-gray-600"
-          }`}
-        >
-          {skill.level}
-        </p>
-      </div>
-    ))}
-  </div>
+              <h3
+                className={`text-sm font-semibold mb-2 min-h-10 flex items-center justify-center ${
+                  darkMode ? "text-white" : "text-black"
+                }`}
+              >
+                {skill.title}
+              </h3>
+
+              <p
+                className={`text-xs ${
+                  darkMode ? "text-gray-400" : "text-gray-600"
+                }`}
+              >
+                {skill.level}
+              </p>
+            </div>
+          ))}
+        </div>
+        
 
     </div>
 
