@@ -47,6 +47,7 @@ function MainPage() {
   const [open, setOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
+  const [active, setActive] = useState("frontend");
 
   const pathname = usePathname();
   const isActive = pathname === "/";
@@ -59,6 +60,8 @@ function MainPage() {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  {/*my skills*/}
 
   const frontendSkills = [
     {
@@ -137,6 +140,30 @@ function MainPage() {
       darkLogo: "/images/collaboration.png",
     },
   ];
+
+  {/*forntend proejcts*/}
+const projects = [
+  {
+    title: "Project One",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+  },
+  {
+    title: "Project Two",
+    image:
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+  },
+  {
+    title: "Project Three",
+    image:
+      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4",
+  },
+  {
+    title: "Project Four",
+    image:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
+  },
+];
 
   {
     /*  navbar activation */
@@ -817,6 +844,65 @@ function MainPage() {
           </div>
         </div>
       </section>
+
+
+          <main className="min-h-screen bg-[#07010f] text-white py-16 px-6 flex flex-col items-center">
+
+      {/* Heading */}
+      <h1 className="text-4xl md:text-5xl font-bold mb-6">
+        My Recent Works
+      </h1>
+
+      {/* Buttons */}
+      <div className="flex items-center gap-4 mb-14">
+
+        {/* Active Frontend Button */}
+        <Link href="/frontend">
+          <button className="px-6 py-2 rounded-full bg-purple-600 text-sm md:text-base font-medium shadow-lg shadow-purple-500/40 hover:scale-105 transition duration-300">
+            Frontend Developer
+          </button>
+        </Link>
+
+        {/* Business Analyst Button */}
+        <Link href="/business-analyst">
+          <button className="px-6 py-2 rounded-full bg-[#141414] hover:bg-pink-600 text-sm md:text-base font-medium transition duration-300">
+            Business Analyst
+          </button>
+        </Link>
+
+      </div>
+
+      {/* Projects Grid */}
+      <section className="relative max-w-6xl w-full">
+
+        {/* Glow Background */}
+        <div className="absolute inset-0 bg-purple-700/20 blur-3xl"></div>
+
+        {/* Grid */}
+        <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8">
+
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className="bg-[#0f0f0f] rounded-xl overflow-hidden border border-purple-900/30 hover:scale-[1.02] transition duration-300"
+            >
+
+              {/* Image */}
+              <div className="overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-[260px] object-cover hover:scale-110 transition duration-500"
+                />
+              </div>
+
+            </div>
+          ))}
+
+        </div>
+      </section>
+
+    </main>
     </>
   );
 }
