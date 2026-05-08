@@ -16,7 +16,6 @@ import {
   Users,
 } from "lucide-react";
 
-
 import { usePathname } from "next/navigation";
 
 export default function Page() {
@@ -47,122 +46,124 @@ function MainPage() {
   const [darkMode, setDarkMode] = useState(true);
   const [open, setOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-const router = useRouter();
+  const router = useRouter();
 
   const pathname = usePathname();
   const isActive = pathname === "/";
-  {/* clickable navbar*/}
-  const scrollToSection = (id) => {
-  const section = document.getElementById(id);
-  if (section) {
-    section.scrollIntoView({ behavior: "smooth" });
+  {
+    /* clickable navbar*/
   }
-};
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
-const frontendSkills = [
-  {
-    title: "Next.js",
-    level: "Advanced",
-    darkLogo: "/images/nextjs.png",
-    lightLogo: "/images/nextjs1.png",
-  },
-  {
-    title: "Tailwind CSS",
-    level: "Intermediate",
-    darkLogo: "/images/tailwind.png",
-    lightLogo: "/images/tailwind1.png",
-  },
-  {
-    title: "Javascript",
-    level: "Advanced",
-    darkLogo: "/images/javascript.png",
-    lightLogo: "/images/javascript1.png",
-  },
-  {
-    title: "HTML",
-    level: "Advanced",
-    darkLogo: "/images/html.png",
-    lightLogo: "/images/html1.png",
-  },
-  {
-    title: "CSS",
-    level: "Advanced",
-    darkLogo: "/images/css.png",
-    lightLogo: "/images/css1.png",
-  },
-  {
-    title: "Responsive Design",
-    level: "Advanced",
-    darkLogo: "/images/responsive design.png",
-    lightLogo: "/images/responsive1.png",
-  },
-  {
-    title: "Git & GitHub",
-    level: "Intermediate",
-    darkLogo: "/images/github.png",
-    lightLogo: "/images/github1.png",
-  },
-];
-
-const businessSkills = [
-  {
-    title: "Requirement Gathering",
-    level: "Advanced",
-    darkLogo: "/images/requirements.png",
-    lightLogo: "/images/requirement1.png",
-  },
-  {
-    title: "BRD / SRS / FRD",
-    level: "Advanced",
-    darkLogo: "/images/documentation.png",
-    lightLogo: "/images/documents1.png",
-  },
-  {
-    title: "UML Diagrams",
-    level: "Intermediate",
-    darkLogo: "/images/uml.png",
-    lightLogo: "/images/uml1.png",
-  },
-  {
-    title: "Workflow Design",
-    level: "Intermediate",
-    darkLogo: "/images/workflow.png",
-    lightLogo: "/images/workflow1.png",
-  },
-  {
-    title: "Stakeholder collaboration",
-    level: "Intermediate",
-    lightLogo: "/images/communication1.png",
-    darkLogo: "/images/collaboration.png",
-    
-  },
-];
-
-
-  {/*  navbar activation */}
-  const [activeSection, setActiveSection] = useState("home");
-
-useEffect(() => {
-  const sections = document.querySelectorAll("section");
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
+  const frontendSkills = [
+    {
+      title: "Next.js",
+      level: "Advanced",
+      darkLogo: "/images/nextjs.png",
+      lightLogo: "/images/nextjs1.png",
     },
     {
-      threshold: 0.3,
-      rootMargin: "-80px 0px -80px 0px",
-    }
-  );
+      title: "Tailwind CSS",
+      level: "Intermediate",
+      darkLogo: "/images/tailwind.png",
+      lightLogo: "/images/tailwind1.png",
+    },
+    {
+      title: "Javascript",
+      level: "Advanced",
+      darkLogo: "/images/javascript.png",
+      lightLogo: "/images/javascript1.png",
+    },
+    {
+      title: "HTML",
+      level: "Advanced",
+      darkLogo: "/images/html.png",
+      lightLogo: "/images/html1.png",
+    },
+    {
+      title: "CSS",
+      level: "Advanced",
+      darkLogo: "/images/css.png",
+      lightLogo: "/images/css1.png",
+    },
+    {
+      title: "Responsive Design",
+      level: "Advanced",
+      darkLogo: "/images/responsive design.png",
+      lightLogo: "/images/responsive1.png",
+    },
+    {
+      title: "Git & GitHub",
+      level: "Intermediate",
+      darkLogo: "/images/github.png",
+      lightLogo: "/images/github1.png",
+    },
+  ];
 
-  sections.forEach((section) => observer.observe(section));
+  const businessSkills = [
+    {
+      title: "Requirement Gathering",
+      level: "Advanced",
+      darkLogo: "/images/requirements.png",
+      lightLogo: "/images/requirement1.png",
+    },
+    {
+      title: "BRD / SRS / FRD",
+      level: "Advanced",
+      darkLogo: "/images/documentation.png",
+      lightLogo: "/images/documents1.png",
+    },
+    {
+      title: "UML Diagrams",
+      level: "Intermediate",
+      darkLogo: "/images/uml.png",
+      lightLogo: "/images/uml1.png",
+    },
+    {
+      title: "Workflow Design",
+      level: "Intermediate",
+      darkLogo: "/images/workflow.png",
+      lightLogo: "/images/workflow1.png",
+    },
+    {
+      title: "Stakeholder collaboration",
+      level: "Intermediate",
+      lightLogo: "/images/communication1.png",
+      darkLogo: "/images/collaboration.png",
+    },
+  ];
 
-  return () => observer.disconnect();
-}, []);
+  {
+    /*  navbar activation */
+  }
+  const [activeSection, setActiveSection] = useState("home");
+
+  useEffect(() => {
+    const sections = document.querySelectorAll("section");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        threshold: 0.3,
+        rootMargin: "-80px 0px -80px 0px",
+      },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
   return (
     <>
       <div
@@ -178,156 +179,207 @@ useEffect(() => {
           className={`min-h-screen ${darkMode ? "bg-black/40 text-white" : "text-black"}`}
         >
           {/*navbar */}
-         <>
-  <nav
-    className="flex items-center  justify-between
+          <>
+            <nav
+              className="flex items-center  justify-between
     px-4 sm:px-6 md:px-16
     py-3 md:py-2
     bg-blue/40 backdrop-blur-md shadow-sm
     fixed top-0 left-0 w-full z-50"
-  >
-    {/* Left: Logo */}
-    <Link href="#home">
-      <>
-        <img
-          src="/images/logo1.png"
-          alt="Logo Light"
-          className="h-12 w-auto block dark:hidden"
-        />
-        <img
-          src="/images/logo1.png"
-          alt="Logo Dark"
-          className="h-12 w-auto hidden dark:block"
-        />
-      </>
-    </Link>
+            >
+              {/* Left: Logo */}
+              <Link href="#home">
+                <>
+                  <img
+                    src="/images/logo1.png"
+                    alt="Logo Light"
+                    className="h-12 w-auto block dark:hidden"
+                  />
+                  <img
+                    src="/images/logo1.png"
+                    alt="Logo Dark"
+                    className="h-12 w-auto hidden dark:block"
+                  />
+                </>
+              </Link>
 
-    <div className="flex-1"></div>
+              <div className="flex-1"></div>
 
-    {/* Right side */}
-    <div className="flex items-center gap-6 font-bold">
-      {/* Toggle */}
-      <button onClick={() => setDarkMode(!darkMode)} className="text-xl">
-        {darkMode ? "☀️" : "🌙"}
-      </button>
+              {/* Right side */}
+              <div className="flex items-center gap-6 font-bold">
+                {/* Toggle */}
+                <button
+                  onClick={() => setDarkMode(!darkMode)}
+                  className="text-xl"
+                >
+                  {darkMode ? "☀️" : "🌙"}
+                </button>
 
-      {/* Mobile Menu Button */}
-      <button className="md:hidden text-2xl" onClick={() => setMenuOpen(!menuOpen)}>
-        {menuOpen ? "✖" : "☰"}
-      </button>
+                {/* Mobile Menu Button */}
+                <button
+                  className="md:hidden text-2xl"
+                  onClick={() => setMenuOpen(!menuOpen)}
+                >
+                  {menuOpen ? "✖" : "☰"}
+                </button>
 
-      {/* Desktop Nav */}
-    <ul className="hidden md:flex text-sm gap-8 ">
- <li
-  onClick={() => scrollToSection("home")}
-  className={`cursor-pointer transition-all duration-300 ${
-    activeSection === "home"
-      ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
-      : "hover:text-purple-800 dark:hover:text-purple-800"
-  }`}
->
-  Home
-</li>
+                {/* Desktop Nav */}
+                <ul className="hidden md:flex text-sm gap-8 ">
+                  <li
+                    onClick={() => scrollToSection("home")}
+                    className={`cursor-pointer transition-all duration-300 ${
+                      activeSection === "home"
+                        ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
+                        : "hover:text-purple-800 dark:hover:text-purple-800"
+                    }`}
+                  >
+                    Home
+                  </li>
 
-  <li
-    onClick={() => scrollToSection("about")}
-    className={`cursor-pointer transition-colors ${
-      activeSection === "about"
-         ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
-      : "hover:text-purple-800 dark:hover:text-purple-800"
-  }`}
-  >
-    About
-  </li>
- <li
-    onClick={() => scrollToSection("skills")}
-    className={`cursor-pointer transition-colors ${
-      activeSection === "skills"
-         ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
-      : "hover:text-purple-800 dark:hover:text-purple-800"
-  }`}
-  >
-    Skills
-  </li>
-  <li
-    onClick={() => scrollToSection("projects")}
-    className={`cursor-pointer transition-colors ${
-      activeSection === "projects"
-         ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
-      : "hover:text-purple-800 dark:hover:text-purple-800"
-  }`}
-  >
-    Projects
-  </li>
+                  <li
+                    onClick={() => scrollToSection("about")}
+                    className={`cursor-pointer transition-colors ${
+                      activeSection === "about"
+                        ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
+                        : "hover:text-purple-800 dark:hover:text-purple-800"
+                    }`}
+                  >
+                    About
+                  </li>
+                  <li
+                    onClick={() => scrollToSection("skills")}
+                    className={`cursor-pointer transition-colors ${
+                      activeSection === "skills"
+                        ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
+                        : "hover:text-purple-800 dark:hover:text-purple-800"
+                    }`}
+                  >
+                    Skills
+                  </li>
+                  <li
+                    onClick={() => scrollToSection("projects")}
+                    className={`cursor-pointer transition-colors ${
+                      activeSection === "projects"
+                        ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
+                        : "hover:text-purple-800 dark:hover:text-purple-800"
+                    }`}
+                  >
+                    Projects
+                  </li>
 
-  <li
-    onClick={() => scrollToSection("experience")}
-    className={`cursor-pointer transition-colors ${
-      activeSection === "experience"
-          ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
-      : "hover:text-purple-800 dark:hover:text-purple-800"
-  }`}
-  >
-    Experience
-  </li>
-</ul>
+                  <li
+                    onClick={() => scrollToSection("experience")}
+                    className={`cursor-pointer transition-colors ${
+                      activeSection === "experience"
+                        ? "text-purple-800  font-semibold drop-shadow-[0_0_8px_rgba(168,85,247,0.8)] scale-110"
+                        : "hover:text-purple-800 dark:hover:text-purple-800"
+                    }`}
+                  >
+                    Experience
+                  </li>
+                </ul>
 
-      {/* Button */}
-      <button className="hidden md:block bg-purple-600 px-4 py-2 rounded-full text-sm hover:bg-purple-700 text-white shadow-[0_0_15px_rgba(168,85,247,0.7)] animate-pulse hover:shadow-[0_0_25px_rgba(168,85,247,1)] transition-all duration-300">
-        Contact Us
-      </button>
-    </div>
-  </nav>
+                {/* Button */}
+                <button className="hidden md:block bg-purple-600 px-4 py-2 rounded-full text-sm hover:bg-purple-700 text-white shadow-[0_0_15px_rgba(168,85,247,0.7)] animate-pulse hover:shadow-[0_0_25px_rgba(168,85,247,1)] transition-all duration-300">
+                  Contact Us
+                </button>
+              </div>
+            </nav>
 
-  {/* Mobile Menu */}
-  {menuOpen && (
-    <div
-      className={`md:hidden fixed inset-0 z-50 flex flex-col ${
-        darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
-      }`}
-    >
-      <div className="flex items-center justify-between px-6 py-4">
-        <Link href="#home">
-          <img src="/images/logo1.png" className="h-10" alt="Logo" />
-        </Link>
+            {/* Mobile Menu */}
+            {menuOpen && (
+              <div
+                className={`md:hidden fixed inset-0 z-50 flex flex-col ${
+                  darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
+                }`}
+              >
+                <div className="flex items-center justify-between px-6 py-4">
+                  <Link href="#home">
+                    <img src="/images/logo1.png" className="h-10" alt="Logo" />
+                  </Link>
 
-        <div className="flex items-center gap-4 z-20">
-          <button onClick={() => setDarkMode(!darkMode)} className="text-xl cursor-pointer">
-            {darkMode ? "☀️" : "🌙"}
-          </button>
+                  <div className="flex items-center gap-4 z-20">
+                    <button
+                      onClick={() => setDarkMode(!darkMode)}
+                      className="text-xl cursor-pointer"
+                    >
+                      {darkMode ? "☀️" : "🌙"}
+                    </button>
 
-          <button className="text-2xl cursor-pointer" onClick={() => setMenuOpen(false)}>
-            ✖
-          </button>
-        </div>
-      </div>
+                    <button
+                      className="text-2xl cursor-pointer"
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      ✖
+                    </button>
+                  </div>
+                </div>
 
-      <ul className="flex flex-col flex-1 justify-center items-center gap-6 text-lg font-bold text-center -mt-50">
- <li onClick={() => { scrollToSection("home"); setMenuOpen(false); }}>Home</li>
-<li onClick={() => { scrollToSection("about"); setMenuOpen(false); }}>About</li>
-<li onClick={() => { scrollToSection("skills"); setMenuOpen(false); }}>Skills</li>
-<li onClick={() => { scrollToSection("projects"); setMenuOpen(false); }}>Projects</li>
-<li onClick={() => { scrollToSection("experience"); setMenuOpen(false); }}>Experience</li>
+                <ul className="flex flex-col flex-1 justify-center items-center gap-6 text-lg font-bold text-center -mt-50">
+                  <li
+                    onClick={() => {
+                      scrollToSection("home");
+                      setMenuOpen(false);
+                    }}
+                  >
+                    Home
+                  </li>
+                  <li
+                    onClick={() => {
+                      scrollToSection("about");
+                      setMenuOpen(false);
+                    }}
+                  >
+                    About
+                  </li>
+                  <li
+                    onClick={() => {
+                      scrollToSection("skills");
+                      setMenuOpen(false);
+                    }}
+                  >
+                    Skills
+                  </li>
+                  <li
+                    onClick={() => {
+                      scrollToSection("projects");
+                      setMenuOpen(false);
+                    }}
+                  >
+                    Projects
+                  </li>
+                  <li
+                    onClick={() => {
+                      scrollToSection("experience");
+                      setMenuOpen(false);
+                    }}
+                  >
+                    Experience
+                  </li>
 
-  <li className="w-full flex justify-center mt-4">
-    <button className="bg-purple-600 px-6 py-3 rounded-full text-white w-[50%]
+                  <li className="w-full flex justify-center mt-4">
+                    <button
+                      className="bg-purple-600 px-6 py-3 rounded-full text-white w-[50%]
       shadow-[0_0_15px_rgba(168,85,247,0.7)]
       animate-pulse
       hover:shadow-[0_0_30px_rgba(168,85,247,1)]
-      transition-all duration-300">
-      Contact Us
-    </button>
-  </li>
-</ul>
-    </div>
-  )}
-</>
+      transition-all duration-300"
+                    >
+                      Contact Us
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </>
           {/* HERO */}
 
-<section
-  id="home"
-  className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-10 md:py-20"
->            {/* LEFT SIDE */}
+          <section
+            id="home"
+            className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-10 md:py-20"
+          >
+            {" "}
+            {/* LEFT SIDE */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -496,7 +548,6 @@ useEffect(() => {
                 )}
               </div>
             </motion.div>
-
             {/* RIGHT SIDE IMAGE */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -517,265 +568,255 @@ useEffect(() => {
         </div>
       </div>
       {/*About Me*/}
-    
-    <section
-      id="about"
-      className="w-full px-4 md:px-16 py-16 md:py-24
+
+      <section
+        id="about"
+        className="w-full px-4 md:px-16 py-16 md:py-24
                  bg-cover bg-top bg-no-repeat"
-      style={{
-        backgroundImage: darkMode
-          ? "url('/images/about-bg.png')"
-          : "url('/images/about-bg1.png')",
-      }}
-    >
-      <motion.div
-        className="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center"
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false, amount: 0.2 }}
+        style={{
+          backgroundImage: darkMode
+            ? "url('/images/about-bg.png')"
+            : "url('/images/about-bg1.png')",
+        }}
       >
-        {/* LEFT IMAGE CARD */}
         <motion.div
-          className="relative flex justify-center"
-          initial={{ opacity: 0, x: -80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-          viewport={{ once: false }}
+          className="max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: false, amount: 0.2 }}
         >
-          <div
-            className="relative p-0.5 rounded-xl 
+          {/* LEFT IMAGE CARD */}
+          <motion.div
+            className="relative flex justify-center"
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            viewport={{ once: false }}
+          >
+            <div
+              className="relative p-0.5 rounded-xl 
             bg-linear-to-r from-purple-500 via-cyan-400 to-purple-900 
             bg-size-[200%_200%] animate-[gradientMove_4s_ease_infinite]
             shadow-[0_0_25px_rgba(0,255,255,0.6)]"
-          >
-            <div className="rounded-xl overflow-hidden bg-black">
-              <Image
-                src="/images/profile.png"
-                alt="Profile"
-                width={400}
-                height={500}
-                className="object-cover w-full h-auto"
-              />
+            >
+              <div className="rounded-xl overflow-hidden bg-black">
+                <Image
+                  src="/images/profile.png"
+                  alt="Profile"
+                  width={400}
+                  height={500}
+                  className="object-cover w-full h-auto"
+                />
+              </div>
             </div>
-          </div>
+          </motion.div>
+
+          {/* RIGHT CONTENT */}
+          <motion.div
+            className="text-center md:text-left"
+            initial={{ opacity: 0, x: 80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{
+              duration: 0.9,
+              ease: [0.25, 0.1, 0.25, 1],
+              delay: 0.2,
+            }}
+            viewport={{ once: false }}
+          >
+            {/* Top Label */}
+            <span className="text-xs font-semibold tracking-widest text-white-300 uppercase bg-purple-900/30 px-3 py-1 rounded">
+              About Me
+            </span>
+
+            <h1
+              className={`text-3xl md:text-3xl pt-6 font-bold leading-snug ${
+                darkMode ? "text-white" : "text-black"
+              }`}
+            >
+              I AM AVAILABLE FOR{" "}
+              <span className="text-purple-500">FRONTEND</span>
+              <br />
+              DEVELOPMENT &{" "}
+              <span className="text-purple-500">BUSINESS ANALYST</span> PROJECTS
+            </h1>
+
+            <p
+              className={`mt-4 text-sm md:text-base max-w-md text-justify ${
+                darkMode ? "text-gray-300" : "text-black"
+              }`}
+            >
+              I am a passionate Frontend Developer and Junior Business Analyst
+              with hands-on experience in building responsive and user-friendly
+              web applications using HTML, CSS, Javascript, Next.js, and
+              Tailwind CSS. I focus on creating clean UI, improving user
+              experience, and delivering high-quality digital solutions while
+              following modern frontend best practices.
+            </p>
+
+            <p
+              className={`mt-3 text-sm md:text-base max-w-md text-justify ${
+                darkMode ? "text-gray-300" : "text-black"
+              }`}
+            >
+              Along with frontend development, I have strong skills in
+              requirement gathering, documentation (BRD, SRS, FRD), and
+              diagramming including UML diagrams, workflows, and process
+              mapping. I also have an understanding of business development and
+              stakeholder collaboration, allowing me to bridge the gap between
+              business needs and technical implementation to build efficient,
+              scalable, and user-focused products.
+            </p>
+
+            {/* BUTTON */}
+            <button
+              onClick={() => router.push("/hire")}
+              className="mt-6 px-6 py-2 bg-purple-600 text-white text-sm rounded-full animate-pulse shadow-lg shadow-blue-500/50"
+            >
+              HIRE ME
+            </button>
+          </motion.div>
         </motion.div>
+      </section>
 
-        {/* RIGHT CONTENT */}
-        <motion.div
-          className="text-center md:text-left"
-          initial={{ opacity: 0, x: 80 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{
-            duration: 0.9,
-            ease: [0.25, 0.1, 0.25, 1],
-            delay: 0.2,
-          }}
-          viewport={{ once: false }}
-        >
-          {/* Top Label */}
-          <span className="text-xs font-semibold tracking-widest text-white-300 uppercase bg-purple-900/30 px-3 py-1 rounded">
-            About Me
-          </span>
+      {/* skills*/}
+      <section
+        id="skills"
+        className="w-full px-4 md:px-16 py-16 md:py-24
+                 bg-cover bg-top bg-no-repeat"
+        style={{
+          backgroundImage: darkMode
+            ? "url('/images/skills-bg.png')"
+            : "url('/images/skills-bg1.png')",
+        }}
+      >
+        {/* Content */}
+        <div className="relative max-w-7xl mx-auto z-10">
+          {/* HEADER */}
+          <div className="text-center mb-16">
+            <p
+              className={`uppercase tracking-[4px] text-lg font-semibold mb-4 ${
+                darkMode ? "text-pink-400" : "text-pink-600"
+              }`}
+            >
+              My Expertise
+            </p>
 
-          <h1
-            className={`text-3xl md:text-3xl pt-6 font-bold leading-snug ${
+            <h1
+              className={`text-4xl md:text-6xl font-extrabold mb-6 ${
+                darkMode ? "text-white" : "text-black"
+              }`}
+            >
+              My Skills
+            </h1>
+
+            <p
+              className={`max-w-2xl mx-auto text-sm md:text-base leading-7 ${
+                darkMode ? "text-gray-300" : "text-gray-700"
+              }`}
+            >
+              Passionate Frontend Developer and Junior Business Analyst with
+              strong experience in responsive web development, requirement
+              gathering, process modeling, and modern UI solutions.
+            </p>
+          </div>
+
+          {/* FRONTEND SKILLS */}
+          {/* FRONTEND SKILLS */}
+          <h2
+            className={`text-3xl font-bold mb-6 flex items-center gap-3 ${
               darkMode ? "text-white" : "text-black"
             }`}
           >
-            I AM AVAILABLE FOR{" "}
-            <span className="text-purple-500">FRONTEND</span>
-            <br />
-            DEVELOPMENT &{" "}
-            <span className="text-purple-500">BUSINESS ANALYST</span> PROJECTS
-          </h1>
+            <span className="w-2 h-8 rounded-full bg-linear-to-b from-purple-500 to-pink-500"></span>
+            Frontend Developer Skills
+          </h2>
 
-          <p
-            className={`mt-4 text-sm md:text-base max-w-md text-justify ${
-              darkMode ? "text-gray-300" : "text-black"
+          <div className="overflow-visible mb-16 py-8">
+            <div className="marquee flex gap-6 items-center">
+              {[...frontendSkills, ...frontendSkills].map((skill, i) => (
+                <div
+                  key={i}
+                  className={`w-45 h-55 shrink-0 rounded-2xl p-5 text-center flex flex-col items-center justify-center relative z-10 transition-all duration-300 ease-in-out hover:scale-110 hover:z-50 cursor-pointer ${
+                    darkMode
+                      ? "bg-[#12052b] text-white border border-purple-900 hover:border-purple-500 hover:shadow-[0_0_35px_rgba(168,85,247,0.7)]"
+                      : "bg-purple-300 backdrop-blur-md text-black border border-purple-200 hover:bg-purple-50 hover:border-purple-400 hover:shadow-[0_10px_30px_rgba(168,85,247,0.25)]"
+                  }`}
+                >
+                  <img
+                    src={darkMode ? skill.darkLogo : skill.lightLogo}
+                    alt={skill.title}
+                    className="w-14 h-14 mx-auto mb-4 object-contain"
+                  />
+
+                  <h3
+                    className={`text-sm font-semibold mb-2 min-h-10 flex items-center justify-center ${
+                      darkMode ? "text-white" : "text-black"
+                    }`}
+                  >
+                    {skill.title}
+                  </h3>
+
+                  <p
+                    className={`text-xs ${
+                      darkMode ? "text-gray-400" : "text-gray-600"
+                    }`}
+                  >
+                    {skill.level}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* BUSINESS ANALYST SKILLS */}
+          <h2
+            className={`text-3xl font-bold mb-6 flex items-center gap-3 ${
+              darkMode ? "text-white" : "text-black"
             }`}
           >
-            I am a passionate Frontend Developer and Junior Business Analyst
-            with hands-on experience in building responsive and user-friendly
-            web applications using HTML, CSS, Javascript, Next.js, and
-            Tailwind CSS. I focus on creating clean UI, improving user
-            experience, and delivering high-quality digital solutions while
-            following modern frontend best practices.
-          </p>
+            <span className="w-2 h-8 rounded-full bg-linear-to-b from-cyan-500 to-blue-500"></span>
+            Business Analyst Skills
+          </h2>
 
-          <p
-            className={`mt-3 text-sm md:text-base max-w-md text-justify ${
-              darkMode ? "text-gray-300" : "text-black"
-            }`}
-          >
-            Along with frontend development, I have strong skills in
-            requirement gathering, documentation (BRD, SRS, FRD), and
-            diagramming including UML diagrams, workflows, and process
-            mapping. I also have an understanding of business development and
-            stakeholder collaboration, allowing me to bridge the gap between
-            business needs and technical implementation to build efficient,
-            scalable, and user-focused products.
-          </p>
+          <div className="overflow-visible mb-20 py-8">
+            <div className="marquee flex gap-6 items-center">
+              {[...businessSkills, ...businessSkills].map((skill, i) => (
+                <div
+                  key={i}
+                  className={`w-45 h-55 shrink-0 rounded-2xl p-5 text-center flex flex-col items-center justify-center relative z-10 transition-all duration-300 ease-in-out hover:scale-110 hover:z-50 cursor-pointer ${
+                    darkMode
+                      ? "bg-[#12052b] text-white border border-cyan-900 hover:border-cyan-500 hover:shadow-[0_0_35px_rgba(34,211,238,0.7)]"
+                      : "bg-purple-300 backdrop-blur-md text-black border border-purple-200 hover:bg-purple-50 hover:border-purple-400 hover:shadow-[0_10px_30px_rgba(168,85,247,0.25)]"
+                  }`}
+                >
+                  <img
+                    src={darkMode ? skill.darkLogo : skill.lightLogo}
+                    alt={skill.title}
+                    className="w-14 h-14 mx-auto mb-4 object-contain"
+                  />
 
-          {/* BUTTON */}
-          <button
-            onClick={() => router.push("/hire")}
-            className="mt-6 px-6 py-2 bg-purple-600 text-white text-sm rounded-full animate-pulse shadow-lg shadow-blue-500/50"
-          >
-            HIRE ME
-          </button>
-          
-        </motion.div>
-       
-      </motion.div>
-       
-    </section>
+                  <h3
+                    className={`text-sm font-semibold mb-2 min-h-10 flex items-center justify-center ${
+                      darkMode ? "text-white" : "text-black"
+                    }`}
+                  >
+                    {skill.title}
+                  </h3>
 
-
-   {/* skilss*/}
-  <section
-      id="skills"
-      className="w-full px-4 md:px-16 py-16 md:py-24
-                 bg-cover bg-top bg-no-repeat"
-      style={{
-        backgroundImage: darkMode
-          ? "url('/images/skills-bg.png')"
-          : "url('/images/skills-bg1.png')",
-      }}
-    >
-
-  {/* Content */}
-  <div className="relative max-w-7xl mx-auto z-10">
-
-    {/* HEADER */}
-    <div className="text-center mb-16">
-      <p
-        className={`uppercase tracking-[4px] text-lg font-semibold mb-4 ${
-          darkMode ? "text-pink-400" : "text-pink-600"
-        }`}
-      >
-        My Expertise
-      </p>
-
-      <h1
-        className={`text-4xl md:text-6xl font-extrabold mb-6 ${
-          darkMode ? "text-white" : "text-black"
-        }`}
-      >
-        My Skills
-      </h1>
-
-      <p
-        className={`max-w-2xl mx-auto text-sm md:text-base leading-7 ${
-          darkMode ? "text-gray-300" : "text-gray-700"
-        }`}
-      >
-        Passionate Frontend Developer and Junior Business Analyst with
-        strong experience in responsive web development, requirement
-        gathering, process modeling, and modern UI solutions.
-      </p>
-    </div>
-
-    {/* FRONTEND SKILLS */}
-{/* FRONTEND SKILLS */}
-      <h2
-        className={`text-3xl font-bold mb-6 flex items-center gap-3 ${
-          darkMode ? "text-white" : "text-black"
-        }`}
-      >
-        <span className="w-2 h-8 rounded-full bg-gradient-to-b from-purple-500 to-pink-500"></span>
-        Frontend Developer Skills
-      </h2>
-
-      <div className="overflow-visible mb-16 py-8">
-        <div className="marquee flex gap-6 items-center">
-          {[...frontendSkills, ...frontendSkills].map((skill, i) => (
-            <div
-              key={i}
-              className={`w-45 h-55 shrink-0 rounded-2xl p-5 text-center flex flex-col items-center justify-center relative z-10 transition-all duration-300 ease-in-out hover:scale-110 hover:z-50 cursor-pointer ${
-                darkMode
-                  ? "bg-[#12052b] text-white border border-purple-900 hover:border-purple-500 hover:shadow-[0_0_35px_rgba(168,85,247,0.7)]"
-                  : "bg-purple-300 backdrop-blur-md text-black border border-purple-200 hover:bg-purple-50 hover:border-purple-400 hover:shadow-[0_10px_30px_rgba(168,85,247,0.25)]"
-              }`}
-            >
-              <img
-                src={darkMode ? skill.darkLogo : skill.lightLogo}
-                alt={skill.title}
-                className="w-14 h-14 mx-auto mb-4 object-contain"
-              />
-
-              <h3
-                className={`text-sm font-semibold mb-2 min-h-10 flex items-center justify-center ${
-                  darkMode ? "text-white" : "text-black"
-                }`}
-              >
-                {skill.title}
-              </h3>
-
-              <p
-                className={`text-xs ${
-                  darkMode ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                {skill.level}
-              </p>
+                  <p
+                    className={`text-xs ${
+                      darkMode ? "text-gray-400" : "text-gray-600"
+                    }`}
+                  >
+                    {skill.level}
+                  </p>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-      </div>
-
-      {/* BUSINESS ANALYST SKILLS */}
-      <h2
-        className={`text-3xl font-bold mb-6 flex items-center gap-3 ${
-          darkMode ? "text-white" : "text-black"
-        }`}
-      >
-        <span className="w-2 h-8 rounded-full bg-gradient-to-b from-cyan-500 to-blue-500"></span>
-        Business Analyst Skills
-      </h2>
-
-      <div className="overflow-visible mb-20 py-8">
-        <div className="marquee flex gap-6 items-center">
-          {[...businessSkills, ...businessSkills].map((skill, i) => (
-            <div
-              key={i}
-              className={`w-45 h-55 shrink-0 rounded-2xl p-5 text-center flex flex-col items-center justify-center relative z-10 transition-all duration-300 ease-in-out hover:scale-110 hover:z-50 cursor-pointer ${
-                darkMode
-                  ? "bg-[#12052b] text-white border border-cyan-900 hover:border-cyan-500 hover:shadow-[0_0_35px_rgba(34,211,238,0.7)]"
-                  : "bg-purple-300 backdrop-blur-md text-black border border-purple-200 hover:bg-purple-50 hover:border-purple-400 hover:shadow-[0_10px_30px_rgba(168,85,247,0.25)]"
-              }`}
-            >
-              <img
-                src={darkMode ? skill.darkLogo : skill.lightLogo}
-                alt={skill.title}
-                className="w-14 h-14 mx-auto mb-4 object-contain"
-              />
-
-              <h3
-                className={`text-sm font-semibold mb-2 min-h-10 flex items-center justify-center ${
-                  darkMode ? "text-white" : "text-black"
-                }`}
-              >
-                {skill.title}
-              </h3>
-
-              <p
-                className={`text-xs ${
-                  darkMode ? "text-gray-400" : "text-gray-600"
-                }`}
-              >
-                {skill.level}
-              </p>
-            </div>
-          ))}
-        </div>
-        
-
-    </div>
-
-  </div>
-</section>
-   </>
+      </section>
+    </>
   );
 }
-  

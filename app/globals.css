@@ -59,6 +59,9 @@ body {
 .marquee:hover {
   animation-play-state: paused;
 }
+
+/* about page animation code*/
+
 /* FLOATING BACKGROUND BLOBS */
 @keyframes float {
   0%, 100% {
