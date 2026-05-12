@@ -1207,12 +1207,18 @@ const educationData = [
 
 {/*contact us*/}
 
- <section
-  className={`relative w-full py-20 px-6 md:px-16 overflow-hidden transition-all duration-500 ${
+<section
+  id="contact"
+  className={`relative w-full py-20 px-6 md:px-16 overflow-hidden transition-all duration-500 bg-cover bg-center bg-no-repeat ${
     darkMode
       ? "bg-black text-white"
       : "bg-white text-black"
   }`}
+  style={{
+    backgroundImage: darkMode
+      ? "url('/images/about-bg.png')"
+      : "url('/images/about-bg1.png')",
+  }}
 >
   {/* Background Glow */}
   <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-purple-500/20 blur-[120px] rounded-full -z-0 animate-pulse"></div>
