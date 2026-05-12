@@ -1391,14 +1391,16 @@ const educationData = [
   <div>
     <h3 className="font-semibold">Email</h3>
 
-    <a
-      href="mailto:asmasaleem65654@gmail.com"
-      className={`transition-all duration-300 hover:text-purple-500 hover:underline ${
-        darkMode ? "text-gray-400" : "text-gray-700"
-      }`}
-    >
-      asmasaleem65654@gmail.com
-    </a>
+   <a
+  href="https://mail.google.com/mail/?view=cm&fs=1&to=asmasaleem65654@gmail.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  className={`transition-all duration-300 hover:text-purple-500 hover:underline ${
+    darkMode ? "text-gray-400" : "text-gray-700"
+  }`}
+>
+  asmasaleem65654@gmail.com
+</a>
   </div>
 </div>
 
