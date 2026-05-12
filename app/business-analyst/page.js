@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const projects = [
   {
@@ -26,6 +27,10 @@ const projects = [
 ];
 
 export default function BusinessAnalystPage() {
+
+  // ✅ useRouter INSIDE component
+  const router = useRouter();
+
   return (
     <main className="min-h-screen bg-[#07010f] text-white py-16 px-6 flex flex-col items-center">
 
@@ -38,11 +43,16 @@ export default function BusinessAnalystPage() {
       <div className="flex items-center gap-4 mb-14">
 
         {/* Frontend Button */}
-        <Link href="/frontend">
-          <button className="px-6 py-2 rounded-full bg-[#141414] hover:bg-purple-600 text-sm md:text-base font-medium transition duration-300">
-            Frontend Developer
-          </button>
-        </Link>
+        <button
+          onClick={() => router.push("/#projects")}
+          className="px-6 py-2 rounded-full border border-pink-500 bg-transparent
+          text-sm md:text-base font-medium relative overflow-hidden
+          hover:border-pink-400
+          hover:shadow-[0_0_25px_rgba(236,72,153,0.8)]
+          transition-all duration-300"
+        >
+          Frontend Developer
+        </button>
 
         {/* Active Business Analyst */}
         <Link href="/business-analyst">
@@ -54,7 +64,10 @@ export default function BusinessAnalystPage() {
       </div>
 
       {/* Projects */}
-      <section className="relative max-w-6xl w-full">
+      <section
+        id="projects"
+        className="relative max-w-6xl w-full"
+      >
 
         {/* Glow */}
         <div className="absolute inset-0 bg-pink-700/20 blur-3xl"></div>
@@ -68,11 +81,13 @@ export default function BusinessAnalystPage() {
               className="bg-[#0f0f0f] rounded-xl overflow-hidden border border-pink-900/30 hover:scale-[1.02] transition duration-300"
             >
 
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-[260px] object-cover hover:scale-110 transition duration-500"
-              />
+              <div className="overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-[260px] object-cover hover:scale-110 transition duration-500"
+                />
+              </div>
 
             </div>
           ))}
