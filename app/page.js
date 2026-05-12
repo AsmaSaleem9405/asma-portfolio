@@ -885,35 +885,41 @@ const businessProjects = [
 >
   <div className="flex flex-col items-center text-center">
 
-    <h1 className="text-4xl md:text-5xl font-bold mb-6">
-      My Recent Works
-    </h1>
+  <h1 className={`text-4xl md:text-5xl font-bold mb-6 ${
+  darkMode ? "text-white" : "text-black"
+}`}>
+  My Recent Works
+</h1>
 
     {/* BUTTONS */}
     <div className="flex items-center gap-4 mb-14">
 
       <button
-        onClick={() => setActiveProjectTab("frontend")}
-        className={`px-6 py-2 rounded-full text-sm md:text-base font-medium transition duration-300 ${
-          activeProjectTab === "frontend"
-            ? "bg-purple-600 shadow-lg shadow-purple-500/40"
-            : "bg-[#141414] hover:bg-purple-600"
-        }`}
-      >
-        Frontend Developer
-      </button>
-
-      <button
-        onClick={() => setActiveProjectTab("business")}
-        className={`px-6 py-2 rounded-full text-sm md:text-base font-medium transition duration-300 ${
-          activeProjectTab === "business"
-            ? "bg-pink-600 shadow-lg shadow-pink-500/40"
-            : "bg-[#141414] hover:bg-pink-600"
-        }`}
-      >
-        Business Analyst
-      </button>
-
+  onClick={() => setActiveProjectTab("frontend")}
+  className={`px-6 py-2 rounded-full text-sm md:text-base font-medium
+  border transition-all duration-300 relative overflow-hidden
+  hover:scale-110 hover:z-10
+  ${
+    activeProjectTab === "frontend"
+      ? "bg-purple-600 border-purple-400 shadow-lg shadow-purple-500/40 shadow-[0_0_20px_rgba(168,85,247,0.9)]"
+      : "bg-[#141414] border-purple-500 shadow-[0_0_12px_rgba(168,85,247,0.6)]"
+  }`}
+>
+  Frontend Developer
+</button>
+<button
+  onClick={() => setActiveProjectTab("business")}
+  className={`px-6 py-2 rounded-full text-sm md:text-base font-medium
+  border transition-all duration-300 relative overflow-hidden
+  hover:scale-110 hover:z-10
+  ${
+    activeProjectTab === "business"
+      ? "bg-purple-600 border-purple-400 shadow-lg shadow-pink-500/40 shadow-[0_0_20px_rgba(236,72,153,0.9)]"
+      : "bg-[#141414] border-purple-500 shadow-[0_0_12px_rgba(236,72,153,0.6)]"
+  }`}
+>
+  Business Analyst
+</button>
     </div>
   </div>
 
