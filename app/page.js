@@ -5,15 +5,11 @@ import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+
 import {
   Briefcase,
-  Code2,
-  FileText,
-  GitBranch,
-  LayoutDashboard,
-  LineChart,
-  MonitorSmartphone,
-  Users,
+  GraduationCap,
+  CalendarDays,
 } from "lucide-react";
 
 import { usePathname } from "next/navigation";
@@ -31,6 +27,8 @@ export default function Page() {
 
   return <>{showSplash ? <SplashScreen /> : <MainPage />}</>;
 }
+
+
 
 /* SPLASH SCREEN */
 function SplashScreen() {
@@ -187,6 +185,61 @@ const businessProjects = [
     title: "Case Study",
     image:
       "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
+  },
+];
+
+
+const experienceData = [
+  {
+    year: "Aug 2025 - Dec 2025",
+    title: "Frontend Developer",
+    company: "Devisgon, Okara",
+    desc: "Developed responsive and user-friendly websites using Next.js and Tailwind CSS.",
+  },
+  {
+    year: "Jan 2025 - Jul 2025",
+    title: "Junior Business Analyst",
+    company: "Efaida Technologies, Okara",
+    desc: "Worked on requirement gathering, BRD, SRS, FRD, UML diagrams and stakeholder communication.",
+  },
+  {
+    year: "Self Employed",
+    title: "Canva Designer",
+    company: "Freelance",
+    desc: "Created social media posts, portfolio designs, presentations and branding designs using Canva.",
+  },
+  {
+    year: "Final Year Project",
+    title: "UAF Course Allocation System",
+    company: "University Project",
+    desc: "Built a responsive course allocation system using Next.js and Tailwind CSS.",
+  },
+];
+
+const educationData = [
+  {
+    year: "2021 - 2025",
+    title: "BS Computer Science",
+    company: "University of Agriculture Faisalabad",
+    desc: "CGPA: 3.59 / 4.0",
+  },
+  {
+    year: "Frontend Development",
+    title: "Next.js & Tailwind CSS",
+    company: "Internship & Practical Learning",
+    desc: "Learned responsive web development and reusable UI components.",
+  },
+  {
+    year: "Business Analysis",
+    title: "Documentation & UML",
+    company: "Professional Training",
+    desc: "Worked on BRD, SRS, FRD, RTM and workflow diagrams.",
+  },
+  {
+    year: "Designing",
+    title: "Canva & Creative Design",
+    company: "Self Learning",
+    desc: "Designed creative portfolios, social media posts and presentations.",
   },
 ];
   {
@@ -958,6 +1011,152 @@ const businessProjects = [
     </div>
   </div>
 </section>
+
+
+{/* experience*/}
+ <section
+  className="w-full py-16 px-4 sm:px-6 lg:px-12
+             bg-cover bg-top bg-no-repeat relative"
+  style={{
+    backgroundImage: darkMode
+      ? "url('/images/experience-bg.png')"
+      : "url('/images/skills-bg1.png')",
+  }}
+>
+  {/* Overlay */}
+ 
+
+  {/* Main Content */}
+  <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+    {/* Experience Section */}
+    <motion.div
+      initial={{ opacity: 0, x: -40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: false }}
+    >
+      <div className="flex items-center gap-3 mb-8">
+        <Briefcase className="text-purple-500 w-7 h-7" />
+
+        {/* TEXT COLOR */}
+        <h2
+          className={`text-3xl font-bold ${
+            darkMode ? "text-white" : "text-black"
+          }`}
+        >
+          My Experience
+        </h2>
+      </div>
+
+      <div className="space-y-5">
+        {experienceData.map((item, index) => (
+          <div
+            key={index}
+            className={`
+              min-h-[170px]
+              flex flex-col justify-center
+              rounded-2xl p-5
+              border transition-all duration-300
+              hover:scale-[1.02]
+              shadow-lg
+              ${
+                darkMode
+                  ? "bg-[#14081f] border-purple-900/40 hover:border-purple-500"
+                  : "bg-white/80 border-gray-300 hover:border-purple-400"
+              }
+            `}
+          >
+            <div className="flex items-center gap-2 text-purple-400 text-sm mb-2">
+              <CalendarDays size={16} />
+              <span>{item.year}</span>
+            </div>
+
+            <h3
+              className={`text-lg font-semibold ${
+                darkMode ? "text-white" : "text-black"
+              }`}
+            >
+              {item.title}
+            </h3>
+
+            <p
+              className={`text-sm mt-1 ${
+                darkMode ? "text-gray-400" : "text-gray-700"
+              }`}
+            >
+              {item.company}
+            </p>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+
+    {/* Education Section */}
+    <motion.div
+      initial={{ opacity: 0, x: 40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: false }}
+    >
+      <div className="flex items-center gap-3 mb-8">
+        <GraduationCap className="text-purple-500 w-7 h-7" />
+
+        {/* TEXT COLOR */}
+        <h2
+          className={`text-3xl font-bold ${
+            darkMode ? "text-white" : "text-black"
+          }`}
+        >
+          My Education
+        </h2>
+      </div>
+
+      <div className="space-y-5">
+        {educationData.map((item, index) => (
+          <div
+            key={index}
+            className={`
+              min-h-[170px]
+              flex flex-col justify-center
+              rounded-2xl p-5
+              border transition-all duration-300
+              hover:scale-[1.02]
+              shadow-lg
+              ${
+                darkMode
+                  ? "bg-[#14081f] border-purple-900/40 hover:border-purple-500"
+                  : "bg-white/80 border-gray-300 hover:border-purple-400"
+              }
+            `}
+          >
+            <div className="flex items-center gap-2 text-purple-400 text-sm mb-2">
+              <CalendarDays size={16} />
+              <span>{item.year}</span>
+            </div>
+
+            <h3
+              className={`text-lg font-semibold ${
+                darkMode ? "text-white" : "text-black"
+              }`}
+            >
+              {item.title}
+            </h3>
+
+            <p
+              className={`text-sm mt-1 ${
+                darkMode ? "text-gray-400" : "text-gray-700"
+              }`}
+            >
+              {item.company}
+            </p>
+          </div>
+        ))}
+      </div>
+    </motion.div>
+  </div>
+</section>
+
     </>
   );
 }
