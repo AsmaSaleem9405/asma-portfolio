@@ -5,7 +5,8 @@ import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
+import { Phone, Mail, MapPin } from "lucide-react";
+import { FaLinkedinIn } from "react-icons/fa";
 import {
   Briefcase,
   GraduationCap,
@@ -58,6 +59,52 @@ function MainPage() {
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  {/*contact us*/}
+   const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (res.ok) {
+      setSuccess(true);
+
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    }
+
+    setLoading(false);
+  };
+
 
   {/*my skills*/}
 
@@ -1015,6 +1062,7 @@ const educationData = [
 
 {/* experience*/}
  <section
+  id="experience"
   className="w-full py-16 px-4 sm:px-6 lg:px-12
              bg-cover bg-top bg-no-repeat relative"
   style={{
@@ -1157,6 +1205,235 @@ const educationData = [
   </div>
 </section>
 
+{/*contact us*/}
+
+ <section
+  className={`relative w-full py-20 px-6 md:px-16 overflow-hidden transition-all duration-500 ${
+    darkMode
+      ? "bg-black text-white"
+      : "bg-white text-black"
+  }`}
+>
+  {/* Background Glow */}
+  <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-purple-500/20 blur-[120px] rounded-full -z-0 animate-pulse"></div>
+
+  <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center relative z-10">
+
+    {/* LEFT SIDE */}
+    <div
+      className={`group rounded-3xl p-8 md:p-10 border transition-all duration-500 hover:scale-[1.02]
+      ${
+        darkMode
+          ? "bg-gradient-to-br from-purple-900/50 to-black border-purple-700/40 hover:border-purple-400"
+          : "bg-white border-purple-300 hover:border-purple-500 shadow-[0_0_30px_rgba(168,85,247,0.2)]"
+      }`}
+    >
+
+      <h2 className="text-3xl md:text-4xl font-bold mb-3">
+        Let’s work together!
+      </h2>
+
+      <p
+        className={`mb-8 transition-colors duration-300 ${
+          darkMode ? "text-gray-400" : "text-gray-700"
+        }`}
+      >
+        Send me a message and let’s build something amazing.
+      </p>
+
+      <form onSubmit={handleSubmit} className="space-y-5">
+
+        {/* Name + Email */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className={`w-full rounded-xl px-4 py-3 outline-none transition-all duration-300
+            hover:shadow-[0_0_15px_rgba(168,85,247,0.4)]
+            focus:shadow-[0_0_20px_rgba(168,85,247,0.6)]
+            ${
+              darkMode
+                ? "bg-black/40 border border-purple-700/40 text-white placeholder:text-gray-500 focus:border-purple-400"
+                : "bg-gray-100 border border-purple-200 text-black placeholder:text-gray-500 focus:border-purple-500"
+            }`}
+          />
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className={`w-full rounded-xl px-4 py-3 outline-none transition-all duration-300
+            hover:shadow-[0_0_15px_rgba(168,85,247,0.4)]
+            focus:shadow-[0_0_20px_rgba(168,85,247,0.6)]
+            ${
+              darkMode
+                ? "bg-black/40 border border-purple-700/40 text-white placeholder:text-gray-500 focus:border-purple-400"
+                : "bg-gray-100 border border-purple-200 text-black placeholder:text-gray-500 focus:border-purple-500"
+            }`}
+          />
+
+        </div>
+
+        {/* Subject */}
+        <input
+          type="text"
+          name="subject"
+          placeholder="Subject"
+          value={formData.subject}
+          onChange={handleChange}
+          required
+          className={`w-full rounded-xl px-4 py-3 outline-none transition-all duration-300
+          hover:shadow-[0_0_15px_rgba(168,85,247,0.4)]
+          focus:shadow-[0_0_20px_rgba(168,85,247,0.6)]
+          ${
+            darkMode
+              ? "bg-black/40 border border-purple-700/40 text-white placeholder:text-gray-500 focus:border-purple-400"
+              : "bg-gray-100 border border-purple-200 text-black placeholder:text-gray-500 focus:border-purple-500"
+          }`}
+        />
+
+        {/* Message */}
+        <textarea
+          rows="5"
+          name="message"
+          placeholder="Message"
+          value={formData.message}
+          onChange={handleChange}
+          required
+          className={`w-full rounded-xl px-4 py-3 outline-none resize-none transition-all duration-300
+          hover:shadow-[0_0_15px_rgba(168,85,247,0.4)]
+          focus:shadow-[0_0_20px_rgba(168,85,247,0.6)]
+          ${
+            darkMode
+              ? "bg-black/40 border border-purple-700/40 text-white placeholder:text-gray-500 focus:border-purple-400"
+              : "bg-gray-100 border border-purple-200 text-black placeholder:text-gray-500 focus:border-purple-500"
+          }`}
+        />
+
+        {/* Button */}
+        <button
+          type="submit"
+          className="bg-purple-600 hover:bg-purple-700 hover:shadow-[0_0_25px_rgba(168,85,247,0.7)]
+          transition-all duration-300 px-8 py-3 rounded-full font-semibold"
+        >
+          {loading ? "Sending..." : "Send Message"}
+        </button>
+
+        {success && (
+          <p className="text-green-400">
+            Message sent successfully!
+          </p>
+        )}
+
+      </form>
+    </div>
+
+    {/* RIGHT SIDE */}
+    <div className="space-y-8">
+
+      {/* Phone */}
+      <div
+        className={`flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:scale-105 cursor-pointer
+        ${
+          darkMode
+            ? "hover:bg-purple-900/20"
+            : "hover:bg-purple-100"
+        }`}
+      >
+        <div className="bg-purple-700/20 p-4 rounded-full transition-all duration-300 hover:rotate-12 hover:scale-110">
+          <Phone className="text-purple-400" />
+        </div>
+
+        <div>
+          <h3 className="font-semibold">Phone</h3>
+          <p className={darkMode ? "text-gray-400" : "text-gray-700"}>
+            +92 3101 657409
+          </p>
+        </div>
+      </div>
+
+      {/* Email */}
+      <div
+        className={`flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:scale-105 cursor-pointer
+        ${
+          darkMode
+            ? "hover:bg-purple-900/20"
+            : "hover:bg-purple-100"
+        }`}
+      >
+        <div className="bg-purple-700/20 p-4 rounded-full transition-all duration-300 hover:rotate-12 hover:scale-110">
+          <Mail className="text-purple-400" />
+        </div>
+
+        <div>
+          <h3 className="font-semibold">Email</h3>
+          <p className={darkMode ? "text-gray-400" : "text-gray-700"}>
+            asmasaleem65654@gmail.com
+          </p>
+        </div>
+      </div>
+
+      {/* LinkedIn */}
+      <div
+        className={`flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:scale-105 cursor-pointer
+        ${
+          darkMode
+            ? "hover:bg-purple-900/20"
+            : "hover:bg-purple-100"
+        }`}
+      >
+        <div className="bg-purple-700/20 p-4 rounded-full transition-all duration-300 hover:rotate-12 hover:scale-110">
+          <FaLinkedinIn className="text-purple-400 text-xl" />
+        </div>
+
+        <div>
+          <h3 className="font-semibold">LinkedIn</h3>
+
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            className={`transition-all duration-300 hover:text-purple-500 ${
+              darkMode ? "text-gray-400" : "text-gray-700"
+            }`}
+          >
+            linkedin.com/in/yourprofile
+          </a>
+        </div>
+      </div>
+
+      {/* Address */}
+      <div
+        className={`flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:scale-105 cursor-pointer
+        ${
+          darkMode
+            ? "hover:bg-purple-900/20"
+            : "hover:bg-purple-100"
+        }`}
+      >
+        <div className="bg-purple-700/20 p-4 rounded-full transition-all duration-300 hover:rotate-12 hover:scale-110">
+          <MapPin className="text-purple-400" />
+        </div>
+
+        <div>
+          <h3 className="font-semibold">Address</h3>
+          <p className={darkMode ? "text-gray-400" : "text-gray-700"}>
+            Pakistan
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
     </>
   );
 }
