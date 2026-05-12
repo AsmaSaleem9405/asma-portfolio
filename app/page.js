@@ -1346,46 +1346,61 @@ const educationData = [
     <div className="space-y-8">
 
       {/* Phone */}
-      <div
-        className={`flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:scale-105 cursor-pointer
-        ${
-          darkMode
-            ? "hover:bg-purple-900/20"
-            : "hover:bg-purple-100"
-        }`}
-      >
-        <div className="bg-purple-700/20 p-4 rounded-full transition-all duration-300 hover:rotate-12 hover:scale-110">
-          <Phone className="text-purple-400" />
-        </div>
+ {/* Phone */}
+<div
+  className={`flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:scale-105
+  ${
+    darkMode
+      ? "hover:bg-purple-900/20"
+      : "hover:bg-purple-100"
+  }`}
+>
+  <div className="bg-purple-700/20 p-4 rounded-full transition-all duration-300 hover:rotate-12 hover:scale-110">
+    <Phone className="text-purple-400" />
+  </div>
 
-        <div>
-          <h3 className="font-semibold">Phone</h3>
-          <p className={darkMode ? "text-gray-400" : "text-gray-700"}>
-            +92 3101 657409
-          </p>
-        </div>
-      </div>
+  <div>
+    <h3 className="font-semibold">Phone</h3>
 
-      {/* Email */}
-      <div
-        className={`flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:scale-105 cursor-pointer
-        ${
-          darkMode
-            ? "hover:bg-purple-900/20"
-            : "hover:bg-purple-100"
-        }`}
-      >
-        <div className="bg-purple-700/20 p-4 rounded-full transition-all duration-300 hover:rotate-12 hover:scale-110">
-          <Mail className="text-purple-400" />
-        </div>
+    <a
+      href="https://wa.me/923101657409"
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`transition-all duration-300 hover:text-purple-500 hover:underline ${
+        darkMode ? "text-gray-400" : "text-gray-700"
+      }`}
+    >
+      +92 3101 657409
+    </a>
+  </div>
+</div>
 
-        <div>
-          <h3 className="font-semibold">Email</h3>
-          <p className={darkMode ? "text-gray-400" : "text-gray-700"}>
-            asmasaleem65654@gmail.com
-          </p>
-        </div>
-      </div>
+{/* Email */}
+<div
+  className={`flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:scale-105
+  ${
+    darkMode
+      ? "hover:bg-purple-900/20"
+      : "hover:bg-purple-100"
+  }`}
+>
+  <div className="bg-purple-700/20 p-4 rounded-full transition-all duration-300 hover:rotate-12 hover:scale-110">
+    <Mail className="text-purple-400" />
+  </div>
+
+  <div>
+    <h3 className="font-semibold">Email</h3>
+
+    <a
+      href="mailto:asmasaleem65654@gmail.com"
+      className={`transition-all duration-300 hover:text-purple-500 hover:underline ${
+        darkMode ? "text-gray-400" : "text-gray-700"
+      }`}
+    >
+      asmasaleem65654@gmail.com
+    </a>
+  </div>
+</div>
 
       {/* LinkedIn */}
       <div
@@ -1404,13 +1419,13 @@ const educationData = [
           <h3 className="font-semibold">LinkedIn</h3>
 
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/asma-saleem-0bbaa0319/"
             target="_blank"
             className={`transition-all duration-300 hover:text-purple-500 ${
               darkMode ? "text-gray-400" : "text-gray-700"
             }`}
           >
-            linkedin.com/in/yourprofile
+            linkedin.com/in/Asma Saleem
           </a>
         </div>
       </div>
