@@ -60,8 +60,10 @@ body {
   animation-play-state: paused;
 }
 
-/* about page animation code*/
-
+/* about projects section button*/
+html {
+  scroll-behavior: smooth;
+}
 /* FLOATING BACKGROUND BLOBS */
 @keyframes float {
   0%, 100% {

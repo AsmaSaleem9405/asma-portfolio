@@ -142,7 +142,9 @@ function MainPage() {
   ];
 
   {/*forntend proejcts*/}
-const projects = [
+const [activeProjectTab, setActiveProjectTab] = useState("frontend");
+
+const frontendProjects = [
   {
     title: "Project One",
     image:
@@ -165,6 +167,28 @@ const projects = [
   },
 ];
 
+const businessProjects = [
+  {
+    title: "Documentation",
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
+  },
+  {
+    title: "Diagramming",
+    image:
+      "https://images.unsplash.com/photo-1552664730-d307ca884978",
+  },
+  {
+    title: "Workflow",
+    image:
+      "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a",
+  },
+  {
+    title: "Case Study",
+    image:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
+  },
+];
   {
     /*  navbar activation */
   }
@@ -844,78 +868,90 @@ const projects = [
           </div>
         </div>
       </section>
+      {/*projects*/}
+
+{/* PROJECTS */}
 
 <section
-        id="projects"
-        className="w-full px-4 md:px-16 py-16 md:py-24
-                 bg-cover bg-top bg-no-repeat"
-        style={{
-          backgroundImage: darkMode
-            ? "url('/images/skills-bg.png')"
-            : "url('/images/skills-bg1.png')",
-        }}
+  id="projects"
+  className="w-full px-4 md:px-16 py-16 md:py-24
+             bg-cover bg-top bg-no-repeat
+             scroll-mt-24"
+  style={{
+    backgroundImage: darkMode
+      ? "url('/images/projects-bg.png')"
+      : "url('/images/projects-bg1.png')",
+  }}
+>
+  <div className="flex flex-col items-center text-center">
+
+    <h1 className="text-4xl md:text-5xl font-bold mb-6">
+      My Recent Works
+    </h1>
+
+    {/* BUTTONS */}
+    <div className="flex items-center gap-4 mb-14">
+
+      <button
+        onClick={() => setActiveProjectTab("frontend")}
+        className={`px-6 py-2 rounded-full text-sm md:text-base font-medium transition duration-300 ${
+          activeProjectTab === "frontend"
+            ? "bg-purple-600 shadow-lg shadow-purple-500/40"
+            : "bg-[#141414] hover:bg-purple-600"
+        }`}
       >
-
-      <div className="flex flex-col items-center text-center">
-
-  {/* Heading */}
-  <h1 className="text-4xl md:text-5xl font-bold mb-6">
-    My Recent Works
-  </h1>
-
-  {/* Buttons */}
-  <div className="flex items-center gap-4 mb-14">
-
-    {/* Active Frontend Button */}
-    <Link href="/frontend">
-      <button className="px-6 py-2 rounded-full bg-purple-600 text-sm md:text-base font-medium shadow-lg shadow-purple-500/40 hover:scale-105 transition duration-300">
         Frontend Developer
       </button>
-    </Link>
 
-    {/* Business Analyst Button */}
-    <Link href="/business-analyst">
-      <button className="px-6 py-2 rounded-full bg-[#141414] hover:bg-pink-600 text-sm md:text-base font-medium transition duration-300">
+      <button
+        onClick={() => setActiveProjectTab("business")}
+        className={`px-6 py-2 rounded-full text-sm md:text-base font-medium transition duration-300 ${
+          activeProjectTab === "business"
+            ? "bg-pink-600 shadow-lg shadow-pink-500/40"
+            : "bg-[#141414] hover:bg-pink-600"
+        }`}
+      >
         Business Analyst
       </button>
-    </Link>
 
+    </div>
   </div>
 
-</div>
+  {/* PROJECT GRID */}
+  <div className="relative max-w-6xl w-full">
 
-      {/* Projects Grid */}
-      <section className="relative max-w-6xl w-full">
+    <div className="absolute inset-0 bg-purple-700/20 blur-3xl"></div>
 
-        {/* Glow Background */}
-        <div className="absolute inset-0 bg-purple-700/20 blur-3xl"></div>
+    <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8">
 
-        {/* Grid */}
-        <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8">
+      {(activeProjectTab === "frontend"
+        ? frontendProjects
+        : businessProjects
+      ).map((project, index) => (
+        <div
+          key={index}
+          className="bg-[#0f0f0f] rounded-xl overflow-hidden border border-purple-900/30 hover:scale-[1.02] transition duration-300"
+        >
+          <div className="overflow-hidden">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-[260px] object-cover hover:scale-110 transition duration-500"
+            />
+          </div>
 
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="bg-[#0f0f0f] rounded-xl overflow-hidden border border-purple-900/30 hover:scale-[1.02] transition duration-300"
-            >
-
-              {/* Image */}
-              <div className="overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-[260px] object-cover hover:scale-110 transition duration-500"
-                />
-              </div>
-
-            </div>
-          ))}
-
+          {/* OPTIONAL TITLE */}
+          <div className="p-4">
+            <h3 className="text-lg font-semibold text-white">
+              {project.title}
+            </h3>
+          </div>
         </div>
-      </section>
+      ))}
 
-   
-    </section>
+    </div>
+  </div>
+</section>
     </>
   );
 }
