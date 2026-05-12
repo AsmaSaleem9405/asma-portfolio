@@ -1054,7 +1054,7 @@ const educationData = [
           <div
             key={index}
             className={`
-              min-h-[170px]
+              min-h-42.5
               flex flex-col justify-center
               rounded-2xl p-5
               border transition-all duration-300
