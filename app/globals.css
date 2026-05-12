@@ -61,9 +61,12 @@ body {
 }
 
 /* about projects section button*/
-html {
+html, body  {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
+
+
 /* FLOATING BACKGROUND BLOBS */
 @keyframes float {
   0%, 100% {
