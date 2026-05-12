@@ -936,7 +936,7 @@ const businessProjects = [
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-[260px] object-cover hover:scale-110 transition duration-500"
+              className="w-full h-65 object-cover hover:scale-110 transition duration-500"
             />
           </div>
 
