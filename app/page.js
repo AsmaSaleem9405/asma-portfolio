@@ -431,9 +431,12 @@ const educationData = [
                 </ul>
 
                 {/* Button */}
-                <button className="hidden md:block bg-purple-600 px-4 py-2 rounded-full text-sm hover:bg-purple-700 text-white shadow-[0_0_15px_rgba(168,85,247,0.7)] animate-pulse hover:shadow-[0_0_25px_rgba(168,85,247,1)] transition-all duration-300">
-                  Contact Us
-                </button>
+<button
+  onClick={() => scrollToSection("contact")}
+  className="hidden md:block bg-purple-600 px-4 py-2 rounded-full text-sm hover:bg-purple-700 text-white shadow-[0_0_15px_rgba(168,85,247,0.7)] animate-pulse hover:shadow-[0_0_25px_rgba(168,85,247,1)] transition-all duration-300"
+>
+  Contact Us
+</button>
               </div>
             </nav>
 
@@ -466,60 +469,72 @@ const educationData = [
                   </div>
                 </div>
 
-                <ul className="flex flex-col flex-1 justify-center items-center gap-6 text-lg font-bold text-center -mt-50">
-                  <li
-                    onClick={() => {
-                      scrollToSection("home");
-                      setMenuOpen(false);
-                    }}
-                  >
-                    Home
-                  </li>
-                  <li
-                    onClick={() => {
-                      scrollToSection("about");
-                      setMenuOpen(false);
-                    }}
-                  >
-                    About
-                  </li>
-                  <li
-                    onClick={() => {
-                      scrollToSection("skills");
-                      setMenuOpen(false);
-                    }}
-                  >
-                    Skills
-                  </li>
-                  <li
-                    onClick={() => {
-                      scrollToSection("projects");
-                      setMenuOpen(false);
-                    }}
-                  >
-                    Projects
-                  </li>
-                  <li
-                    onClick={() => {
-                      scrollToSection("experience");
-                      setMenuOpen(false);
-                    }}
-                  >
-                    Experience
-                  </li>
+            <ul className="flex flex-col flex-1 justify-center items-center gap-6 text-lg font-bold text-center -mt-50">
+  
+  <li
+    className="cursor-pointer"
+    onClick={() => {
+      scrollToSection("home");
+      setMenuOpen(false);
+    }}
+  >
+    Home
+  </li>
 
-                  <li className="w-full flex justify-center mt-4">
-                    <button
-                      className="bg-purple-600 px-6 py-3 rounded-full text-white w-[50%]
-      shadow-[0_0_15px_rgba(168,85,247,0.7)]
-      animate-pulse
-      hover:shadow-[0_0_30px_rgba(168,85,247,1)]
-      transition-all duration-300"
-                    >
-                      Contact Us
-                    </button>
-                  </li>
-                </ul>
+  <li
+    className="cursor-pointer"
+    onClick={() => {
+      scrollToSection("about");
+      setMenuOpen(false);
+    }}
+  >
+    About
+  </li>
+
+  <li
+    className="cursor-pointer"
+    onClick={() => {
+      scrollToSection("skills");
+      setMenuOpen(false);
+    }}
+  >
+    Skills
+  </li>
+
+  <li
+    className="cursor-pointer"
+    onClick={() => {
+      scrollToSection("projects");
+      setMenuOpen(false);
+    }}
+  >
+    Projects
+  </li>
+
+  <li
+    className="cursor-pointer"
+    onClick={() => {
+      scrollToSection("experience");
+      setMenuOpen(false);
+    }}
+  >
+    Experience
+  </li>
+
+  {/* Contact Button (Fixed for mobile) */}
+  <li
+    className="cursor-pointer"
+    onClick={() => {
+      scrollToSection("contact");
+      setMenuOpen(false);
+    }}
+  >
+    <span className="bg-purple-600 px-4 py-2 rounded-full text-sm text-white shadow-[0_0_15px_rgba(168,85,247,0.7)] animate-pulse hover:bg-purple-700 hover:shadow-[0_0_25px_rgba(168,85,247,1)] transition-all duration-300">
+      Contact Us
+    </span>
+  </li>
+
+</ul>
               </div>
             )}
           </>
