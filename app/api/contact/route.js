@@ -31,7 +31,7 @@ export async function POST(req) {
       subject: body.subject,
 
       html: `
-        <h2>New Message</h2>
+        <h2>New Contact Message</h2>
 
         <p><b>Name:</b> ${body.name}</p>
 
