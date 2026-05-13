@@ -7,11 +7,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { FaLinkedinIn } from "react-icons/fa";
-import {
-  Briefcase,
-  GraduationCap,
-  CalendarDays,
-} from "lucide-react";
+import { Briefcase, GraduationCap, CalendarDays } from "lucide-react";
 
 import { usePathname } from "next/navigation";
 
@@ -28,8 +24,6 @@ export default function Page() {
 
   return <>{showSplash ? <SplashScreen /> : <MainPage />}</>;
 }
-
-
 
 /* SPLASH SCREEN */
 function SplashScreen() {
@@ -60,8 +54,10 @@ function MainPage() {
     }
   };
 
-  {/*contact us*/}
- const [formData, setFormData] = useState({
+  {
+    /*contact us*/
+  }
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
@@ -72,57 +68,55 @@ function MainPage() {
 
   const [success, setSuccess] = useState(false);
 
-
   // Handle Input Change
   const handleChange = (e) => {
-
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-
   // Handle Submit
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    setLoading(true);
-    setSuccess(false);
+    try {
+      setLoading(true);
+      setSuccess(false);
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    const data = await res.json();
-
-    if (data.success) {
-      setSuccess(true);
-
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
-    } else {
-      alert(data.message || "Failed to send message");
+
+      const data = await res.json();
+
+      if (data.success) {
+        setSuccess(true);
+
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        alert(data.message || "Failed to send message");
+      }
+    } catch (error) {
+      console.error("FRONTEND ERROR:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error("FRONTEND ERROR:", error);
-    alert("Something went wrong. Please try again.");
-  } finally {
-    setLoading(false);
+  };
+
+  {
+    /*my skills*/
   }
-};
-
-
-  {/*my skills*/}
 
   const frontendSkills = [
     {
@@ -202,109 +196,102 @@ function MainPage() {
     },
   ];
 
-  {/*forntend proejcts*/}
-const [activeProjectTab, setActiveProjectTab] = useState("frontend");
+  {
+    /*forntend proejcts*/
+  }
+  const [activeProjectTab, setActiveProjectTab] = useState("frontend");
 
-const frontendProjects = [
-  {
-    title: "Project One",
-    image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-  },
-  {
-    title: "Project Two",
-    image:
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
-  },
-  {
-    title: "Project Three",
-    image:
-      "https://images.unsplash.com/photo-1515879218367-8466d910aaa4",
-  },
-  {
-    title: "Project Four",
-    image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
-  },
-];
+  const frontendProjects = [
+    {
+      title: "Project One",
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    },
+    {
+      title: "Project Two",
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
+    },
+    {
+      title: "Project Three",
+      image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4",
+    },
+    {
+      title: "Project Four",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
+    },
+  ];
 
-const businessProjects = [
-  {
-    title: "Documentation",
-    image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
-  },
-  {
-    title: "Diagramming",
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978",
-  },
-  {
-    title: "Workflow",
-    image:
-      "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a",
-  },
-  {
-    title: "Case Study",
-    image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
-  },
-];
+  const businessProjects = [
+    {
+      title: "Documentation",
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
+    },
+    {
+      title: "Diagramming",
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978",
+    },
+    {
+      title: "Workflow",
+      image: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a",
+    },
+    {
+      title: "Case Study",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
+    },
+  ];
 
+  const experienceData = [
+    {
+      year: "Aug 2025 - Dec 2025",
+      title: "Frontend Developer",
+      company: "Devisgon, Okara",
+      desc: "Developed responsive and user-friendly websites using Next.js and Tailwind CSS.",
+    },
+    {
+      year: "Jan 2025 - Jul 2025",
+      title: "Junior Business Analyst",
+      company: "Efaida Technologies, Okara",
+      desc: "Worked on requirement gathering, BRD, SRS, FRD, UML diagrams and stakeholder communication.",
+    },
+    {
+      year: "Self Employed",
+      title: "Canva Designer",
+      company: "Freelance",
+      desc: "Created social media posts, portfolio designs, presentations and branding designs using Canva.",
+    },
+    {
+      year: "Final Year Project",
+      title: "UAF Course Allocation System",
+      company: "University Project",
+      desc: "Built a responsive course allocation system using Next.js and Tailwind CSS.",
+    },
+  ];
 
-const experienceData = [
-  {
-    year: "Aug 2025 - Dec 2025",
-    title: "Frontend Developer",
-    company: "Devisgon, Okara",
-    desc: "Developed responsive and user-friendly websites using Next.js and Tailwind CSS.",
-  },
-  {
-    year: "Jan 2025 - Jul 2025",
-    title: "Junior Business Analyst",
-    company: "Efaida Technologies, Okara",
-    desc: "Worked on requirement gathering, BRD, SRS, FRD, UML diagrams and stakeholder communication.",
-  },
-  {
-    year: "Self Employed",
-    title: "Canva Designer",
-    company: "Freelance",
-    desc: "Created social media posts, portfolio designs, presentations and branding designs using Canva.",
-  },
-  {
-    year: "Final Year Project",
-    title: "UAF Course Allocation System",
-    company: "University Project",
-    desc: "Built a responsive course allocation system using Next.js and Tailwind CSS.",
-  },
-];
-
-const educationData = [
-  {
-    year: "2021 - 2025",
-    title: "BS Computer Science",
-    company: "University of Agriculture Faisalabad",
-    desc: "CGPA: 3.59 / 4.0",
-  },
-  {
-    year: "Frontend Development",
-    title: "Next.js & Tailwind CSS",
-    company: "Internship & Practical Learning",
-    desc: "Learned responsive web development and reusable UI components.",
-  },
-  {
-    year: "Business Analysis",
-    title: "Documentation & UML",
-    company: "Professional Training",
-    desc: "Worked on BRD, SRS, FRD, RTM and workflow diagrams.",
-  },
-  {
-    year: "Designing",
-    title: "Canva & Creative Design",
-    company: "Self Learning",
-    desc: "Designed creative portfolios, social media posts and presentations.",
-  },
-];
+  const educationData = [
+    {
+      year: "2021 - 2025",
+      title: "BS Computer Science",
+      company: "University of Agriculture Faisalabad",
+      desc: "CGPA: 3.59 / 4.0",
+    },
+    {
+      year: "Frontend Development",
+      title: "Next.js & Tailwind CSS",
+      company: "Internship & Practical Learning",
+      desc: "Learned responsive web development and reusable UI components.",
+    },
+    {
+      year: "Business Analysis",
+      title: "Documentation & UML",
+      company: "Professional Training",
+      desc: "Worked on BRD, SRS, FRD, RTM and workflow diagrams.",
+    },
+    {
+      year: "Designing",
+      title: "Canva & Creative Design",
+      company: "Self Learning",
+      desc: "Designed creative portfolios, social media posts and presentations.",
+    },
+  ];
   {
     /*  navbar activation */
   }
@@ -391,7 +378,7 @@ const educationData = [
                 </button>
 
                 {/* Desktop Nav */}
-                <ul className="hidden md:flex text-sm gap-8 ">
+                <ul className="hidden  md:flex text-sm gap-8 ">
                   <li
                     onClick={() => scrollToSection("home")}
                     className={`cursor-pointer transition-all duration-300 ${
@@ -447,12 +434,12 @@ const educationData = [
                 </ul>
 
                 {/* Button */}
-<button
-  onClick={() => scrollToSection("contact")}
-  className="hidden md:block bg-purple-600 px-4 py-2 rounded-full text-sm hover:bg-purple-700 text-white shadow-[0_0_15px_rgba(168,85,247,0.7)] animate-pulse hover:shadow-[0_0_25px_rgba(168,85,247,1)] transition-all duration-300"
->
-  Contact Us
-</button>
+                <button
+                  onClick={() => scrollToSection("contact")}
+                  className="hidden md:block bg-purple-600 px-4 py-2 rounded-full text-sm hover:bg-purple-700 text-white shadow-[0_0_15px_rgba(168,85,247,0.7)] animate-pulse hover:shadow-[0_0_25px_rgba(168,85,247,1)] transition-all duration-300"
+                >
+                  Contact Us
+                </button>
               </div>
             </nav>
 
@@ -464,9 +451,30 @@ const educationData = [
                 }`}
               >
                 <div className="flex items-center justify-between px-6 py-4">
-                  <Link href="#home">
-                    <img src="/images/logo1.png" className="h-10" alt="Logo" />
-                  </Link>
+                 <div
+  onClick={() => {
+    setMenuOpen(false);
+
+    setTimeout(() => {
+      const section = document.getElementById("/#home");
+
+      if (section) {
+        section.scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+    }, 100);
+  }}
+  className="cursor-pointer"
+>
+                  
+
+                    <img
+                      src="/images/logo1.png"
+                      alt="Logo Dark"
+                      className="h-12 w-auto hidden dark:block"
+                    />
+                  </div>
 
                   <div className="flex items-center gap-4 z-20">
                     <button
@@ -485,72 +493,70 @@ const educationData = [
                   </div>
                 </div>
 
-             <ul className="flex flex-col flex-1 justify-center items-center gap-6 text-lg font-bold text-center -mt-50">
-  
-  <li
-    className="cursor-pointer"
-    onClick={() => {
-      scrollToSection("home");
-      setMenuOpen(false);
-    }}
-  >
-    Home
-  </li>
+                <ul className="flex flex-col flex-1 justify-center items-center gap-6 text-lg font-bold text-center -mt-50">
+                  <li
+                    className="cursor-pointer"
+                    onClick={() => {
+                      scrollToSection("home");
+                      setMenuOpen(false);
+                    }}
+                  >
+                    Home
+                  </li>
 
-  <li
-    className="cursor-pointer"
-    onClick={() => {
-      scrollToSection("about");
-      setMenuOpen(false);
-    }}
-  >
-    About
-  </li>
+                  <li
+                    className="cursor-pointer"
+                    onClick={() => {
+                      scrollToSection("about");
+                      setMenuOpen(false);
+                    }}
+                  >
+                    About
+                  </li>
 
-  <li
-    className="cursor-pointer"
-    onClick={() => {
-      scrollToSection("skills");
-      setMenuOpen(false);
-    }}
-  >
-    Skills
-  </li>
+                  <li
+                    className="cursor-pointer"
+                    onClick={() => {
+                      scrollToSection("skills");
+                      setMenuOpen(false);
+                    }}
+                  >
+                    Skills
+                  </li>
 
-  <li
-    className="cursor-pointer"
-    onClick={() => {
-      scrollToSection("projects");
-      setMenuOpen(false);
-    }}
-  >
-    Projects
-  </li>
+                  <li
+                    className="cursor-pointer"
+                    onClick={() => {
+                      scrollToSection("projects");
+                      setMenuOpen(false);
+                    }}
+                  >
+                    Projects
+                  </li>
 
-  <li
-    className="cursor-pointer"
-    onClick={() => {
-      scrollToSection("experience");
-      setMenuOpen(false);
-    }}
-  >
-    Experience
-  </li>
+                  <li
+                    className="cursor-pointer"
+                    onClick={() => {
+                      scrollToSection("experience");
+                      setMenuOpen(false);
+                    }}
+                  >
+                    Experience
+                  </li>
 
-  {/* Contact Button (Fixed for mobile) */}
-  <li
-    className="cursor-pointer"
-    onClick={() => {
-      scrollToSection("contact");
-      setMenuOpen(false);
-    }}
-  >
-    <span className="bg-purple-600 px-4 py-2 rounded-full text-sm text-white shadow-[0_0_15px_rgba(168,85,247,0.7)] animate-pulse hover:bg-purple-700 hover:shadow-[0_0_25px_rgba(168,85,247,1)] transition-all duration-300">
-      Contact Us
-    </span>
-  </li>
-
-</ul>
+                  {/* Contact Button (Fixed for mobile) */}
+                  <li
+                    className="cursor-pointer"
+                    onClick={() => {
+                      scrollToSection("contact");
+                      setMenuOpen(false);
+                    }}
+                  >
+                    <span className="bg-purple-600 px-4 py-2 rounded-full text-sm text-white shadow-[0_0_15px_rgba(168,85,247,0.7)] animate-pulse hover:bg-purple-700 hover:shadow-[0_0_25px_rgba(168,85,247,1)] transition-all duration-300">
+                      Contact Us
+                    </span>
+                  </li>
+                </ul>
               </div>
             )}
           </>
@@ -1001,33 +1007,33 @@ const educationData = [
       </section>
       {/*projects*/}
 
-{/* PROJECTS */}
+      {/* PROJECTS */}
 
-<section
-  id="projects"
-  className="w-full px-4 md:px-16 py-16 md:py-24
+      <section
+        id="projects"
+        className="w-full px-4 md:px-16 py-16 md:py-24
              bg-cover bg-top bg-no-repeat
              scroll-mt-24"
-  style={{
-    backgroundImage: darkMode
-      ? "url('/images/projects-bg.png')"
-      : "url('/images/projects-bg1.png')",
-  }}
->
-  <div className="flex flex-col items-center text-center">
+        style={{
+          backgroundImage: darkMode
+            ? "url('/images/projects-bg.png')"
+            : "url('/images/projects-bg1.png')",
+        }}
+      >
+        <div className="flex flex-col items-center text-center">
+          <h1
+            className={`text-4xl md:text-5xl font-bold mb-6 ${
+              darkMode ? "text-white" : "text-black"
+            }`}
+          >
+            My Recent Works
+          </h1>
 
-  <h1 className={`text-4xl md:text-5xl font-bold mb-6 ${
-  darkMode ? "text-white" : "text-black"
-}`}>
-  My Recent Works
-</h1>
-
-    {/* BUTTONS */}
-    <div className="flex items-center gap-4 mb-14">
-
-      <button
-  onClick={() => setActiveProjectTab("frontend")}
-  className={`px-6 py-2 rounded-full text-sm md:text-base font-medium
+          {/* BUTTONS */}
+          <div className="flex items-center gap-4 mb-14">
+            <button
+              onClick={() => setActiveProjectTab("frontend")}
+              className={`px-6 py-2 rounded-full text-sm md:text-base font-medium
   border transition-all duration-300 relative overflow-hidden
   hover:scale-110 hover:z-10
   ${
@@ -1035,12 +1041,12 @@ const educationData = [
       ? "bg-purple-600 border-purple-400 shadow-lg shadow-purple-500/40 shadow-[0_0_20px_rgba(168,85,247,0.9)]"
       : "bg-[#141414] border-purple-500 shadow-[0_0_12px_rgba(168,85,247,0.6)]"
   }`}
->
-  Frontend Developer
-</button>
-<button
-  onClick={() => setActiveProjectTab("business")}
-  className={`px-6 py-2 rounded-full text-sm md:text-base font-medium
+            >
+              Frontend Developer
+            </button>
+            <button
+              onClick={() => setActiveProjectTab("business")}
+              className={`px-6 py-2 rounded-full text-sm md:text-base font-medium
   border transition-all duration-300 relative overflow-hidden
   hover:scale-110 hover:z-10
   ${
@@ -1048,91 +1054,85 @@ const educationData = [
       ? "bg-purple-600 border-purple-400 shadow-lg shadow-pink-500/40 shadow-[0_0_20px_rgba(236,72,153,0.9)]"
       : "bg-[#141414] border-purple-500 shadow-[0_0_12px_rgba(236,72,153,0.6)]"
   }`}
->
-  Business Analyst
-</button>
-    </div>
-  </div>
-
-  {/* PROJECT GRID */}
-  <div className="relative max-w-6xl w-full">
-
-    <div className="absolute inset-0 bg-purple-700/20 blur-3xl"></div>
-
-    <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8">
-
-      {(activeProjectTab === "frontend"
-        ? frontendProjects
-        : businessProjects
-      ).map((project, index) => (
-        <div
-          key={index}
-          className="bg-[#0f0f0f] rounded-xl overflow-hidden border border-purple-900/30 hover:scale-[1.02] transition duration-300"
-        >
-          <div className="overflow-hidden">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-65 object-cover hover:scale-110 transition duration-500"
-            />
-          </div>
-
-          {/* OPTIONAL TITLE */}
-          <div className="p-4">
-            <h3 className="text-lg font-semibold text-white">
-              {project.title}
-            </h3>
+            >
+              Business Analyst
+            </button>
           </div>
         </div>
-      ))}
 
-    </div>
-  </div>
-</section>
+        {/* PROJECT GRID */}
+        <div className="relative max-w-6xl w-full">
+          <div className="absolute inset-0 bg-purple-700/20 blur-3xl"></div>
 
+          <div className="relative grid grid-cols-1 md:grid-cols-2 gap-8">
+            {(activeProjectTab === "frontend"
+              ? frontendProjects
+              : businessProjects
+            ).map((project, index) => (
+              <div
+                key={index}
+                className="bg-[#0f0f0f] rounded-xl overflow-hidden border border-purple-900/30 hover:scale-[1.02] transition duration-300"
+              >
+                <div className="overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-65 object-cover hover:scale-110 transition duration-500"
+                  />
+                </div>
 
-{/* experience*/}
- <section
-  id="experience"
-  className="w-full py-16 px-4 sm:px-6 lg:px-12
+                {/* OPTIONAL TITLE */}
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold text-white">
+                    {project.title}
+                  </h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* experience*/}
+      <section
+        id="experience"
+        className="w-full py-16 px-4 sm:px-6 lg:px-12
              bg-cover bg-top bg-no-repeat relative"
-  style={{
-    backgroundImage: darkMode
-      ? "url('/images/experience-bg.png')"
-      : "url('/images/skills-bg1.png')",
-  }}
->
-  {/* Overlay */}
- 
+        style={{
+          backgroundImage: darkMode
+            ? "url('/images/experience-bg.png')"
+            : "url('/images/skills-bg1.png')",
+        }}
+      >
+        {/* Overlay */}
 
-  {/* Main Content */}
-  <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+        {/* Main Content */}
+        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+          {/* Experience Section */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: false }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <Briefcase className="text-purple-500 w-7 h-7" />
 
-    {/* Experience Section */}
-    <motion.div
-      initial={{ opacity: 0, x: -40 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: false }}
-    >
-      <div className="flex items-center gap-3 mb-8">
-        <Briefcase className="text-purple-500 w-7 h-7" />
+              {/* TEXT COLOR */}
+              <h2
+                className={`text-3xl font-bold ${
+                  darkMode ? "text-white" : "text-black"
+                }`}
+              >
+                My Experience
+              </h2>
+            </div>
 
-        {/* TEXT COLOR */}
-        <h2
-          className={`text-3xl font-bold ${
-            darkMode ? "text-white" : "text-black"
-          }`}
-        >
-          My Experience
-        </h2>
-      </div>
-
-      <div className="space-y-5">
-        {experienceData.map((item, index) => (
-          <div
-            key={index}
-            className={`
+            <div className="space-y-5">
+              {experienceData.map((item, index) => (
+                <div
+                  key={index}
+                  className={`
               min-h-42.5
               flex flex-col justify-center
               rounded-2xl p-5
@@ -1145,57 +1145,57 @@ const educationData = [
                   : "bg-white/80 border-gray-300 hover:border-purple-400"
               }
             `}
+                >
+                  <div className="flex items-center gap-2 text-purple-400 text-sm mb-2">
+                    <CalendarDays size={16} />
+                    <span>{item.year}</span>
+                  </div>
+
+                  <h3
+                    className={`text-lg font-semibold ${
+                      darkMode ? "text-white" : "text-black"
+                    }`}
+                  >
+                    {item.title}
+                  </h3>
+
+                  <p
+                    className={`text-sm mt-1 ${
+                      darkMode ? "text-gray-400" : "text-gray-700"
+                    }`}
+                  >
+                    {item.company}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Education Section */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: false }}
           >
-            <div className="flex items-center gap-2 text-purple-400 text-sm mb-2">
-              <CalendarDays size={16} />
-              <span>{item.year}</span>
+            <div className="flex items-center gap-3 mb-8">
+              <GraduationCap className="text-purple-500 w-7 h-7" />
+
+              {/* TEXT COLOR */}
+              <h2
+                className={`text-3xl font-bold ${
+                  darkMode ? "text-white" : "text-black"
+                }`}
+              >
+                My Education
+              </h2>
             </div>
 
-            <h3
-              className={`text-lg font-semibold ${
-                darkMode ? "text-white" : "text-black"
-              }`}
-            >
-              {item.title}
-            </h3>
-
-            <p
-              className={`text-sm mt-1 ${
-                darkMode ? "text-gray-400" : "text-gray-700"
-              }`}
-            >
-              {item.company}
-            </p>
-          </div>
-        ))}
-      </div>
-    </motion.div>
-
-    {/* Education Section */}
-    <motion.div
-      initial={{ opacity: 0, x: 40 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: false }}
-    >
-      <div className="flex items-center gap-3 mb-8">
-        <GraduationCap className="text-purple-500 w-7 h-7" />
-
-        {/* TEXT COLOR */}
-        <h2
-          className={`text-3xl font-bold ${
-            darkMode ? "text-white" : "text-black"
-          }`}
-        >
-          My Education
-        </h2>
-      </div>
-
-      <div className="space-y-5">
-        {educationData.map((item, index) => (
-          <div
-            key={index}
-            className={`
+            <div className="space-y-5">
+              {educationData.map((item, index) => (
+                <div
+                  key={index}
+                  className={`
               min-h-[170px]
               flex flex-col justify-center
               rounded-2xl p-5
@@ -1208,89 +1208,83 @@ const educationData = [
                   : "bg-white/80 border-gray-300 hover:border-purple-400"
               }
             `}
-          >
-            <div className="flex items-center gap-2 text-purple-400 text-sm mb-2">
-              <CalendarDays size={16} />
-              <span>{item.year}</span>
+                >
+                  <div className="flex items-center gap-2 text-purple-400 text-sm mb-2">
+                    <CalendarDays size={16} />
+                    <span>{item.year}</span>
+                  </div>
+
+                  <h3
+                    className={`text-lg font-semibold ${
+                      darkMode ? "text-white" : "text-black"
+                    }`}
+                  >
+                    {item.title}
+                  </h3>
+
+                  <p
+                    className={`text-sm mt-1 ${
+                      darkMode ? "text-gray-400" : "text-gray-700"
+                    }`}
+                  >
+                    {item.company}
+                  </p>
+                </div>
+              ))}
             </div>
+          </motion.div>
+        </div>
+      </section>
 
-            <h3
-              className={`text-lg font-semibold ${
-                darkMode ? "text-white" : "text-black"
-              }`}
-            >
-              {item.title}
-            </h3>
+      {/*contact us*/}
 
-            <p
-              className={`text-sm mt-1 ${
-                darkMode ? "text-gray-400" : "text-gray-700"
-              }`}
-            >
-              {item.company}
-            </p>
-          </div>
-        ))}
-      </div>
-    </motion.div>
-  </div>
-</section>
+      <section
+        id="contact"
+        className={`relative w-full py-20 px-6 md:px-16 overflow-hidden transition-all duration-500 bg-cover bg-center bg-no-repeat ${
+          darkMode ? "bg-black text-white" : "bg-white text-black"
+        }`}
+        style={{
+          backgroundImage: darkMode
+            ? "url('/images/about-bg.png')"
+            : "url('/images/about-bg1.png')",
+        }}
+      >
+        {/* Background Glow */}
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-purple-500/20 blur-[120px] rounded-full -z-0 animate-pulse"></div>
 
-{/*contact us*/}
-
-<section
-  id="contact"
-  className={`relative w-full py-20 px-6 md:px-16 overflow-hidden transition-all duration-500 bg-cover bg-center bg-no-repeat ${
-    darkMode
-      ? "bg-black text-white"
-      : "bg-white text-black"
-  }`}
-  style={{
-    backgroundImage: darkMode
-      ? "url('/images/about-bg.png')"
-      : "url('/images/about-bg1.png')",
-  }}
->
-  {/* Background Glow */}
-  <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-purple-500/20 blur-[120px] rounded-full -z-0 animate-pulse"></div>
-
-  <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center relative z-10">
-
-    {/* LEFT SIDE */}
-    <div
-      className={`group rounded-3xl p-8 md:p-10 border transition-all duration-500 hover:scale-[1.02]
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center relative z-10">
+          {/* LEFT SIDE */}
+          <div
+            className={`group rounded-3xl p-8 md:p-10 border transition-all duration-500 hover:scale-[1.02]
       ${
         darkMode
           ? "bg-gradient-to-br from-purple-900/50 to-black border-purple-700/40 hover:border-purple-400"
           : "bg-white border-purple-300 hover:border-purple-500 shadow-[0_0_30px_rgba(168,85,247,0.2)]"
       }`}
-    >
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-3">
+              Let’s work together!
+            </h2>
 
-      <h2 className="text-3xl md:text-4xl font-bold mb-3">
-        Let’s work together!
-      </h2>
+            <p
+              className={`mb-8 transition-colors duration-300 ${
+                darkMode ? "text-gray-400" : "text-gray-700"
+              }`}
+            >
+              Send me a message and let’s build something amazing.
+            </p>
 
-      <p
-        className={`mb-8 transition-colors duration-300 ${
-          darkMode ? "text-gray-400" : "text-gray-700"
-        }`}
-      >
-        Send me a message and let’s build something amazing.
-      </p>
-
-      <form onSubmit={handleSubmit} className="space-y-5">
-
-        {/* Name + Email */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className={`w-full rounded-xl px-4 py-3 outline-none transition-all duration-300
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Name + Email */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Your Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className={`w-full rounded-xl px-4 py-3 outline-none transition-all duration-300
             hover:shadow-[0_0_15px_rgba(168,85,247,0.4)]
             focus:shadow-[0_0_20px_rgba(168,85,247,0.6)]
             ${
@@ -1298,16 +1292,16 @@ const educationData = [
                 ? "bg-black/40 border border-purple-700/40 text-white placeholder:text-gray-500 focus:border-purple-400"
                 : "bg-gray-100 border border-purple-200 text-black placeholder:text-gray-500 focus:border-purple-500"
             }`}
-          />
+                />
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className={`w-full rounded-xl px-4 py-3 outline-none transition-all duration-300
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Your Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className={`w-full rounded-xl px-4 py-3 outline-none transition-all duration-300
             hover:shadow-[0_0_15px_rgba(168,85,247,0.4)]
             focus:shadow-[0_0_20px_rgba(168,85,247,0.6)]
             ${
@@ -1315,19 +1309,18 @@ const educationData = [
                 ? "bg-black/40 border border-purple-700/40 text-white placeholder:text-gray-500 focus:border-purple-400"
                 : "bg-gray-100 border border-purple-200 text-black placeholder:text-gray-500 focus:border-purple-500"
             }`}
-          />
+                />
+              </div>
 
-        </div>
-
-        {/* Subject */}
-        <input
-          type="text"
-          name="subject"
-          placeholder="Subject"
-          value={formData.subject}
-          onChange={handleChange}
-          required
-          className={`w-full rounded-xl px-4 py-3 outline-none transition-all duration-300
+              {/* Subject */}
+              <input
+                type="text"
+                name="subject"
+                placeholder="Subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+                className={`w-full rounded-xl px-4 py-3 outline-none transition-all duration-300
           hover:shadow-[0_0_15px_rgba(168,85,247,0.4)]
           focus:shadow-[0_0_20px_rgba(168,85,247,0.6)]
           ${
@@ -1335,17 +1328,17 @@ const educationData = [
               ? "bg-black/40 border border-purple-700/40 text-white placeholder:text-gray-500 focus:border-purple-400"
               : "bg-gray-100 border border-purple-200 text-black placeholder:text-gray-500 focus:border-purple-500"
           }`}
-        />
+              />
 
-        {/* Message */}
-        <textarea
-          rows="5"
-          name="message"
-          placeholder="Message"
-          value={formData.message}
-          onChange={handleChange}
-          required
-          className={`w-full rounded-xl px-4 py-3 outline-none resize-none transition-all duration-300
+              {/* Message */}
+              <textarea
+                rows="5"
+                name="message"
+                placeholder="Message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                className={`w-full rounded-xl px-4 py-3 outline-none resize-none transition-all duration-300
           hover:shadow-[0_0_15px_rgba(168,85,247,0.4)]
           focus:shadow-[0_0_20px_rgba(168,85,247,0.6)]
           ${
@@ -1353,263 +1346,230 @@ const educationData = [
               ? "bg-black/40 border border-purple-700/40 text-white placeholder:text-gray-500 focus:border-purple-400"
               : "bg-gray-100 border border-purple-200 text-black placeholder:text-gray-500 focus:border-purple-500"
           }`}
-        />
+              />
 
-        {/* Button */}
-        <button
-          type="submit"
-          className="bg-purple-600 hover:bg-purple-700 hover:shadow-[0_0_25px_rgba(168,85,247,0.7)]
+              {/* Button */}
+              <button
+                type="submit"
+                className="bg-purple-600 hover:bg-purple-700 hover:shadow-[0_0_25px_rgba(168,85,247,0.7)]
           transition-all duration-300 px-8 py-3 rounded-full font-semibold"
-        >
-          {loading ? "Sending..." : "Send Message"}
-        </button>
+              >
+                {loading ? "Sending..." : "Send Message"}
+              </button>
 
-        {success && (
-          <p className="text-green-400">
-            Message sent successfully!
-          </p>
-        )}
+              {success && (
+                <p className="text-green-400">Message sent successfully!</p>
+              )}
+            </form>
+          </div>
 
-      </form>
-    </div>
+          {/* RIGHT SIDE */}
+          <div className="space-y-8">
+            {/* Phone */}
+            {/* Phone */}
+            <div
+              className={`flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:scale-105
+  ${darkMode ? "hover:bg-purple-900/20" : "hover:bg-purple-100"}`}
+            >
+              <div className="bg-purple-700/20 p-4 rounded-full transition-all duration-300 hover:rotate-12 hover:scale-110">
+                <Phone className="text-purple-400" />
+              </div>
 
-    {/* RIGHT SIDE */}
-    <div className="space-y-8">
+              <div>
+                <h3 className="font-semibold">Phone</h3>
 
-      {/* Phone */}
- {/* Phone */}
-<div
-  className={`flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:scale-105
-  ${
-    darkMode
-      ? "hover:bg-purple-900/20"
-      : "hover:bg-purple-100"
-  }`}
->
-  <div className="bg-purple-700/20 p-4 rounded-full transition-all duration-300 hover:rotate-12 hover:scale-110">
-    <Phone className="text-purple-400" />
-  </div>
+                <a
+                  href="https://wa.me/923101657409"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`transition-all duration-300 hover:text-purple-500 hover:underline ${
+                    darkMode ? "text-gray-400" : "text-gray-700"
+                  }`}
+                >
+                  +92 3101 657409
+                </a>
+              </div>
+            </div>
 
-  <div>
-    <h3 className="font-semibold">Phone</h3>
+            {/* Email */}
+            <div
+              className={`flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:scale-105
+  ${darkMode ? "hover:bg-purple-900/20" : "hover:bg-purple-100"}`}
+            >
+              <div className="bg-purple-700/20 p-4 rounded-full transition-all duration-300 hover:rotate-12 hover:scale-110">
+                <Mail className="text-purple-400" />
+              </div>
 
-    <a
-      href="https://wa.me/923101657409"
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`transition-all duration-300 hover:text-purple-500 hover:underline ${
-        darkMode ? "text-gray-400" : "text-gray-700"
-      }`}
-    >
-      +92 3101 657409
-    </a>
-  </div>
-</div>
+              <div>
+                <h3 className="font-semibold">Email</h3>
 
-{/* Email */}
-<div
-  className={`flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:scale-105
-  ${
-    darkMode
-      ? "hover:bg-purple-900/20"
-      : "hover:bg-purple-100"
-  }`}
->
-  <div className="bg-purple-700/20 p-4 rounded-full transition-all duration-300 hover:rotate-12 hover:scale-110">
-    <Mail className="text-purple-400" />
-  </div>
+                <a
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=asmasaleem65654@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`transition-all duration-300 hover:text-purple-500 hover:underline ${
+                    darkMode ? "text-gray-400" : "text-gray-700"
+                  }`}
+                >
+                  asmasaleem65654@gmail.com
+                </a>
+              </div>
+            </div>
 
-  <div>
-    <h3 className="font-semibold">Email</h3>
+            {/* LinkedIn */}
+            <div
+              className={`flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:scale-105 cursor-pointer
+        ${darkMode ? "hover:bg-purple-900/20" : "hover:bg-purple-100"}`}
+            >
+              <div className="bg-purple-700/20 p-4 rounded-full transition-all duration-300 hover:rotate-12 hover:scale-110">
+                <FaLinkedinIn className="text-purple-400 text-xl" />
+              </div>
 
-   <a
-  href="https://mail.google.com/mail/?view=cm&fs=1&to=asmasaleem65654@gmail.com"
-  target="_blank"
-  rel="noopener noreferrer"
-  className={`transition-all duration-300 hover:text-purple-500 hover:underline ${
-    darkMode ? "text-gray-400" : "text-gray-700"
-  }`}
->
-  asmasaleem65654@gmail.com
-</a>
-  </div>
-</div>
+              <div>
+                <h3 className="font-semibold">LinkedIn</h3>
 
-      {/* LinkedIn */}
-      <div
-        className={`flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:scale-105 cursor-pointer
-        ${
-          darkMode
-            ? "hover:bg-purple-900/20"
-            : "hover:bg-purple-100"
+                <a
+                  href="https://www.linkedin.com/in/asma-saleem-0bbaa0319/"
+                  target="_blank"
+                  className={`transition-all duration-300 hover:text-purple-500 ${
+                    darkMode ? "text-gray-400" : "text-gray-700"
+                  }`}
+                >
+                  linkedin.com/in/Asma Saleem
+                </a>
+              </div>
+            </div>
+
+            {/* Address */}
+            <div
+              className={`flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:scale-105 cursor-pointer
+        ${darkMode ? "hover:bg-purple-900/20" : "hover:bg-purple-100"}`}
+            >
+              <div className="bg-purple-700/20 p-4 rounded-full transition-all duration-300 hover:rotate-12 hover:scale-110">
+                <MapPin className="text-purple-400" />
+              </div>
+
+              <div>
+                <h3 className="font-semibold">Address</h3>
+                <p className={darkMode ? "text-gray-400" : "text-gray-700"}>
+                  Pakistan
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/*last page*/}
+      <section
+        className={`relative w-full h-[180px] overflow-hidden transition-all duration-500 bg-cover bg-center bg-no-repeat ${
+          darkMode ? "bg-[#090016] text-white" : "bg-white text-black"
         }`}
+        style={{
+          backgroundImage: darkMode
+            ? "url('/images/skills-bg.png')"
+            : "url('/images/experience-bg1.png')",
+        }}
       >
-        <div className="bg-purple-700/20 p-4 rounded-full transition-all duration-300 hover:rotate-12 hover:scale-110">
-          <FaLinkedinIn className="text-purple-400 text-xl" />
+        {/* Purple Glow */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div
+            className={`w-[500px] h-[220px] rounded-full blur-[120px] ${
+              darkMode ? "bg-purple-500/20" : "bg-purple-400/20"
+            }`}
+          />
         </div>
 
-        <div>
-          <h3 className="font-semibold">LinkedIn</h3>
+        {/* Content */}
+        <div className="relative z-10 flex flex-col items-center justify-center h-full">
+          {/* Logo */}
+          <div className="relative w-[55px] h-[55px] sm:w-[65px] sm:h-[65px]">
+            <Image
+              src="/images/logo1.png"
+              alt="Logo"
+              fill
+              priority
+              className="object-contain"
+            />
+          </div>
 
-          <a
-            href="https://www.linkedin.com/in/asma-saleem-0bbaa0319/"
-            target="_blank"
-            className={`transition-all duration-300 hover:text-purple-500 ${
-              darkMode ? "text-gray-400" : "text-gray-700"
+          {/* Navbar Links */}
+          <div className="mt-4 flex items-center gap-3 sm:gap-5 md:gap-6">
+            <Link
+              href="#home"
+              className={`text-[8px] sm:text-[10px] md:text-xs uppercase tracking-[0.25em] transition ${
+                darkMode
+                  ? "text-white/80 hover:text-purple-400"
+                  : "text-gray-700 hover:text-purple-600"
+              }`}
+            >
+              Home
+            </Link>
+
+            <Link
+              href="#about"
+              className={`text-[8px] sm:text-[10px] md:text-xs uppercase tracking-[0.25em] transition ${
+                darkMode
+                  ? "text-white/80 hover:text-purple-400"
+                  : "text-gray-700 hover:text-purple-600"
+              }`}
+            >
+              About
+            </Link>
+
+            <Link
+              href="#skills"
+              className={`text-[8px] sm:text-[10px] md:text-xs uppercase tracking-[0.25em] transition ${
+                darkMode
+                  ? "text-white/80 hover:text-purple-400"
+                  : "text-gray-700 hover:text-purple-600"
+              }`}
+            >
+              Skills
+            </Link>
+
+            <Link
+              href="#projects"
+              className={`text-[8px] sm:text-[10px] md:text-xs uppercase tracking-[0.25em] transition ${
+                darkMode
+                  ? "text-white/80 hover:text-purple-400"
+                  : "text-gray-700 hover:text-purple-600"
+              }`}
+            >
+              Projects
+            </Link>
+
+            <Link
+              href="#experience"
+              className={`text-[8px] sm:text-[10px] md:text-xs uppercase tracking-[0.25em] transition ${
+                darkMode
+                  ? "text-white/80 hover:text-purple-400"
+                  : "text-gray-700 hover:text-purple-600"
+              }`}
+            >
+              Experience
+            </Link>
+          </div>
+
+          {/* Bottom Text */}
+          <p
+            className={`mt-3 text-[7px] sm:text-[9px] uppercase tracking-[0.35em] ${
+              darkMode ? "text-purple-400" : "text-purple-700"
             }`}
           >
-            linkedin.com/in/Asma Saleem
-          </a>
-        </div>
-      </div>
-
-      {/* Address */}
-      <div
-        className={`flex items-start gap-5 p-5 rounded-2xl transition-all duration-300 hover:scale-105 cursor-pointer
-        ${
-          darkMode
-            ? "hover:bg-purple-900/20"
-            : "hover:bg-purple-100"
-        }`}
-      >
-        <div className="bg-purple-700/20 p-4 rounded-full transition-all duration-300 hover:rotate-12 hover:scale-110">
-          <MapPin className="text-purple-400" />
-        </div>
-
-        <div>
-          <h3 className="font-semibold">Address</h3>
-          <p className={darkMode ? "text-gray-400" : "text-gray-700"}>
-            Pakistan
+            Powered By Asma
           </p>
         </div>
-      </div>
 
-    </div>
-
-  </div>
-</section>
-
-
-{/*last page*/}
-<section
-  className={`relative w-full h-[180px] overflow-hidden transition-all duration-500 bg-cover bg-center bg-no-repeat ${
-    darkMode
-      ? "bg-[#090016] text-white"
-      : "bg-white text-black"
-  }`}
-  style={{
-    backgroundImage: darkMode
-      ? "url('/images/skills-bg.png')"
-      : "url('/images/experience-bg1.png')",
-  }}
->
- 
-
-  {/* Purple Glow */}
-  <div className="absolute inset-0 flex items-center justify-center">
-    <div
-      className={`w-[500px] h-[220px] rounded-full blur-[120px] ${
-        darkMode
-          ? "bg-purple-500/20"
-          : "bg-purple-400/20"
-      }`}
-    />
-  </div>
-
-  {/* Content */}
-  <div className="relative z-10 flex flex-col items-center justify-center h-full">
-    
-    {/* Logo */}
-    <div className="relative w-[55px] h-[55px] sm:w-[65px] sm:h-[65px]">
-      <Image
-        src="/images/logo1.png"
-        alt="Logo"
-        fill
-        priority
-        className="object-contain"
-      />
-    </div>
-
-    {/* Navbar Links */}
-    <div className="mt-4 flex items-center gap-3 sm:gap-5 md:gap-6">
-      
-      <Link
-        href="#home"
-        className={`text-[8px] sm:text-[10px] md:text-xs uppercase tracking-[0.25em] transition ${
-          darkMode
-            ? "text-white/80 hover:text-purple-400"
-            : "text-gray-700 hover:text-purple-600"
-        }`}
-      >
-        Home
-      </Link>
-
-      <Link
-        href="#about"
-        className={`text-[8px] sm:text-[10px] md:text-xs uppercase tracking-[0.25em] transition ${
-          darkMode
-            ? "text-white/80 hover:text-purple-400"
-            : "text-gray-700 hover:text-purple-600"
-        }`}
-      >
-        About
-      </Link>
-
-      <Link
-        href="#skills"
-        className={`text-[8px] sm:text-[10px] md:text-xs uppercase tracking-[0.25em] transition ${
-          darkMode
-            ? "text-white/80 hover:text-purple-400"
-            : "text-gray-700 hover:text-purple-600"
-        }`}
-      >
-        Skills
-      </Link>
-
-      <Link
-        href="#projects"
-        className={`text-[8px] sm:text-[10px] md:text-xs uppercase tracking-[0.25em] transition ${
-          darkMode
-            ? "text-white/80 hover:text-purple-400"
-            : "text-gray-700 hover:text-purple-600"
-        }`}
-      >
-        Projects
-      </Link>
-
-      <Link
-        href="#experience"
-        className={`text-[8px] sm:text-[10px] md:text-xs uppercase tracking-[0.25em] transition ${
-          darkMode
-            ? "text-white/80 hover:text-purple-400"
-            : "text-gray-700 hover:text-purple-600"
-        }`}
-      >
-        Experience
-      </Link>
-    </div>
-
-    {/* Bottom Text */}
-    <p
-      className={`mt-3 text-[7px] sm:text-[9px] uppercase tracking-[0.35em] ${
-        darkMode
-          ? "text-purple-400"
-          : "text-purple-700"
-      }`}
-    >
-      Powered By Asma
-    </p>
-  </div>
-
-  {/* Bottom Glow Border */}
-  <div
-    className={`absolute bottom-0 left-0 w-full h-[1px] ${
-      darkMode
-        ? "bg-gradient-to-r from-transparent via-purple-500/40 to-transparent"
-        : "bg-gradient-to-r from-transparent via-purple-400/40 to-transparent"
-    }`}
-  />
-</section>
+        {/* Bottom Glow Border */}
+        <div
+          className={`absolute bottom-0 left-0 w-full h-[1px] ${
+            darkMode
+              ? "bg-gradient-to-r from-transparent via-purple-500/40 to-transparent"
+              : "bg-gradient-to-r from-transparent via-purple-400/40 to-transparent"
+          }`}
+        />
+      </section>
     </>
   );
 }
