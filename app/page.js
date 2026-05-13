@@ -61,7 +61,7 @@ function MainPage() {
   };
 
   {/*contact us*/}
-   const [formData, setFormData] = useState({
+ const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
@@ -69,41 +69,72 @@ function MainPage() {
   });
 
   const [loading, setLoading] = useState(false);
+
   const [success, setSuccess] = useState(false);
 
+
+  // Handle Input Change
   const handleChange = (e) => {
+
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
+
+  // Handle Submit
   const handleSubmit = async (e) => {
+
     e.preventDefault();
 
-    setLoading(true);
+    try {
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+      setLoading(true);
 
-    if (res.ok) {
-      setSuccess(true);
+      setSuccess(false);
 
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
+      const res = await fetch("/api/contact", {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify(formData),
       });
-    }
 
-    setLoading(false);
+      const data = await res.json();
+
+      console.log(data);
+
+      if (data.success) {
+
+        setSuccess(true);
+
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+
+      } else {
+
+        alert(data.message || "Failed to send message");
+      }
+
+    } catch (error) {
+
+      console.log("FRONTEND ERROR:", error);
+
+    } finally {
+
+      setLoading(false);
+    }
   };
+
 
 
   {/*my skills*/}
