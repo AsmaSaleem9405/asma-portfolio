@@ -85,56 +85,41 @@ function MainPage() {
 
   // Handle Submit
   const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    e.preventDefault();
+  try {
+    setLoading(true);
+    setSuccess(false);
 
-    try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
 
-      setLoading(true);
+    const data = await res.json();
 
-      setSuccess(false);
+    if (data.success) {
+      setSuccess(true);
 
-      const res = await fetch("/api/contact", {
-
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify(formData),
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
       });
-
-      const data = await res.json();
-
-      console.log(data);
-
-      if (data.success) {
-
-        setSuccess(true);
-
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-
-      } else {
-
-        alert(data.message || "Failed to send message");
-      }
-
-    } catch (error) {
-
-      console.log("FRONTEND ERROR:", error);
-
-    } finally {
-
-      setLoading(false);
+    } else {
+      alert(data.message || "Failed to send message");
     }
-  };
-
+  } catch (error) {
+    console.error("FRONTEND ERROR:", error);
+    alert("Something went wrong. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
 
 
   {/*my skills*/}
