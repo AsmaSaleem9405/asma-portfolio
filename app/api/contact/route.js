@@ -1,28 +1,18 @@
-// app/api/contact/route.js
-
 import nodemailer from "nodemailer";
 
 export async function POST(req) {
+
   try {
-    // Get data from frontend
+
     const body = await req.json();
 
-    const { name, email, subject, message } = body;
-
-    // Validation
-    if (!name || !email || !subject || !message) {
-      return Response.json(
-        {
-          success: false,
-          message: "All fields are required",
-        },
-        { status: 400 }
-      );
-    }
-
-    // Create transporter
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+
+      host: "smtp.gmail.com",
+
+      port: 465,
+
+      secure: true,
 
       auth: {
         user: process.env.EMAIL_USER,
@@ -30,64 +20,43 @@ export async function POST(req) {
       },
     });
 
-    // Send email
-    const info = await transporter.sendMail({
+    await transporter.sendMail({
+
       from: process.env.EMAIL_USER,
 
       to: process.env.EMAIL_USER,
 
-      replyTo: email,
+      replyTo: body.email,
 
-      subject: `Contact Form: ${subject}`,
+      subject: body.subject,
 
       html: `
-        <div style="font-family: Arial, sans-serif; padding: 20px;">
-          
-          <h2>New Contact Message</h2>
+        <h2>New Message</h2>
 
-          <p>
-            <strong>Name:</strong> ${name}
-          </p>
+        <p><b>Name:</b> ${body.name}</p>
 
-          <p>
-            <strong>Email:</strong> ${email}
-          </p>
+        <p><b>Email:</b> ${body.email}</p>
 
-          <p>
-            <strong>Subject:</strong> ${subject}
-          </p>
+        <p><b>Subject:</b> ${body.subject}</p>
 
-          <p>
-            <strong>Message:</strong>
-          </p>
+        <p><b>Message:</b></p>
 
-          <div style="background:#f4f4f4;padding:15px;border-radius:8px;">
-            ${message}
-          </div>
-
-        </div>
+        <p>${body.message}</p>
       `,
     });
 
-    console.log("EMAIL SENT:", info.response);
-
-    return Response.json(
-      {
-        success: true,
-        message: "Email sent successfully",
-      },
-      { status: 200 }
-    );
+    return Response.json({
+      success: true,
+    });
 
   } catch (error) {
 
-    console.log("EMAIL ERROR:", error);
+    console.log(error);
 
     return Response.json(
       {
         success: false,
-        message: "Failed to send email",
-        error: error.message,
+        message: error.message,
       },
       { status: 500 }
     );
