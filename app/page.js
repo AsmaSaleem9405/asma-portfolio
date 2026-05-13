@@ -1488,6 +1488,81 @@ const educationData = [
 
   </div>
 </section>
+
+
+{/*last page*/}
+ <section className="relative w-full h-[180px] overflow-hidden bg-white dark:bg-[#090016] transition-colors duration-500">
+      
+      {/* Top Dark Strip */}
+      <div className="absolute top-0 left-0 w-full h-4 bg-black" />
+
+      {/* Purple Glow Background */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-[500px] h-[220px] bg-purple-700/20 blur-[120px] rounded-full dark:bg-purple-500/20" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full">
+
+        {/* Logo */}
+        <div className="relative w-[55px] h-[55px] sm:w-[65px] sm:h-[65px]">
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            fill
+            priority
+            className="object-contain"
+          />
+        </div>
+
+        {/* Navbar Links */}
+        <div className="mt-4 flex items-center gap-3 sm:gap-5 md:gap-6">
+          
+          <Link
+            href="#home"
+            className="text-[8px] sm:text-[10px] md:text-xs text-gray-700 dark:text-white/80 uppercase tracking-[0.25em] hover:text-purple-500 transition"
+          >
+            Home
+          </Link>
+
+          <Link
+            href="#about"
+            className="text-[8px] sm:text-[10px] md:text-xs text-gray-700 dark:text-white/80 uppercase tracking-[0.25em] hover:text-purple-500 transition"
+          >
+            About
+          </Link>
+
+          <Link
+            href="#skills"
+            className="text-[8px] sm:text-[10px] md:text-xs text-gray-700 dark:text-white/80 uppercase tracking-[0.25em] hover:text-purple-500 transition"
+          >
+            Skills
+          </Link>
+
+          <Link
+            href="#projects"
+            className="text-[8px] sm:text-[10px] md:text-xs text-gray-700 dark:text-white/80 uppercase tracking-[0.25em] hover:text-purple-500 transition"
+          >
+            Projects
+          </Link>
+
+          <Link
+            href="#blog"
+            className="text-[8px] sm:text-[10px] md:text-xs text-gray-700 dark:text-white/80 uppercase tracking-[0.25em] hover:text-purple-500 transition"
+          >
+            Blog
+          </Link>
+        </div>
+
+        {/* Bottom Text */}
+        <p className="mt-3 text-[7px] sm:text-[9px] tracking-[0.35em] uppercase text-purple-500 dark:text-purple-400">
+          Powered By Asma
+        </p>
+      </div>
+
+      {/* Bottom Border Glow */}
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-purple-500/40 to-transparent" />
+    </section>
     </>
   );
 }
