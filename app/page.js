@@ -1461,7 +1461,9 @@ function MainPage() {
       </section>
 
       {/*last page*/}
+      
       <section
+     
         className={`relative w-full h-[180px] overflow-hidden transition-all duration-500 bg-cover bg-center bg-no-repeat ${
           darkMode ? "bg-[#090016] text-white" : "bg-white text-black"
         }`}
@@ -1470,7 +1472,9 @@ function MainPage() {
             ? "url('/images/skills-bg.png')"
             : "url('/images/experience-bg1.png')",
         }}
+        
       >
+        
         {/* Purple Glow */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div
@@ -1484,6 +1488,7 @@ function MainPage() {
         <div className="relative z-10 flex flex-col items-center justify-center h-full">
           {/* Logo */}
           <div className="relative w-[55px] h-[55px] sm:w-[65px] sm:h-[65px]">
+             <Link href="#home">
             <Image
               src="/images/logo1.png"
               alt="Logo"
@@ -1491,6 +1496,7 @@ function MainPage() {
               priority
               className="object-contain"
             />
+            </Link>
           </div>
 
           {/* Navbar Links */}
